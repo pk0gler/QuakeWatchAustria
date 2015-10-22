@@ -28,4 +28,28 @@
         android:layout_marginTop="17dp"
         android:layout_marginLeft="14dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Chile"
+        android:id="@+id/textView2"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/listText"
+        android:layout_toEndOf="@+id/listText"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="47dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="20.10.2015"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="5dp" />
+
 </RelativeLayout>

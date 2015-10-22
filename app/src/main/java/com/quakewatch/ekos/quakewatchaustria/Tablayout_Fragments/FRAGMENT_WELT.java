@@ -33,7 +33,7 @@ public class FRAGMENT_WELT extends Fragment {
         ArrayList<String> values = new ArrayList<String>();
         for (int i=0; i<100; i++) {
             Log.d("Bin drin", "drin");
-            int zahl = (int)((Math.random()) * 12 + 1);
+            int zahl = (int)((Math.random()) * 9 + 1);
             int zahl2 = (int)((Math.random()) * 9 + 0);
             values.add(i, zahl+"."+zahl2);
         }
