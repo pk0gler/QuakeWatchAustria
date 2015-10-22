@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class Fragment_AT extends Fragment {
 
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
+    private ImageButton FAB;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class Fragment_AT extends Fragment {
                     }
                 }
         );
+
+
         return v;
     }
 }

@@ -31,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Creating and assigning the View Pager Adapter
-        adapter = new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs, getBaseContext());
+
 
         //Setting the Adapter
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
+        pager.setOffscreenPageLimit(4);
 
         //Assigning Tab Layout
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
