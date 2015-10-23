@@ -23,6 +23,7 @@
             android:clickable="true"
             android:contextClickable="true"
             android:drawSelectorOnTop="false"
+            android:background="#FFFFFF"
             />
 
         <com.software.shell.fab.ActionButton
@@ -60,6 +61,36 @@
             fab:shadowResponsiveEffect_enabled="true"
             fab:show_animation="@anim/fab_roll_from_down"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Aktuelles Beben eintragen"
+            android:id="@+id/tJetzt"
+            android:layout_alignTop="@+id/action_button_jetzt"
+            android:layout_toLeftOf="@+id/action_button_jetzt"
+            android:layout_toStartOf="@+id/action_button_jetzt"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="22dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Anderes Beben eintragen"
+            android:id="@+id/tAndere"
+            android:layout_alignTop="@+id/action_button_andere"
+            android:layout_toLeftOf="@+id/action_button_andere"
+            android:layout_toStartOf="@+id/action_button_andere"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="22dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/back" />
 
     </RelativeLayout>
 </LinearLayout>

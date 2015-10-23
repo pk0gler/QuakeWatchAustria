@@ -28,6 +28,7 @@ public class CustomArrayAdapter extends ArrayAdapter {
         ViewHolder holder;
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
+
         if (convertView == null)
         {
             // Gelöscht!!! Log.d("Seas", "Seas");dd asdasd

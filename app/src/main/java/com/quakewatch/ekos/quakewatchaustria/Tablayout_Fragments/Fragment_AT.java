@@ -1,16 +1,19 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
@@ -32,11 +35,20 @@ public class Fragment_AT extends Fragment {
     private ActionButton actionButtonMain;
     private ActionButton actionButtonAndere;
 
+    private View v;
+    private TextView tJetzt;
+    private TextView tAndere;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.list_layout_at,container,false);
+        v = inflater.inflate(R.layout.list_layout_at,container,false);
+        tJetzt = (TextView) v.findViewById(R.id.tJetzt);
+        tJetzt.setVisibility(View.GONE);
+        tAndere = (TextView) v.findViewById(R.id.tAndere);
+        tAndere.setVisibility(View.GONE);
+        //tJetzt.setBackground("#FFFFFF");
         //return v;
-        ListView listView = (ListView) v.findViewById(R.id.listAt);
+        final ListView listView = (ListView) v.findViewById(R.id.listAt);
         ArrayList<String> values = new ArrayList<String>();
         for (int i=0; i<100; i++) {
             int zahl = (int)((Math.random()) * 9 + 1);
@@ -52,6 +64,7 @@ public class Fragment_AT extends Fragment {
                         String wert = String.valueOf(parent.getItemAtPosition(position));
                         Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
+                        i.putExtra("bebenData", wert);
                         startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
                     }
                 }
@@ -75,12 +88,27 @@ public class Fragment_AT extends Fragment {
 
         actionButtonMain.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if (show) {
+                    //v.setAlpha(1f);
+                    listView.setEnabled(true);
+                    tJetzt.setVisibility(View.GONE);
+                    tAndere.setVisibility(View.GONE);
+                    listView.setAlpha(1f);
+                    listView.setBackgroundColor(Color.WHITE);
                     actionButtonAndere.hide();
                     actionButtonNow.hide();
                     show = false;
                 } else {
+                    listView.setEnabled(false);
+                    tJetzt.setVisibility(View.VISIBLE);
+                    tAndere.setVisibility(View.VISIBLE);
+                    tAndere.startAnimation(AnimationUtils.loadAnimation(v.getContext(), R.anim.fab_fade_in));
+                    tJetzt.startAnimation(AnimationUtils.loadAnimation(v.getContext(), R.anim.fab_fade_in));
+
+                    listView.setAlpha(0.17f);
+                    actionButtonMain.setAlpha(1f);
+                    listView.setBackgroundColor(Color.DKGRAY);
                     actionButtonNow.setHideAnimation(ActionButton.Animations.ROLL_TO_RIGHT);
                     actionButtonAndere.setHideAnimation(ActionButton.Animations.ROLL_TO_RIGHT);
                     actionButtonAndere.show();

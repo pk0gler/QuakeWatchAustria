@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
@@ -21,6 +22,8 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.subactivity);
 
+        this.setUpView();
+
        // getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button button = (Button) findViewById(R.id.btnSub);
@@ -32,6 +35,12 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void setUpView() {
+        String bebenMagn = (String) getIntent().getExtras().get("bebenData");
+        TextView view1 = (TextView) findViewById(R.id.subText1);
+        view1.setText(bebenMagn);
     }
 
     @Override
