@@ -1,7 +1,6 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -45,6 +44,7 @@ public class Fragment_EUROPA extends Fragment {
                         String wert = String.valueOf(parent.getItemAtPosition(position));
                         Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
+                        i.putExtra("bebenData", wert);
                         startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
                     }
                 }

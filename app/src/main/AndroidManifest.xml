@@ -9,13 +9,16 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".SubACtivities.SubActivity_DetailAnsicht"
             android:label="Detailansicht"
@@ -30,6 +33,23 @@
             <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".SubACtivities.SubActivity_BebenEintragenStart"
+            android:label="Beben eintragen"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeSub">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

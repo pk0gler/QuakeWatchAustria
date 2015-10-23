@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
@@ -13,19 +11,26 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 /**
  * Created by pkogler on 22.10.2015.
  */
-public class SubActivity_DetailAnsicht extends AppCompatActivity {
+public class SubActivity_BebenEintragenStart extends AppCompatActivity {
     public final static int SUCCESS_RETURN_CODE = 1;
+    private TextView state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.subactivity);
-
-        this.setUpView();
+        setContentView(R.layout.subactivity_beben);
+        state = (TextView) findViewById(R.id.jetztodned);
+        boolean state = (boolean) getIntent().getExtras().get("state");
+        if (state) {
+            setUpNow();
+        } else {
+            setUp();
+        }
+        //this.setUpView();
 
         // getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Button button = (Button) findViewById(R.id.btnSub);
+        /*Button button = (Button) findViewById(R.id.btnSub);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,13 +38,16 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity {
                 setResult(SUCCESS_RETURN_CODE, i);
                 finish();
             }
-        });
+        });*/
     }
 
-    private void setUpView() {
-        String bebenMagn = (String) getIntent().getExtras().get("bebenData");
-        TextView view1 = (TextView) findViewById(R.id.subText1);
-        view1.setText(bebenMagn);
+    private void setUp() {
+        state.setText("Nicht Jetzt");
+    }
+
+
+    private void setUpNow() {
+        state.setText("Jetzt");
     }
 
     @Override

@@ -6,7 +6,7 @@
 
     <ImageView
         android:layout_width="7dp"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:id="@+id/imagebild"
         android:src="@drawable/strich1"
         android:contentDescription="a"
@@ -25,8 +25,8 @@
         android:layout_alignTop="@+id/imagebild"
         android:layout_toRightOf="@+id/imagebild"
         android:layout_toEndOf="@+id/imagebild"
-        android:layout_marginTop="17dp"
-        android:layout_marginLeft="14dp" />
+        android:layout_marginTop="19dp"
+        android:layout_marginLeft="19dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,8 +37,8 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/listText"
         android:layout_toEndOf="@+id/listText"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="47dp" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,10 +46,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="20.10.2015"
         android:id="@+id/textView3"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/imagebild"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="60dp"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="5dp"/>
 
 </RelativeLayout>

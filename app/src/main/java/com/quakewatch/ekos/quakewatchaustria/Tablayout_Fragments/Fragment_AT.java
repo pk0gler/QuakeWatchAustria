@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
 import com.quakewatch.ekos.quakewatchaustria.R;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
 import com.software.shell.fab.ActionButton;
 
@@ -57,6 +58,7 @@ public class Fragment_AT extends Fragment {
         }
         ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
         listView.setAdapter(adapter);
+        //listView.setOnLongClickListener();
         listView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -119,6 +121,49 @@ public class Fragment_AT extends Fragment {
         });
 
 
-        return v;
+        actionButtonNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listView.setEnabled(true);
+                tJetzt.setVisibility(View.GONE);
+                tAndere.setVisibility(View.GONE);
+                listView.setAlpha(1f);
+                listView.setBackgroundColor(Color.WHITE);
+                actionButtonAndere.hide();
+                actionButtonNow.hide();
+                show = false;
+
+                boolean isNow = true;
+                //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                i.putExtra("state", isNow);
+                startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+
+        actionButtonAndere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listView.setEnabled(true);
+                tJetzt.setVisibility(View.GONE);
+                tAndere.setVisibility(View.GONE);
+                listView.setAlpha(1f);
+                listView.setBackgroundColor(Color.WHITE);
+                actionButtonAndere.hide();
+                actionButtonNow.hide();
+                show = false;
+
+                boolean isNow = false;
+                //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                i.putExtra("state", isNow);
+                startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+
+
+                return v;
     }
 }

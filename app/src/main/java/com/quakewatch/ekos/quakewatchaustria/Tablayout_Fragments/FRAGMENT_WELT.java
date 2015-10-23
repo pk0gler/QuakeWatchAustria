@@ -46,6 +46,7 @@ public class FRAGMENT_WELT extends Fragment {
                         String wert = String.valueOf(parent.getItemAtPosition(position));
                         Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
+                        i.putExtra("bebenData", wert);
                         startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
                     }
                 }
