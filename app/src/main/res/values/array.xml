@@ -1,5 +1,5 @@
 <resources>
-    <string-array name="listArray">
+    <string-array name="magArray">
         <item>Magnitude 1+</item>
         <item>Magnitude 2+</item>
         <item>Magnitude 3+</item>
@@ -10,7 +10,7 @@
         <item>Magnitude 8+</item>
         <item>Magnitude 9+</item>
     </string-array>
-    <string-array name="listValues">
+    <string-array name="magValues">
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -20,5 +20,15 @@
         <item>7</item>
         <item>8</item>
         <item>9</item>
+    </string-array>
+
+
+    <string-array name="langArray">
+        <item>Deutsch</item>
+        <item>Englisch</item>
+    </string-array>
+    <string-array name="langValues">
+        <item>1</item>
+        <item>2</item>
     </string-array>
 </resources>

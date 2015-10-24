@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference android:title="Ihre Email Adresse"
-        android:key="email"
-        android:summary="Email"/>
-    <CheckBoxPreference android:title="Application Notifications"
-        android:defaultValue="false"
-        android:summary="Wenn Sie diese Option aktivieren erlauben Sie der App Informationen anzuzeigen"
-        android:key="applicationUpdates" />
-    <ListPreference
-        android:title="Magnituden Stärke"
-        android:summary="Wählen Sie die Magnitude aus welche mind verwendet wird"
-        android:key="downloadType"
-        android:defaultValue="1"
-        android:entries="@array/listArray"
-        android:entryValues="@array/listValues" />
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preferences">
+    <PreferenceCategory android:title="Benutzereinstellungen">
+        <EditTextPreference android:title="Ihre Email Adresse"
+            android:dialogTitle="Email Addresse"
+            android:key="email"
+            android:defaultValue="example@gmail.com"
+            android:summary="Email"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Anwendungseinstellungen">
+        <CheckBoxPreference android:title="Application Notifications"
+            android:defaultValue="false"
+            android:summary="Wenn Sie diese Option aktivieren erlauben Sie der App Informationen anzuzeigen"
+            android:key="notifications"></CheckBoxPreference>
+        <ListPreference
+            android:title="Sprache"
+            android:summary="Wählen Sie die gewünschte Sprache"
+            android:key="sprache"
+            android:defaultValue="1"
+            android:entries="@array/langArray"
+            android:entryValues="@array/langValues" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Bebeneinstellungen">
+        <ListPreference
+            android:title="Magnituden Stärke"
+            android:summary="Wählen Sie die Magnitude aus welche mind verwendet wird"
+            android:key="magType"
+            android:defaultValue="1"
+            android:entries="@array/magArray"
+            android:entryValues="@array/magValues" />
+    </PreferenceCategory>
 </PreferenceScreen>

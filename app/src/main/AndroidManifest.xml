@@ -63,23 +63,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SubACtivities.SubActivity_Settings"
-            android:label="Settings"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeSub" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".SubACtivities.SubActivity_SettingsActivity"
-            android:label="@string/title_activity_sub_activity__settings" >
+            android:label="@string/title_activity_sub_activity__settings"
+            android:theme="@style/AppThemeSub">
         </activity>
     </application>
 
