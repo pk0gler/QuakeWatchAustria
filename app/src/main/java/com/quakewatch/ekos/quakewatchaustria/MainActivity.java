@@ -1,5 +1,6 @@
 package com.quakewatch.ekos.quakewatchaustria;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_Settings;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"AT","EUROPA","WELT","MAP"};
     int Numboftabs = 4;
+    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent i = new Intent(this.getBaseContext(), SubActivity_Settings.class);
+            startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
             return true;
         }
 

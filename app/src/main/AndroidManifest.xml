@@ -50,6 +50,38 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".SubACtivities.SubActivity_DiesesBebenEintragen"
+            android:label="Deises Beben eintragen"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeSub">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".SubACtivities.SubActivity_Settings"
+            android:label="Settings"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeSub">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

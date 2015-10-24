@@ -31,7 +31,7 @@ public class FRAGMENT_WELT extends Fragment {
         //return v;
         ListView listView = (ListView) v.findViewById(R.id.listWorld);
         ArrayList<String> values = new ArrayList<String>();
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<20; i++) {
             Log.d("Bin drin", "drin");
             int zahl = (int)((Math.random()) * 9 + 1);
             int zahl2 = (int)((Math.random()) * 9 + 0);

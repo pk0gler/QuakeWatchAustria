@@ -30,7 +30,7 @@ public class Fragment_EUROPA extends Fragment {
         //return v;
         ListView listView = (ListView) v.findViewById(R.id.listEu);
         ArrayList<String> values = new ArrayList<String>();
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<20; i++) {
             int zahl = (int)((Math.random()) * 9 + 1);
             int zahl2 = (int)((Math.random()) * 9 + 0);
             values.add(i, zahl+"."+zahl2);

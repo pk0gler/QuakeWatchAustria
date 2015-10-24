@@ -20,6 +20,7 @@ import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArray
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DiesesBebenEintragen;
 import com.software.shell.fab.ActionButton;
 
 import java.util.ArrayList;
@@ -51,14 +52,25 @@ public class Fragment_AT extends Fragment {
         //return v;
         final ListView listView = (ListView) v.findViewById(R.id.listAt);
         ArrayList<String> values = new ArrayList<String>();
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<20; i++) {
             int zahl = (int)((Math.random()) * 9 + 1);
             int zahl2 = (int)((Math.random()) * 9 + 0);
             values.add(i, zahl+"."+zahl2);
         }
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                boolean isNow = true;
+                //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getContext(), SubActivity_DiesesBebenEintragen.class);
+                i.putExtra("state", isNow);
+                startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+                return true;
+            }
+        });
         ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
         listView.setAdapter(adapter);
-        //listView.setOnLongClickListener();
         listView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -71,7 +83,6 @@ public class Fragment_AT extends Fragment {
                     }
                 }
         );
-
 
         actionButtonMain = (ActionButton) v.findViewById(R.id.action_button_main);
         actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
@@ -118,6 +129,10 @@ public class Fragment_AT extends Fragment {
                     show = true;
                 }
             }
+
+
+
+
         });
 
 
