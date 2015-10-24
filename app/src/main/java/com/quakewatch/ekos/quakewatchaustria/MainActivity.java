@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
-import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_Settings;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent i = new Intent(this.getBaseContext(), SubActivity_Settings.class);
+            Intent i = new Intent(this.getBaseContext(), SubActivity_SettingsActivity.class);
             startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
             return true;
         }

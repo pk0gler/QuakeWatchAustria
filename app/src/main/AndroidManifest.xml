@@ -10,78 +10,77 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SubACtivities.SubActivity_DetailAnsicht"
             android:label="Detailansicht"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeSub">
+            android:theme="@style/AppThemeSub" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
 
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SubACtivities.SubActivity_BebenEintragenStart"
             android:label="Beben eintragen"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeSub">
+            android:theme="@style/AppThemeSub" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SubACtivities.SubActivity_DiesesBebenEintragen"
             android:label="Deises Beben eintragen"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeSub">
+            android:theme="@style/AppThemeSub" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SubACtivities.SubActivity_Settings"
             android:label="Settings"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeSub">
+            android:theme="@style/AppThemeSub" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".SubACtivities.SubActivity_SettingsActivity"
+            android:label="@string/title_activity_sub_activity__settings" >
+        </activity>
     </application>
 
 </manifest>

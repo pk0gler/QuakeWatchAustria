@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="Ihre Email Adresse"
+        android:key="email"
+        android:summary="Email"/>
+    <CheckBoxPreference android:title="Application Notifications"
+        android:defaultValue="false"
+        android:summary="Wenn Sie diese Option aktivieren erlauben Sie der App Informationen anzuzeigen"
+        android:key="applicationUpdates" />
+    <ListPreference
+        android:title="Magnituden Stärke"
+        android:summary="Wählen Sie die Magnitude aus welche mind verwendet wird"
+        android:key="downloadType"
+        android:defaultValue="1"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues" />
+</PreferenceScreen>

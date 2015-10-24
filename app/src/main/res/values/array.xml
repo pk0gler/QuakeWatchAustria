@@ -1,0 +1,24 @@
+<resources>
+    <string-array name="listArray">
+        <item>Magnitude 1+</item>
+        <item>Magnitude 2+</item>
+        <item>Magnitude 3+</item>
+        <item>Magnitude 4+</item>
+        <item>Magnitude 5+</item>
+        <item>Magnitude 6+</item>
+        <item>Magnitude 7+</item>
+        <item>Magnitude 8+</item>
+        <item>Magnitude 9+</item>
+    </string-array>
+    <string-array name="listValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+</resources>
