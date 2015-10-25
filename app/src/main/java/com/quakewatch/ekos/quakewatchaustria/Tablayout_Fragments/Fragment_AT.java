@@ -80,6 +80,7 @@ public class Fragment_AT extends Fragment {
             public void onClick(View view) {
                 if (show) {
                     //v.setAlpha(1f);
+                    actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
                     listView.setEnabled(true);
                     tJetzt.setVisibility(View.GONE);
                     tAndere.setVisibility(View.GONE);
@@ -98,6 +99,7 @@ public class Fragment_AT extends Fragment {
                     listView.setAlpha(0.17f);
                     actionButtonMain.setAlpha(1f);
                     listView.setBackgroundColor(Color.DKGRAY);
+                    actionButtonMain.setImageResource(R.drawable.fab_x_but);
                     actionButtonNow.setHideAnimation(ActionButton.Animations.ROLL_TO_RIGHT);
                     actionButtonAndere.setHideAnimation(ActionButton.Animations.ROLL_TO_RIGHT);
                     actionButtonAndere.show();
