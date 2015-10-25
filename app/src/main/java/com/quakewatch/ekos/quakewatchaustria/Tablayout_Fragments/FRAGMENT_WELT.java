@@ -1,8 +1,10 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -32,15 +34,35 @@ public class FRAGMENT_WELT extends Fragment {
     private float mActionBarHeight;
     private ActionBar mActionBar;
 
+    ListView listView;
+    String magStaerke;
+
+    View v;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.list_layout_world,container,false);
+        v =inflater.inflate(R.layout.list_layout_world,container,false);
+        this.createContent();
+        return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.createContent();
+    }
+
+    private void createContent() {
+        listView = null;
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
+        this.magStaerke = SP.getString("magType", "1").charAt(0) + "";
+        Log.d("Magni", Integer.parseInt(magStaerke) + "");
         //return v;
-        ListView listView = (ListView) v.findViewById(R.id.listWorld);
+        listView = (ListView) v.findViewById(R.id.listWorld);
         ArrayList<String> values = new ArrayList<String>();
         for (int i=0; i<20; i++) {
             Log.d("Bin drin", "drin");
-            int zahl = (int)((Math.random()) * 9 + 1);
+            int zahl = (int)(Math.random() * ((9 - Integer.parseInt(magStaerke)) + 1) + Integer.parseInt(magStaerke));
             int zahl2 = (int)((Math.random()) * 9 + 0);
             values.add(i, zahl+"."+zahl2);
         }
@@ -74,6 +96,5 @@ public class FRAGMENT_WELT extends Fragment {
 
         listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
 
-        return v;
     }
 }

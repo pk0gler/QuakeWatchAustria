@@ -40,7 +40,7 @@ public class Fragment_EUROPA extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          v =inflater.inflate(R.layout.list_layout_eu,container,false);
-
+        /*
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
         this.magStaerke = SP.getString("magType", "1").charAt(0)+"";
         Log.d("Magni",Integer.parseInt(magStaerke)+"");
@@ -49,7 +49,7 @@ public class Fragment_EUROPA extends Fragment {
         listView = (ListView) v.findViewById(R.id.listEu);
         ArrayList<String> values = new ArrayList<String>();
         for (int i=0; i<20; i++) {
-            int zahl = (int)(Math.random() * 0) + Integer.parseInt(magStaerke)+1;
+            int zahl = (int)(Math.random() * ((9 - Integer.parseInt(magStaerke)) + 1) + Integer.parseInt(magStaerke));
             int zahl2 = (int)((Math.random()) * 9 + 0);
             values.add(i, zahl+"."+zahl2);
         }
@@ -81,8 +81,67 @@ public class Fragment_EUROPA extends Fragment {
                 new int[]{android.R.attr.actionBarSize});
         mActionBarHeight = styledAttributes.getDimension(0, 0);
         mActionBar = ((MainActivity) getActivity()).getSupportActionBar();
-
-        listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
+        listView.setOnScrollListener(new MyOnScrollListner(mActionBar));*/
+        this.createContent();
         return v;
+    }
+    private boolean jetzt = true;
+    @Override
+    public void onResume() {
+        super.onResume();
+        /*ListView listView = (ListView)v.findViewById(R.id.listEu);
+        if (jetzt) {
+            jetzt = false;
+            listView.setDividerHeight(7);
+        } else {
+            jetzt = true;
+            listView.setDividerHeight(1);
+        }*/
+        this.createContent();
+    }
+
+    private void createContent() {
+        listView = null;
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
+        this.magStaerke = SP.getString("magType", "1").charAt(0)+"";
+        Log.d("Magni",Integer.parseInt(magStaerke)+"");
+
+        //return v;
+        listView = (ListView) v.findViewById(R.id.listEu);
+        ArrayList<String> values = new ArrayList<String>();
+        for (int i=0; i<20; i++) {
+            int zahl = (int)(Math.random() * ((9 - Integer.parseInt(magStaerke)) + 1) + Integer.parseInt(magStaerke));
+            int zahl2 = (int)((Math.random()) * 9 + 0);
+            values.add(i, zahl+"."+zahl2);
+        }
+        ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String wert = String.valueOf(parent.getItemAtPosition(position));
+                        Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
+                        i.putExtra("bebenData", wert);
+                        startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+                    }
+                }
+        );
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "Beben auf map anzeigen", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
+
+        final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(
+                new int[]{android.R.attr.actionBarSize});
+        mActionBarHeight = styledAttributes.getDimension(0, 0);
+        mActionBar = ((MainActivity) getActivity()).getSupportActionBar();
+        listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
     }
 }
