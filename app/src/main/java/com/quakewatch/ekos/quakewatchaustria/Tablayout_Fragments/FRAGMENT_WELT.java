@@ -1,9 +1,11 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
+import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.MyOnScrollListner;
+import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
 
@@ -24,6 +28,9 @@ import java.util.ArrayList;
  */
 public class FRAGMENT_WELT extends Fragment {
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
+
+    private float mActionBarHeight;
+    private ActionBar mActionBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,6 +58,22 @@ public class FRAGMENT_WELT extends Fragment {
                     }
                 }
         );
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "Beben auf map anzeigen", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
+        final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(
+                new int[]{android.R.attr.actionBarSize});
+        mActionBarHeight = styledAttributes.getDimension(0, 0);
+        mActionBar = ((MainActivity) getActivity()).getSupportActionBar();
+
+        listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
+
         return v;
     }
 }

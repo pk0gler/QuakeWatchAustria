@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -85,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this.getBaseContext(), SubActivity_SettingsActivity.class);
             startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
             return true;
+        } else {
+            boolean isNow = false;
+            //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getBaseContext(), SubActivity_BebenEintragenStart.class);
+            i.putExtra("state", isNow);
+            startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
         }
 
         return super.onOptionsItemSelected(item);

@@ -1,10 +1,12 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
+import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.MyOnScrollListner;
+import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
@@ -40,6 +44,9 @@ public class Fragment_AT extends Fragment {
     private View v;
     private TextView tJetzt;
     private TextView tAndere;
+
+    private float mActionBarHeight;
+    private ActionBar mActionBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -131,8 +138,6 @@ public class Fragment_AT extends Fragment {
             }
 
 
-
-
         });
 
 
@@ -178,7 +183,14 @@ public class Fragment_AT extends Fragment {
         });
 
 
+        final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(
+                new int[]{android.R.attr.actionBarSize});
+        mActionBarHeight = styledAttributes.getDimension(0, 0);
+        mActionBar = ((MainActivity) getActivity()).getSupportActionBar();
 
-                return v;
+        listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
+
+
+        return v;
     }
 }

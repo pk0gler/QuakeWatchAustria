@@ -1,9 +1,14 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +18,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
+import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.MyOnScrollListner;
+import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
 
@@ -23,15 +30,26 @@ import java.util.ArrayList;
  */
 public class Fragment_EUROPA extends Fragment {
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
+    ListView listView;
+    View v;
+    private float mActionBarHeight;
+    private ActionBar mActionBar;
+    String magStaerke;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.list_layout_eu,container,false);
+         v =inflater.inflate(R.layout.list_layout_eu,container,false);
+
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
+        this.magStaerke = SP.getString("magType", "1").charAt(0)+"";
+        Log.d("Magni",Integer.parseInt(magStaerke)+"");
+
         //return v;
-        ListView listView = (ListView) v.findViewById(R.id.listEu);
+        listView = (ListView) v.findViewById(R.id.listEu);
         ArrayList<String> values = new ArrayList<String>();
         for (int i=0; i<20; i++) {
-            int zahl = (int)((Math.random()) * 9 + 1);
+            int zahl = (int)(Math.random() * 0) + Integer.parseInt(magStaerke)+1;
             int zahl2 = (int)((Math.random()) * 9 + 0);
             values.add(i, zahl+"."+zahl2);
         }
@@ -49,6 +67,22 @@ public class Fragment_EUROPA extends Fragment {
                     }
                 }
         );
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "Beben auf map anzeigen", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
+
+        final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(
+                new int[]{android.R.attr.actionBarSize});
+        mActionBarHeight = styledAttributes.getDimension(0, 0);
+        mActionBar = ((MainActivity) getActivity()).getSupportActionBar();
+
+        listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
         return v;
     }
 }
