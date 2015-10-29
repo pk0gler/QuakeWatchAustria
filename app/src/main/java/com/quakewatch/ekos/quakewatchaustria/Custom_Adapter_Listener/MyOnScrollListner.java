@@ -22,6 +22,7 @@ public class MyOnScrollListner implements AbsListView.OnScrollListener {
         } else if ( view.getFirstVisiblePosition()==0 && !mActionBar.isShowing()) {
             mActionBar.show();
         }
+        //if (view.top)
     }
 
     @Override

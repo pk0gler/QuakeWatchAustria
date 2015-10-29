@@ -166,6 +166,7 @@ public class Fragment_AT extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        //getActivity().getIntent().getExtras().get("save");
         this.createConetent();
     }
 
@@ -214,5 +215,6 @@ public class Fragment_AT extends Fragment {
                 }
         );
         listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
+        actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
     }
 }

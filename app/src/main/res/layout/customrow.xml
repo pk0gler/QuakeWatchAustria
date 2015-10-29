@@ -26,30 +26,43 @@
         android:layout_toRightOf="@+id/imagebild"
         android:layout_toEndOf="@+id/imagebild"
         android:layout_marginTop="19dp"
-        android:layout_marginLeft="19dp" />
+        android:layout_marginLeft="19dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Chile"
-        android:id="@+id/textView2"
+        android:text="South Ost, Chile"
+        android:id="@+id/textViewLocation"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/listText"
         android:layout_toEndOf="@+id/listText"
         android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp" />
+        android:layout_marginStart="30dp"
+        android:textSize="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="20.10.2015"
-        android:id="@+id/textView3"
+        android:id="@+id/textViewDatum"
         android:layout_alignTop="@+id/imagebild"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="20:15"
+        android:id="@+id/textViewTime"
+        android:layout_alignTop="@+id/textViewDatum"
+        android:layout_toLeftOf="@+id/textViewDatum"
+        android:layout_toStartOf="@+id/textViewDatum"
+        android:layout_marginRight="15dp"
+        android:textSize="12sp"/>
 
 </RelativeLayout>

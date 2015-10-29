@@ -5,6 +5,21 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary"> @color/ColorPrimary</item>
         <item name="colorPrimaryDark"> @color/ColorPrimaryDark</item>
+        <item name="android:popupMenuStyle">@style/PopUp</item>
+    </style>
+
+
+    <style name="ThemeToolbar" parent="Base.ThemeOverlay.AppCompat.Dark">
+        <item name="android:itemTextAppearance">@style/TextAppearance</item>
+        <item name="android:textColorPrimary">#FFFFFF </item>
+        <item name="android:color">#FFFFFF </item>
+    </style>
+
+    <style name="TextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="PopUp" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground"> #FFFFFF </item>
     </style>
 
 </resources>

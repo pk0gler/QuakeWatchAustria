@@ -34,4 +34,5 @@
             android:entries="@array/magArray"
             android:entryValues="@array/magValues" />
     </PreferenceCategory>
+
 </PreferenceScreen>
