@@ -18,7 +18,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
-import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.MyOnScrollListner;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
@@ -142,6 +141,6 @@ public class Fragment_EUROPA extends Fragment {
                 new int[]{android.R.attr.actionBarSize});
         mActionBarHeight = styledAttributes.getDimension(0, 0);
         mActionBar = ((MainActivity) getActivity()).getSupportActionBar();
-        listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
+        //listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
     }
 }

@@ -20,10 +20,10 @@
             android:defaultValue="1"
             android:entries="@array/langArray"
             android:entryValues="@array/langValues" />
-        <CheckBoxPreference android:title="Standort"
+        <!--CheckBoxPreference android:title="Standort"
             android:defaultValue="true"
             android:summary="Wenn Sie diese Option aktivieren erlauben Sie der App Ihren Standort zu verwenden"
-            android:key="standort"></CheckBoxPreference>
+            android:key="standort"></CheckBoxPreference-->
     </PreferenceCategory>
     <PreferenceCategory android:title="Bebeneinstellungen">
         <ListPreference

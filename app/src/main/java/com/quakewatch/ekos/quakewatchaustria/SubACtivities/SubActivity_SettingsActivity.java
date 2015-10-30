@@ -22,10 +22,11 @@ public class SubActivity_SettingsActivity extends PreferenceActivity {
 		ListView v = getListView();
 		Button saveButton = new Button(this);
 		saveButton.setText("Übernehmen");
+		saveButton.setPadding(10, 30, 10, 30);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				getIntent().putExtra("save", true);
+				//getIntent().putExtra("save", true);
 				//finish();
 				//Toast.makeText(getBaseContext(), "Ihre Email ist nicht gültig", Toast.LENGTH_LONG).show();
 				finish();

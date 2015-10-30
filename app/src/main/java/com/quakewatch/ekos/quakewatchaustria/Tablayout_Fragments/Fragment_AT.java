@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
-import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.MyOnScrollListner;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
@@ -158,7 +157,7 @@ public class Fragment_AT extends Fragment {
                 new int[]{android.R.attr.actionBarSize});
         mActionBarHeight = styledAttributes.getDimension(0, 0);
         mActionBar = ((MainActivity) getActivity()).getSupportActionBar();
-
+        this.createConetent();
 
         return v;
     }
@@ -168,6 +167,8 @@ public class Fragment_AT extends Fragment {
         super.onResume();
         //getActivity().getIntent().getExtras().get("save");
         this.createConetent();
+        //actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
+
     }
 
     public void createConetent() {
@@ -214,7 +215,7 @@ public class Fragment_AT extends Fragment {
                     }
                 }
         );
-        listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
+        //listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
         actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
     }
 }
