@@ -60,7 +60,7 @@ public class Fragment_AT extends Fragment {
 
 
         actionButtonMain = (ActionButton) v.findViewById(R.id.action_button_main);
-        actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
+        actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
 
         actionButtonNow = (ActionButton) v.findViewById(R.id.action_button_jetzt);
         actionButtonAndere = (ActionButton) v.findViewById(R.id.action_button_andere);
@@ -79,7 +79,7 @@ public class Fragment_AT extends Fragment {
             public void onClick(View view) {
                 if (show) {
                     //v.setAlpha(1f);
-                    actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
+                    actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
                     listView.setEnabled(true);
                     tJetzt.setVisibility(View.GONE);
                     tAndere.setVisibility(View.GONE);
@@ -214,11 +214,12 @@ public class Fragment_AT extends Fragment {
                         Toast.makeText(getContext(), temp.getMag()+"", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
                         i.putExtra("bebenData", temp);
+                        i.putExtra("isAt", true);
                         startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
                     }
                 }
         );
         //listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
-        actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
+        actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
     }
 }

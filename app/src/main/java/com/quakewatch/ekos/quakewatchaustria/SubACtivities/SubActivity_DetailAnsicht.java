@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
+import com.software.shell.fab.ActionButton;
 
 import java.io.Serializable;
 
@@ -38,6 +40,9 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
             //Red
             "#CA0000"
     };
+    public boolean isAt;
+    private ActionButton butJetzt;
+    private ActionButton butMap;
 
 
     /**
@@ -47,7 +52,15 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.subactivity_deatailansicht);
+        this.isAt = (boolean)getIntent().getExtras().get("isAt");
+        if (isAt) {
+            setContentView(R.layout.subactivity_deatailansicht_at);
+            butJetzt = (ActionButton) findViewById(R.id.action_button_jetzt);
+            butJetzt.setImageResource(R.drawable.fab_x_but_rotate);
+            Log.d("acc", butJetzt.getImageSize() + "");
+        } else {
+            setContentView(R.layout.subactivity_deatailansicht);
+        }
         this.setUpView();
         Button button = (Button) findViewById(R.id.btnSub);
         button.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +83,8 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         ImageView imgBottom = (ImageView) findViewById(R.id.imageViewBottom);
         TextView textMag = (TextView) findViewById(R.id.textMag);
         ImageView icon = (ImageView) findViewById(R.id.detailImg);
-
+        butMap = (ActionButton) findViewById(R.id.action_button_map);
+        butMap.setImageResource(R.drawable.map);
         TextView textDate = (TextView) findViewById(R.id.textDate);
         TextView textTime = (TextView) findViewById(R.id.textTime);
         TextView textLocation = (TextView) findViewById(R.id.textViewLocation);

@@ -123,6 +123,7 @@ public class Fragment_EUROPA extends Fragment {
                         Toast.makeText(getContext(), temp.getMag()+"", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
                         i.putExtra("bebenData", temp);
+                        i.putExtra("isAt", false);
                         startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
                     }
                 }
