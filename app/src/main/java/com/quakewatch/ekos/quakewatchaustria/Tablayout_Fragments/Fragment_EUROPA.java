@@ -96,7 +96,7 @@ public class Fragment_EUROPA extends Fragment {
             jetzt = true;
             listView.setDividerHeight(1);
         }*/
-        this.createContent();
+        //this.createContent();
     }
 
     private void createContent() {

@@ -55,7 +55,7 @@ public class FRAGMENT_WELT extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        this.createContent();
+        //this.createContent();
     }
 
     private void createContent() {

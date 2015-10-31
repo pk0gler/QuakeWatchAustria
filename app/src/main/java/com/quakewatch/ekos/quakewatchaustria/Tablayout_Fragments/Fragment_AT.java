@@ -166,7 +166,7 @@ public class Fragment_AT extends Fragment {
     public void onResume() {
         super.onResume();
         //getActivity().getIntent().getExtras().get("save");
-        this.createConetent();
+        //this.createConetent();
         //actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
 
     }
