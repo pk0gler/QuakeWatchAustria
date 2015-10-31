@@ -16,6 +16,8 @@ import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
 
+import java.io.Serializable;
+
 public class MainActivity extends AppCompatActivity {
 
     //Declaring View and Variable Elements
@@ -24,8 +26,9 @@ public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"AT","EUROPA","WELT","MAP"};
+    CharSequence Titles[] = {"AT", "EUROPA", "WELT", "MAP"};
     int Numboftabs = 4;
+    int wantedPosition = 0;
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
 
     @Override
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         String email = SP.getString("email", "");
         boolean notif = SP.getBoolean("notifications", false);
         String magn = SP.getString("magType", "1");
-        Log.d("pref","Email Addresse: "+email+"  -  Notifications: "+notif + "  -  Magnitude: "+magn);
+        Log.d("pref", "Email Addresse: " + email + "  -  Notifications: " + notif + "  -  Magnitude: " + magn);
     }
 
     @Override
@@ -97,4 +100,21 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("who", "" + getCallingActivity());
+        try {
+            Log.d("who", "endlich" + getCallingActivity().toString());
+            pager.setCurrentItem(3,true);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ViewPager getAdapter() {
+        return pager;
+    }
+
 }

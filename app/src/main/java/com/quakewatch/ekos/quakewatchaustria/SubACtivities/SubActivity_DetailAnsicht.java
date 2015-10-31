@@ -3,6 +3,7 @@ package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.MyClickListener;
+import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
+import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 import com.software.shell.fab.ActionButton;
@@ -44,6 +48,8 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
     private ActionButton butJetzt;
     private ActionButton butMap;
 
+    private ViewPager pager;
+
 
     /**
      * OnCreate
@@ -51,12 +57,15 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //finish();
         super.onCreate(savedInstanceState);
         this.isAt = (boolean)getIntent().getExtras().get("isAt");
         if (isAt) {
             setContentView(R.layout.subactivity_deatailansicht_at);
             butJetzt = (ActionButton) findViewById(R.id.action_button_jetzt);
             butJetzt.setImageResource(R.drawable.fab_x_but_rotate);
+            pager = (ViewPager) findViewById(R.id.pager);
+            //butJetzt.setOnClickListener(new MyClickListener(butJetzt, getBaseContext()));
             Log.d("acc", butJetzt.getImageSize() + "");
         } else {
             setContentView(R.layout.subactivity_deatailansicht);
@@ -85,6 +94,20 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         ImageView icon = (ImageView) findViewById(R.id.detailImg);
         butMap = (ActionButton) findViewById(R.id.action_button_map);
         butMap.setImageResource(R.drawable.map);
+        //butMap.setOnClickListener(new MyClickListener(butMap, getBaseContext()));
+        butMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //((MainActivity)getBaseContext()).getAdapter().setCurrentItem(3);
+                //((ViewPager) findViewById(R.id.pager)).setCurrentItem(3);
+                //((MainActivity) getParent()).setPosition(3);
+                getIntent().putExtra("position", 3);
+                Intent i = new Intent();
+                setResult(SUCCESS_RETURN_CODE, i);
+                startActivityForResult(new Intent(getBaseContext(), MainActivity.class), 12);
+                finish();
+            }
+        });
         TextView textDate = (TextView) findViewById(R.id.textDate);
         TextView textTime = (TextView) findViewById(R.id.textTime);
         TextView textLocation = (TextView) findViewById(R.id.textViewLocation);

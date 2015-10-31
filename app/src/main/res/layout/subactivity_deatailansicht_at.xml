@@ -105,11 +105,10 @@
         android:layout_height="match_parent"
         fab:shadowResponsiveEffect_enabled="true"
         fab:button_color="@color/ColorPrimary"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/textDate"
         android:layout_toEndOf="@+id/textDate"
         android:layout_alignTop="@+id/action_button_jetzt"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="10dp"
+        android:layout_alignBottom="@+id/action_button_jetzt" />
 
 
 

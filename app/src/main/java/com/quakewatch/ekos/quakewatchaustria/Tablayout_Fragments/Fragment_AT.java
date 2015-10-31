@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
+import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
@@ -53,6 +54,8 @@ public class Fragment_AT extends Fragment {
 
     private float mActionBarHeight;
     private ActionBar mActionBar;
+
+    private ViewPagerAdapter pager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -167,7 +170,7 @@ public class Fragment_AT extends Fragment {
         super.onResume();
         //getActivity().getIntent().getExtras().get("save");
         //this.createConetent();
-        //actionButtonMain.setImageResource(R.drawable.fab_plus_icon);
+        actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
 
     }
 
