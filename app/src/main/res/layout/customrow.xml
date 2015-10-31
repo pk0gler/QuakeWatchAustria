@@ -15,31 +15,28 @@
         android:layout_marginLeft="2dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="12.0"
         android:textSize="30dp"
         android:id="@+id/listText"
         android:padding="0dp"
-        android:layout_alignTop="@+id/imagebild"
+        android:layout_alignTop="@+id/textViewTime"
+        android:gravity="center_vertical|center_horizontal"
         android:layout_toRightOf="@+id/imagebild"
-        android:layout_toEndOf="@+id/imagebild"
-        android:layout_marginTop="19dp"
-        android:layout_marginLeft="19dp"/>
+        android:layout_alignBottom="@+id/imagebild" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="South Ost, Chile"
+        android:text="Wien, TGM"
         android:id="@+id/textViewLocation"
+        android:textSize="15sp"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/listText"
-        android:layout_toEndOf="@+id/listText"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:textSize="15sp"/>
+        android:layout_toEndOf="@+id/listText" />
 
     <TextView
         android:layout_width="wrap_content"

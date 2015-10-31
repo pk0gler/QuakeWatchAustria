@@ -19,22 +19,17 @@ public class SubActivity_SettingsActivity extends PreferenceActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
+		this.setContentView(R.layout.settings_help);
 		ListView v = getListView();
-		Button saveButton = new Button(this);
+		Button saveButton = (Button) findViewById(R.id.saveButton);
 		saveButton.setText("Übernehmen");
 		saveButton.setPadding(10, 30, 10, 30);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//getIntent().putExtra("save", true);
-				//finish();
-				//Toast.makeText(getBaseContext(), "Ihre Email ist nicht gültig", Toast.LENGTH_LONG).show();
 				finish();
 			}
 		});
-		v.addFooterView(saveButton);
-		//super.findPreference("email").setOnPreferenceChangeListener(new PrefListener(SubActivity_SettingsActivity.this));
-		//super.findPreference("notifications").setOnPreferenceChangeListener(new PrefListener(SubActivity_SettingsActivity.this));
 		findPreference("email").setOnPreferenceChangeListener(
 				new Preference.OnPreferenceChangeListener() {
 

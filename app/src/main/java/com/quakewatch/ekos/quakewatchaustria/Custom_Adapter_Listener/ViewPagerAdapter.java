@@ -5,20 +5,20 @@ package com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener;
  */
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FRAGMENT_MAP;
-import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FRAGMENT_WELTT1;
+import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FRAGMENT_WELT;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Fragment_AT;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Fragment_EUROPA;
 
 
 /**
  * Created by hp1 on 21-01-2015.
+ * Usage:   Adapter for swiping through Fragments
  */
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -36,7 +36,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     }
 
-    //This method return the fragment for the every position in the View Pager
+    /**
+     * This method return the fragment for the every position in the View Pager
+     * @param position
+     * @return
+     */
     @Override
     public Fragment getItem(int position) {
         
@@ -46,7 +50,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new Fragment_EUROPA();
             case 2:
-                return new FRAGMENT_WELTT1();
+                return new FRAGMENT_WELT();
             case 3:
                 Log.d("drin page", "page");
                 return new FRAGMENT_MAP();
@@ -55,24 +59,20 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         }
     }
 
-    // This method return the titles for the Tabs in the Tab Strip
-    Drawable myDrawable;
-    String title;
+    /**
+     * This method return the titles for the Tabs in the Tab Strip
+     * @param position
+     * @return
+     */
     @Override
     public CharSequence getPageTitle(int position) {
         return Titles[position];
-        /*SpannableStringBuilder sb = new SpannableStringBuilder(" Page " + (position + 1)); // space added before text for convenience
-
-        Drawable drawable = context.getResources().getDrawable( R.drawable.ic_launcher );
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        ImageSpan span = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);
-        sb.setSpan(span, 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        return sb;*/
     }
 
-    // This method return the Number of tabs for the tabs Strip
-
+    /**
+     * This method return the Number of tabs for the tabs Strip
+     * @return
+     */
     @Override
     public int getCount() {
         return NumbOfTabs;

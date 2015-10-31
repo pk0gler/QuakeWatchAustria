@@ -32,6 +32,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".SubACtivities.SubActivity_BebenEintragenStart"
             android:label="Beben eintragen"

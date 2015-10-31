@@ -1,9 +1,13 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
+import android.util.Log;
+
+import java.io.Serializable;
+
 /**
  * Created by pkogler on 30.10.2015.
  */
-public class Erdbeben {
+public class Erdbeben implements Serializable {
     private double mag;
     private String region;
     private String timeWhole;
@@ -12,7 +16,7 @@ public class Erdbeben {
 
     public Erdbeben(double mag, String region, String timeWhole) {
         this.mag = mag;
-        this.region = region;
+        this.region = this.formatRegion(region);
         this.timeWhole = timeWhole;
         this.seperateTimeWhole(timeWhole);
     }
@@ -64,4 +68,21 @@ public class Erdbeben {
     public void setTimeWhole(String timeWhole) {
         this.timeWhole = timeWhole;
     }
+
+    public String formatRegion(String t) {
+        String a = t.toLowerCase();
+        String[] temp = a.split(" ");
+        String newStr = "";
+        for (int i = 0; i<temp.length; i++) {
+            if (i == 1) newStr += " ";
+            newStr += temp[i].substring(0,1).toUpperCase();
+            newStr += temp[i].substring(1,temp[i].length());
+        }
+        Log.d("Region", newStr);
+        if (newStr.length() >= 20) {
+            //Work to do
+        }
+        return newStr;
+    }
+
 }

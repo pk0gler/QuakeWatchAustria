@@ -107,11 +107,11 @@ public class Fragment_EUROPA extends Fragment {
 
         //return v;
         listView = (ListView) v.findViewById(R.id.listEu);
-        ArrayList<String> values = new ArrayList<String>();
+        ArrayList<Erdbeben> values = new ArrayList<>();
         for (int i=0; i<20; i++) {
             int zahl = (int)(Math.random() * ((9 - Integer.parseInt(magStaerke)) + 1) + Integer.parseInt(magStaerke));
             int zahl2 = (int)((Math.random()) * 9 + 0);
-            values.add(i, zahl+"."+zahl2);
+            values.add(new Erdbeben(Double.parseDouble(zahl+"."+zahl2),"Frankreich, Paris", "2015-10-29T23:09:50.0Z"));
         }
         ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
         listView.setAdapter(adapter);
@@ -119,10 +119,10 @@ public class Fragment_EUROPA extends Fragment {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String wert = String.valueOf(parent.getItemAtPosition(position));
-                        Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                        Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
+                        Toast.makeText(getContext(), temp.getMag()+"", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
-                        i.putExtra("bebenData", wert);
+                        i.putExtra("bebenData", temp);
                         startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
                     }
                 }

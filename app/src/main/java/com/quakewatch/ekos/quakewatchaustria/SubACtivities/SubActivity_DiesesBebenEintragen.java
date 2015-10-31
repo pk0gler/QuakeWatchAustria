@@ -26,20 +26,7 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
         } else {
             setUp();
         }
-        //this.setUpView();
-
-        // getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        /*Button button = (Button) findViewById(R.id.btnSub);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent();
-                setResult(SUCCESS_RETURN_CODE, i);
-                finish();
-            }
-        });*/
-    }
+   }
 
     private void setUp() {
         state.setText("Nicht Jetzt");

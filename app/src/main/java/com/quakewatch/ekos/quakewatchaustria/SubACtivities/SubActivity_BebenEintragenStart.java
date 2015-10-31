@@ -10,11 +10,15 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 
 /**
  * Created by pkogler on 22.10.2015.
+ * Usage:   First screen after pressing "Erdbeben eintragen"
  */
 public class SubActivity_BebenEintragenStart extends AppCompatActivity {
     public final static int SUCCESS_RETURN_CODE = 1;
     private TextView state;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,32 +28,28 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
         if (state) {
             setUpNow();
         } else {
-            setUp();
+            setUpOther();
         }
-        //this.setUpView();
-
-        // getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        /*Button button = (Button) findViewById(R.id.btnSub);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent();
-                setResult(SUCCESS_RETURN_CODE, i);
-                finish();
-            }
-        });*/
     }
 
-    private void setUp() {
+    /**
+     * setUp View for quakes not now
+     */
+    private void setUpOther() {
         state.setText("Nicht Jetzt");
     }
 
-
+    /**
+     * SetUp View for quakes now
+     */
     private void setUpNow() {
         state.setText("Jetzt");
     }
 
+    /**
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

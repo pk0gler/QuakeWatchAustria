@@ -183,12 +183,15 @@ public class Fragment_AT extends Fragment {
         //tJetzt.setBackground("#FFFFFF");
         //return v;
         listView = (ListView) v.findViewById(R.id.listAt);
-        ArrayList<String> values = new ArrayList<String>();
-        for (int i=0; i<20; i++) {
-            int zahl = (int)(Math.random() * ((9 - Integer.parseInt(magStaerke)) + 1) + Integer.parseInt(magStaerke));
-            int zahl2 = (int)((Math.random()) * 9 + 0);
-            values.add(i, zahl+"."+zahl2);
-        }
+        ArrayList<Erdbeben> values = new ArrayList<>();
+            for (int i = 1; i < 13; i++) {
+                int z1 = i;
+                for (int j = 0; j < 10; j++) {
+                    int z2 = j;
+                    if (Double.parseDouble(z1+"."+z2) == 12.1) break;
+                    values.add(new Erdbeben(Double.parseDouble(z1+"."+z2),"Oestereich, Wien", "2015-10-29T23:09:50.0Z"));
+                }
+            }
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -207,10 +210,10 @@ public class Fragment_AT extends Fragment {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String wert = String.valueOf(parent.getItemAtPosition(position));
-                        Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                        Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
+                        Toast.makeText(getContext(), temp.getMag()+"", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
-                        i.putExtra("bebenData", wert);
+                        i.putExtra("bebenData", temp);
                         startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
                     }
                 }

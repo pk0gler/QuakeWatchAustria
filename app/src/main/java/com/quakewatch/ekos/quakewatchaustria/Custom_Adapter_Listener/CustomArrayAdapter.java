@@ -10,61 +10,218 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
+import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 
 import java.util.ArrayList;
 
 /**
  * Created by pkogler on 22.10.2015.
+ * Usage:   Adapter for the ListViews to process data
+ *          sets the color Codes for depending on magnitude
  */
 public class CustomArrayAdapter extends ArrayAdapter {
 
-    public CustomArrayAdapter(Context context, ArrayList<String> resource) {
+    //colorCodes depending on Magnitude
+    public final static String[] colorCodes = {
+            //Green
+            "#3EA739","#338B2E","#296F25",
+            //Yellow
+            "#FBFE00","#D5D800","#B1B300",
+            //Blue
+            "#39508A","#2F4273","#25355C",
+            //Orange
+            "#FFA415","#FF9C00","#E98F00",
+            //Purple
+            "#D91283","#BB006A",
+            //Red
+            "#CA0000"
+    };
+
+    /**
+     * Construktor
+     * @param context   --> context
+     * @param resource  --> ressorce hand over for processing
+     */
+    public CustomArrayAdapter(Context context, ArrayList<Erdbeben> resource) {
         super(context, R.layout.customrow,resource);
         // this.strich=1;
     }
 
+    /**
+     * Override Method
+     * Called When: This Method is called when the ViewPagerAdapter
+     *              generates the Fragments
+     *              And the single Erdbeben Objects are created and hand over as ressource
+     * Usage:       Calculates necessary Information about List Item
+     * @param position      --> positon in ListView
+     * @param convertView   --> the View the ListView belongs to
+     * @param parent        --> the parent ViewGroup
+     * @return
+     */
     @Override
-     public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
+        //Creates The ViewHolder
+        /**
+         * The Viewholder is used to provide much better
+         * performance
+         * Basically it holds the different items and positions til the next call
+         */
         ViewHolder holder;
+        //Infalte the Layout
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
+        /**
+         * If the View is empty e.g the first call
+         * We have to set the ViewHolder elements
+         */
 
         if (convertView == null)
         {
-            // Gelöscht!!! Log.d("Seas", "Seas");dd asdasd
             convertView = inflater.inflate(R.layout.customrow, null);
             holder = new ViewHolder();
-            holder.text = (TextView) convertView.findViewById(R.id.listText);
+            holder.textMag = (TextView) convertView.findViewById(R.id.listText);
+            holder.region = (TextView) convertView.findViewById(R.id.textViewLocation);
+            holder.time = (TextView) convertView.findViewById(R.id.textViewTime);
+            holder.date = (TextView) convertView.findViewById(R.id.textViewDatum);
             holder.icon = (ImageView) convertView.findViewById(R.id.imagebild);
 
             convertView.setTag(holder);
         }
         else
+        /**
+         * If its not the First Call
+         * The old ViewHolder object has to be set
+         * For better performance
+         */
         {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.text.setTextColor(Color.BLACK);
-        holder.icon.setImageResource(R.drawable.strich1);
-        String temp = (String) getItem(position);
-        holder.text.setText(temp);
-        if ((temp.substring(0,2).equals("1.")) || (temp.substring(0,2).equals("2.")) || (temp.substring(0,2).equals("3.")))  {
-            holder.text.setTextColor(Color.rgb(40, 130, 0));
-            holder.icon.setImageResource(R.drawable.strich1);
-        } else if ((temp.substring(0,2).equals("4.")) || (temp.substring(0,2).equals("5.")) || (temp.substring(0,2).equals("6."))) {
-            holder.text.setTextColor(Color.rgb(206, 204, 0));
-            holder.icon.setImageResource(R.drawable.strich2);
-        } if ((temp.substring(0,2).equals("7.")) || (temp.substring(0,2).equals("8.")) || (temp.substring(0,2).equals("9."))) {
-            holder.text.setTextColor(Color.rgb(255, 156, 0));
-            holder.icon.setImageResource(R.drawable.strich3);
-        } if ((temp.substring(0,3).equals("10.")) || (temp.substring(0,3).equals("11.")) || (temp.substring(0,3).equals("12."))) {
-            holder.text.setTextColor(Color.rgb(175,0,0));
-            holder.icon.setImageResource(R.drawable.strich4);
+        /**
+         * Set the holder properties and elements
+         */
+        holder.textMag.setTextColor(Color.BLACK);
+        holder.icon.setImageResource(R.drawable.strichvorlage);
+        Erdbeben temp = (Erdbeben) getItem(position);
+        double mag = temp.getMag();
+        holder.textMag.setText(mag+"");
+        holder.region.setText(temp.getRegion());
+        holder.date.setText(temp.getDate());
+        holder.time.setText(temp.getTime());
+        /**
+         ----------------------------------------------------
+         ---            COLOR CODES COLOR CODES           ---
+         ----------------------------------------------------
+         1 		- 		1.4     -->	    3EA739
+         1.5 	- 		1.9	    -->     338B2E		| Grün
+         2 		- 		2.4	    -->	    296F25
+         ----------------------------------------------------
+         2.5	- 		2.9	    -->	    FBFE00
+         3		- 		3.4	    -->	    D5D800		| Gelb
+         3.5	-		3.9	    -->	    B1B300
+         ----------------------------------------------------
+         4		- 		4.4	    -->	    39508A
+         4.5	- 		4.9	    -->	    2F4273		| Blau
+         5		- 		5.4	    -->	    25355C
+         ----------------------------------------------------
+         5.5	- 		5.9	    -->	    FFA415
+         6		- 		6.4	    -->	    FF9C00		| Orange
+         6.5	- 		6.9	    -->	    E98F00
+         ----------------------------------------------------
+         7		- 		7.9	    -->	    D91283		| Lila
+         8		- 		8.9	    -->	    BB006A
+         ----------------------------------------------------
+         9		- 		12		-->	    CA0000
+         10		- 		12		-->	    CA0000		| Rot
+         11		- 		12		-->	    CA0000
+         12		- 		12		-->	    CA0000
+         ----------------------------------------------------
+         ----------------------------------------------------
+        /**
+         * This if divides by the magnitude which color to use
+         */
+        if ((mag >= 1) && (mag <= 2.4)) {
+            if ((mag >= 1) && (mag <= 1.4)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[0]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[0]));
+            }
+            if ((mag >= 1.5) && (mag <= 1.9)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[1]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[1]));
+            }
+            if ((mag >= 2) && (mag <= 2.4)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[2]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
+            }
+
+        } /*NEXT COLOR*/else if ((mag >= 2.5) && (mag <= 3.9)) {
+            if ((mag >= 2.5) && (mag <= 2.9)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[3]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[3]));
+            }
+            if ((mag >= 3) && (mag <= 3.4)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[4]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[4]));
+            }
+            if ((mag >= 3.5) && (mag <= 3.9)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[5]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[5]));
+            }
+
+        }/*NEXT COLOR*/else if ((mag >= 4) && (mag <= 5.4)) {
+            if ((mag >= 4) && (mag <= 4.4)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[6]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[6]));
+            }
+            if ((mag >= 4.5) && (mag <= 4.9)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[7]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[7]));
+            }
+            if ((mag >= 5) && (mag <= 5.4)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[8]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[8]));
+            }
+
+        }/*NEXT COLOR*/else if ((mag >= 5.5) && (mag <= 6.9)) {
+            if ((mag >= 5.5) && (mag <= 5.9)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[9]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[9]));
+            }
+            if ((mag >= 6) && (mag <= 6.4)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[10]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[10]));
+            }
+            if ((mag >= 6.5) && (mag <= 6.9)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[11]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[11]));
+            }
+
+        }/*NEXT COLOR*/else if ((mag >= 7) && (mag <= 8.9)) {
+            if ((mag >= 7) && (mag <= 7.9)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[12]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[12]));
+            }
+            if ((mag >= 8) && (mag <= 8.9)) {
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[13]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[13]));
+            }
+        }/*NEXT COLOR*/else if ((mag >= 9) && (mag <= 12)) {
+            holder.textMag.setTextColor(Color.parseColor(colorCodes[14]));
+            holder.icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
         }
 
         return convertView;
     }
+
+    /**
+     * View Holder class
+     * inner class because it is simple and easier to use
+     * in this particular case
+     */
     static class ViewHolder {
-        TextView text;
+        TextView textMag;
+        TextView region;
+        TextView time;
+        TextView date;
         ImageView icon;
     }
 }
