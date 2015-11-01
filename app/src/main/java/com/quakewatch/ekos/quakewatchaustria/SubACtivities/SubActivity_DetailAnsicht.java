@@ -71,15 +71,6 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
             setContentView(R.layout.subactivity_deatailansicht);
         }
         this.setUpView();
-        Button button = (Button) findViewById(R.id.btnSub);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent();
-                setResult(SUCCESS_RETURN_CODE, i);
-                finish();
-            }
-        });
     }
 
     /**
@@ -94,13 +85,9 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         ImageView icon = (ImageView) findViewById(R.id.detailImg);
         butMap = (ActionButton) findViewById(R.id.action_button_map);
         butMap.setImageResource(R.drawable.map);
-        //butMap.setOnClickListener(new MyClickListener(butMap, getBaseContext()));
         butMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //((MainActivity)getBaseContext()).getAdapter().setCurrentItem(3);
-                //((ViewPager) findViewById(R.id.pager)).setCurrentItem(3);
-                //((MainActivity) getParent()).setPosition(3);
                 getIntent().putExtra("position", 3);
                 Intent i = new Intent();
                 setResult(SUCCESS_RETURN_CODE, i);
@@ -111,7 +98,9 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         TextView textDate = (TextView) findViewById(R.id.textDate);
         TextView textTime = (TextView) findViewById(R.id.textTime);
         TextView textLocation = (TextView) findViewById(R.id.textViewLocation);
-
+        TextView values = (TextView) findViewById(R.id.textViewValues);
+        values.setText(bebenData.getRegion()+"\n"+bebenData.getMag()+"\n"+bebenData.getDepth()+"\n"+bebenData.getTime()+"\n"
+        +"5.0, 1.3, -5.0");
         double temp = bebenData.getMag();
         if ((temp >= 1) && (temp <= 2.4)) {
             if ((temp >= 1) && (temp <= 1.4)) {

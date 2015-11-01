@@ -107,13 +107,14 @@ public class FRAGMENT_WELT extends Fragment {
                     Double mag = Double.parseDouble(b.getString("mag"));
                     String flynn_region = b.getString("flynn_region");
                     String time = b.getString("time");
+                    double depth = Double.parseDouble(b.getString("depth"));
                     //String username = c.getString("magtype");
 
                     // show the values in our logcat
                     Log.e(TAG, "mag: " + mag
                             + ", flynn_region: " + flynn_region
                             + ", time: " + time);
-                    values.add(i,new Erdbeben(mag, flynn_region, time));
+                    values.add(i,new Erdbeben(mag, flynn_region, time, depth));
                 }
                 //JSONObject ob = json.getJSONObject("properties");
                 //values.add(0,ob.getString("magType"));

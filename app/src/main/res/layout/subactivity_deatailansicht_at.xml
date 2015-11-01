@@ -5,15 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/detailLayout">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Druck Amol"
-        android:id="@+id/btnSub"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="44dp" />
 
 
     <ImageView
@@ -110,6 +101,26 @@
         android:layout_marginLeft="10dp"
         android:layout_alignBottom="@+id/action_button_jetzt" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Region:\nMag:\nDepth:\nTime:\nLocation"
+        android:id="@+id/textViewProperties"
+        android:lineSpacingExtra="20dp"
+        android:layout_below="@+id/action_button_map"
+        android:layout_alignLeft="@+id/textMag"
+        android:layout_alignStart="@+id/textMag" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Location:"
+        android:id="@+id/textViewValues"
+        android:lineSpacingExtra="20dp"
+        android:layout_below="@+id/action_button_map"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

@@ -192,7 +192,7 @@ public class Fragment_AT extends Fragment {
                 for (int j = 0; j < 10; j++) {
                     int z2 = j;
                     if (Double.parseDouble(z1+"."+z2) == 12.1) break;
-                    values.add(new Erdbeben(Double.parseDouble(z1+"."+z2),"Oestereich, Wien", "2015-10-29T23:09:50.0Z"));
+                    values.add(new Erdbeben(Double.parseDouble(z1+"."+z2),"Oestereich, Wien", "2015-10-29T23:09:50.0Z", 3.4));
                 }
             }
 

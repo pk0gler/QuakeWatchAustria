@@ -5,15 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/detailLayout">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Druck Amol"
-        android:id="@+id/btnSub"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="44dp" />
 
 
     <ImageView
@@ -112,6 +103,27 @@
         android:layout_marginTop="130dp"
         android:layout_marginRight="10dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Region:\nMag:\nDepth:\nTime:\nLocation"
+        android:id="@+id/textViewProperties"
+        android:lineSpacingExtra="20dp"
+        android:layout_below="@+id/action_button_map"
+        android:layout_alignLeft="@+id/textMag"
+        android:layout_alignStart="@+id/textMag"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Location:"
+        android:id="@+id/textViewValues"
+        android:lineSpacingExtra="20dp"
+        android:layout_alignTop="@+id/textViewProperties"
+        android:layout_centerHorizontal="true" />
 
 
 

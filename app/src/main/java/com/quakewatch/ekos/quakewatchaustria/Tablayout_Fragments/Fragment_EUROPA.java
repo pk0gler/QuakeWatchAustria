@@ -111,7 +111,7 @@ public class Fragment_EUROPA extends Fragment {
         for (int i=0; i<20; i++) {
             int zahl = (int)(Math.random() * ((9 - Integer.parseInt(magStaerke)) + 1) + Integer.parseInt(magStaerke));
             int zahl2 = (int)((Math.random()) * 9 + 0);
-            values.add(new Erdbeben(Double.parseDouble(zahl+"."+zahl2),"Frankreich, Paris", "2015-10-29T23:09:50.0Z"));
+            values.add(new Erdbeben(Double.parseDouble(zahl+"."+zahl2),"Frankreich, Paris", "2015-10-29T23:09:50.0Z", 23.4));
         }
         ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
         listView.setAdapter(adapter);

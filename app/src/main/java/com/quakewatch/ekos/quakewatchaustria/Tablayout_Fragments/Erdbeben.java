@@ -12,13 +12,15 @@ public class Erdbeben implements Serializable {
     private String region;
     private String timeWhole;
     private String time;
+    private double depth;
     private String date;
 
-    public Erdbeben(double mag, String region, String timeWhole) {
+    public Erdbeben(double mag, String region, String timeWhole, double depth) {
         this.mag = mag;
         this.region = this.formatRegion(region);
         this.timeWhole = timeWhole;
         this.seperateTimeWhole(timeWhole);
+        this.depth = depth;
     }
 
     private void seperateTimeWhole(String timeWhole) {
@@ -67,6 +69,14 @@ public class Erdbeben implements Serializable {
 
     public void setTimeWhole(String timeWhole) {
         this.timeWhole = timeWhole;
+    }
+
+    public double getDepth() {
+        return depth;
+    }
+
+    public void setDepth(double depth) {
+        this.depth = depth;
     }
 
     public String formatRegion(String t) {
