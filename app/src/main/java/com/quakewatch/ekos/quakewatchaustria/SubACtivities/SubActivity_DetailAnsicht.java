@@ -88,10 +88,12 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         butMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getIntent().putExtra("position", 3);
+                //getParentActivityIntent().putExtra("position", 3);
+                //onActivityResult(10,9,getIntent());
                 Intent i = new Intent();
+                i.putExtra("position","3");
                 setResult(SUCCESS_RETURN_CODE, i);
-                startActivityForResult(new Intent(getBaseContext(), MainActivity.class), 12);
+                //startActivityForResult(new Intent(getBaseContext(), MainActivity.class), 12);
                 finish();
             }
         });
@@ -170,6 +172,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
                 // app icon in action bar clicked; go home
                 Intent i = new Intent();
                 setResult(SUCCESS_RETURN_CODE, i);
+                i.putExtra("position", "1");
                 finish();
                 return true;
             default:

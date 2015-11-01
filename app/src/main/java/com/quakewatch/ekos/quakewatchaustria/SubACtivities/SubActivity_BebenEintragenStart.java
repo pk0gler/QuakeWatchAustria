@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 
 /**
@@ -57,6 +58,8 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
                 // app icon in action bar clicked; go home
                 Intent i = new Intent();
                 setResult(SUCCESS_RETURN_CODE, i);
+                //startActivityForResult(new Intent(getBaseContext(), MainActivity.class), 12);
+                i.putExtra("position", "1");
                 finish();
                 return true;
             default:
