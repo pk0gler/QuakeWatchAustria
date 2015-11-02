@@ -15,8 +15,6 @@ import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FRAGMENT_WELT;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Fragment_AT;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Fragment_EUROPA;
 
-import java.io.Serializable;
-
 
 /**
  * Created by hp1 on 21-01-2015.
