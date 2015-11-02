@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
+
+import java.util.Map;
 
 /**
  * Created by pkogler on 22.10.2015.
@@ -18,10 +22,19 @@ public class FRAGMENT_MAP extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.maplayout,container,false);
+
         MapView mapView = (MapView) v.findViewById(R.id.mapview);
-        mapView.setBuiltInZoomControls(true);
+        MapController mc = (MapController) mapView.getController();
+
         mapView.setMultiTouchControls(true);
-        mapView.setMaxZoomLevel(10);
+
+        GeoPoint point = new GeoPoint(48.2083537, 16.3725042);
+        mc.setCenter(point);
+        mc.setZoom(12);
+
+        mapView.setMinZoomLevel(4);
+        mapView.setMaxZoomLevel(19);
+
         return v;
     }
 }
