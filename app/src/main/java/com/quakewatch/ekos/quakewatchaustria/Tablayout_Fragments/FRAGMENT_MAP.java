@@ -22,7 +22,7 @@ public class FRAGMENT_MAP extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.maplayout,container,false);
-
+        //asd
         MapView mapView = (MapView) v.findViewById(R.id.mapview);
         MapController mc = (MapController) mapView.getController();
 
