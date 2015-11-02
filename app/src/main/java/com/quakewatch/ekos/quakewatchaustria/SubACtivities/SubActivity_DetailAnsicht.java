@@ -5,17 +5,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.MyClickListener;
-import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
-import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 import com.software.shell.fab.ActionButton;
@@ -30,6 +25,7 @@ import java.io.Serializable;
  */
 public class SubActivity_DetailAnsicht extends AppCompatActivity implements Serializable {
     public final static int SUCCESS_RETURN_CODE = 1;
+    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
     public final static String[] colorCodes = {
             //Green
             "#3EA739","#338B2E","#296F25",
@@ -49,6 +45,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
     private ActionButton butMap;
 
     private ViewPager pager;
+    private Erdbeben bebenData;
 
 
     /**
@@ -59,14 +56,23 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
     protected void onCreate(Bundle savedInstanceState) {
         //finish();
         super.onCreate(savedInstanceState);
+        bebenData = (Erdbeben) getIntent().getExtras().getSerializable("bebenData");
         this.isAt = (boolean)getIntent().getExtras().get("isAt");
         if (isAt) {
             setContentView(R.layout.subactivity_deatailansicht_at);
             butJetzt = (ActionButton) findViewById(R.id.action_button_jetzt);
             butJetzt.setImageResource(R.drawable.fab_x_but_rotate);
-            pager = (ViewPager) findViewById(R.id.pager);
-            //butJetzt.setOnClickListener(new MyClickListener(butJetzt, getBaseContext()));
-            Log.d("acc", butJetzt.getImageSize() + "");
+            butJetzt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean isNow = true;
+                    Intent i = new Intent(getBaseContext(), SubActivity_DiesesBebenEintragen.class);
+                    i.putExtra("state", isNow);
+                    i.putExtra("bebenData", bebenData);
+                    startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+                    //finish();
+                }
+            });
         } else {
             setContentView(R.layout.subactivity_deatailansicht);
         }
@@ -78,7 +84,6 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
      * for convenience
      */
     private void setUpView() {
-        Erdbeben bebenData = (Erdbeben) getIntent().getExtras().getSerializable("bebenData");
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.detailLayout);
         ImageView imgBottom = (ImageView) findViewById(R.id.imageViewBottom);
         TextView textMag = (TextView) findViewById(R.id.textMag);
@@ -91,7 +96,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
                 //getParentActivityIntent().putExtra("position", 3);
                 //onActivityResult(10,9,getIntent());
                 Intent i = new Intent();
-                i.putExtra("position","3");
+                i.putExtra("position", "3");
                 setResult(SUCCESS_RETURN_CODE, i);
                 //startActivityForResult(new Intent(getBaseContext(), MainActivity.class), 12);
                 finish();

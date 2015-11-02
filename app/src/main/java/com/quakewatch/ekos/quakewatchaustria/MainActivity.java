@@ -14,10 +14,7 @@ import android.view.MenuItem;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
-import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
-
-import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -111,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             if (Integer.parseInt(data.getStringExtra("position")) == 3) {
-                pager.setCurrentItem(Integer.parseInt(data.getStringExtra("position")));
+                pager.setCurrentItem(Integer.parseInt(data.getStringExtra("position")),true);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();

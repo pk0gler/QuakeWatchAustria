@@ -199,10 +199,12 @@ public class Fragment_AT extends Fragment {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
                 boolean isNow = true;
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getContext(), SubActivity_DiesesBebenEintragen.class);
                 i.putExtra("state", isNow);
+                i.putExtra("bebenData", temp);
                 startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
                 return true;
             }
