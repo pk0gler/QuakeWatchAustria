@@ -3,6 +3,7 @@
 
     <string name="datum">DATUM</string>
     <string name="zeit">ZEIT</string>
+    <string name="ort">ORT</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/LayoutDatum"
@@ -50,6 +52,32 @@
             android:layout_alignLeft="@+id/editText"
             android:layout_alignStart="@+id/editText"
             android:layout_marginTop="41dp" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/LayoutOrt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/LayoutZeit"
+        android:layout_alignStart="@+id/LayoutZeit"
+        android:layout_below="@+id/LayoutZeit"
+        android:layout_marginTop="33dp"
+        android:layout_alignRight="@+id/LayoutZeit"
+        android:layout_alignEnd="@+id/LayoutZeit">
+
+        <EditText
+            android:id="@+id/Ort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/LayoutZeit"
+            android:layout_alignLeft="@+id/LayoutZeit"
+            android:layout_alignRight="@+id/LayoutZeit"
+            android:layout_alignStart="@+id/LayoutZeit"
+            android:layout_below="@+id/LayoutZeit"
+            android:autoText="false"
+            android:hint="@string/ort"
+            android:gravity="center"
+            android:inputType="textCapWords"
+            />
     </android.support.design.widget.TextInputLayout>
 
 </RelativeLayout>

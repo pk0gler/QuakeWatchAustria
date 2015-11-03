@@ -50,7 +50,7 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
         day_x = cal.get(Calendar.DAY_OF_MONTH);
 
         showTimeDialog();
-        showDialogOnClick();
+        showDateDialog();
 
         boolean state = (boolean) getIntent().getExtras().get("state");
         if (state) {
@@ -91,7 +91,7 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
     /**
      * Methoden um das Datum eingeben zu können
      */
-    public void showDialogOnClick(){
+    public void showDateDialog(){
         datum = (EditText) findViewById(R.id.editText);
 
         datum.setOnClickListener(new View.OnClickListener() {
