@@ -31,7 +31,7 @@ public class FRAGMENT_MAP extends Fragment {
 
         GeoPoint point = new GeoPoint(48.2083537, 16.3725042);
         mc.setCenter(point);
-        mc.setZoom(12);
+        mc.setZoom(6);
 
         mapView.setMinZoomLevel(4);
         mapView.setMaxZoomLevel(19);
