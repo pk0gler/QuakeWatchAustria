@@ -26,7 +26,7 @@ public class FRAGMENT_MAP extends Fragment {
         //asd
         MapView mapView = (MapView) v.findViewById(R.id.mapview);
         MapController mc = (MapController) mapView.getController();
-        //mapView.setTileSource(TileSourceFactory.);
+        mapView.setTileSource(TileSourceFactory.MAPQUESTAERIAL);
         mapView.setMultiTouchControls(true);
 
         GeoPoint point = new GeoPoint(48.2083537, 16.3725042);
