@@ -132,7 +132,8 @@ public class Fragment_EUROPA extends Fragment {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), "Beben auf map anzeigen", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), "Beben auf map anzeigen", Toast.LENGTH_LONG).show();
+                ((MainActivity)getActivity()).setPager(3);
                 return true;
             }
         });

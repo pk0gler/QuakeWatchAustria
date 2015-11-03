@@ -1,6 +1,5 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
@@ -11,7 +10,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 
 public class SubActivity_SettingsActivity extends PreferenceActivity {

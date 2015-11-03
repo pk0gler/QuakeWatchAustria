@@ -19,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
@@ -216,7 +215,7 @@ public class Fragment_AT extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
-                        Toast.makeText(getContext(), temp.getMag()+"", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getContext(), temp.getMag()+"", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
                         i.putExtra("bebenData", temp);
                         i.putExtra("isAt", true);
