@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
@@ -25,7 +26,7 @@ public class FRAGMENT_MAP extends Fragment {
         //asd
         MapView mapView = (MapView) v.findViewById(R.id.mapview);
         MapController mc = (MapController) mapView.getController();
-
+        //mapView.setTileSource(TileSourceFactory.);
         mapView.setMultiTouchControls(true);
 
         GeoPoint point = new GeoPoint(48.2083537, 16.3725042);

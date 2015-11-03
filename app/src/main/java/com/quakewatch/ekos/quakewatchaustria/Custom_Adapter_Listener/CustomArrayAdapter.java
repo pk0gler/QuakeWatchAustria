@@ -155,8 +155,8 @@ public class CustomArrayAdapter extends ArrayAdapter {
 
         } /*NEXT COLOR*/else if ((mag >= 2.5) && (mag <= 3.9)) {
             if ((mag >= 2.5) && (mag <= 2.9)) {
-                holder.textMag.setTextColor(Color.parseColor(colorCodes[3]));
-                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[3]));
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[2]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
             }
             if ((mag >= 3) && (mag <= 3.4)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[4]));
@@ -201,8 +201,8 @@ public class CustomArrayAdapter extends ArrayAdapter {
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[12]));
             }
             if ((mag >= 8) && (mag <= 8.9)) {
-                holder.textMag.setTextColor(Color.parseColor(colorCodes[13]));
-                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[13]));
+                holder.textMag.setTextColor(Color.parseColor(colorCodes[14]));
+                holder.icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
             }
         }/*NEXT COLOR*/else if ((mag >= 9) && (mag <= 12)) {
             holder.textMag.setTextColor(Color.parseColor(colorCodes[14]));

@@ -187,7 +187,7 @@ public class Fragment_AT extends Fragment {
         //return v;
         listView = (ListView) v.findViewById(R.id.listAt);
         ArrayList<Erdbeben> values = new ArrayList<>();
-            for (int i = 1; i < 13; i++) {
+            for (int i = 1; i < 10; i++) {
                 int z1 = i;
                 for (int j = 0; j < 10; j++) {
                     int z2 = j;
