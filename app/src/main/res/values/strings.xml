@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Quake Watch Austria</string>
 
+    <string name="datum">DATUM</string>
+    <string name="zeit">ZEIT</string>
+
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 </resources>
