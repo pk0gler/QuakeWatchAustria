@@ -89,7 +89,7 @@
         card_view:cardBackgroundColor="#ffd9d9d9"
         card_view:cardCornerRadius="2dp"
         card_view:cardElevation="6dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="90dp"
         android:layout_below="@+id/LayoutOrt"
         android:layout_centerHorizontal="true"
         android:gravity="center">
