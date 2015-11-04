@@ -103,7 +103,7 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
      */
     public void showDateDialog(){
         datum = (EditText) findViewById(R.id.editText);
-
+        //datum.setCompoundDrawablesWithIntrinsicBounds(R.drawable.welticon, 0, 0, 0);
         datum.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
                 showDialog(DATE_ID);
