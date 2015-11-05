@@ -56,9 +56,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".SubACtivities.SubActivity_DiesesBebenEintragen"
-            android:label="Deises Beben eintragen"
+            android:label="Dieses Beben eintragen"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeSub" >
             <meta-data
@@ -71,6 +73,25 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".SubACtivities.SubActivity_Phase2"
+            android:label="Waehlen Sie einen Cartoon"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeSub" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".SubACtivities.SubActivity_SettingsActivity"
             android:label="@string/title_activity_sub_activity__settings"

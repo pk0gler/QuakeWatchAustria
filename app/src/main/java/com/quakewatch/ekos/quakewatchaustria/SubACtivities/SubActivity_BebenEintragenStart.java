@@ -26,6 +26,8 @@ import java.util.Calendar;
 
 public class SubActivity_BebenEintragenStart extends AppCompatActivity {
     public final static int SUCCESS_RETURN_CODE = 1;
+    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
+
 
     private TextView state;
     private Erdbeben bebenData;
@@ -59,7 +61,8 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
         weiter = (Button) findViewById(R.id.next);
         weiter.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V){
-                Toast.makeText(getBaseContext(), "Weiter zu Cartoooooons",Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getBaseContext(), SubActivity_Phase2.class);
+                startActivity(i);
             }
         });
 

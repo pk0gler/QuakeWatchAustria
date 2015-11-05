@@ -29,6 +29,7 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
 
     private TextView state;
     private Erdbeben bebenData;
+    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
 
     EditText zeit;
     EditText datum;
@@ -59,7 +60,9 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
         weiter = (Button) findViewById(R.id.next);
         weiter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
-                Toast.makeText(getBaseContext(), "Weiter zu Cartoooooons", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "Weiter zu Cartoooooons", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getBaseContext(), SubActivity_Phase2.class);
+                startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
             }
         });
 
