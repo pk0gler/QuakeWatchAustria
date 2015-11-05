@@ -23,7 +23,7 @@ public class SubActivity_Phase2 extends AppCompatActivity {
         //finish();
         super.onCreate(savedInstanceState);
        setContentView(R.layout.intensity_layout);
-
+        //
         String[] text = {"Schwach verspürt: \n\n" +
                 "Leichtes Zittern oder Rütteln.Lampen/hängende Objekte pendeln schwach. \n\n" +
                 "„Sie haben das Erdbeben schwach verspürt.“",
