@@ -10,7 +10,7 @@
         android:id="@+id/LayoutDatum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="87dp"
+        android:layout_marginTop="40dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
@@ -19,12 +19,12 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/datum"
-            android:id="@+id/editText"
+            android:id="@+id/datum"
             android:editable="false"
             android:focusable="false"
             android:clickable="true"
             android:inputType="date"
-            android:layout_above="@+id/editText2"
+            android:layout_above="@+id/zeit"
             android:layout_centerHorizontal="true"
 
             android:longClickable="false"
@@ -46,15 +46,15 @@
             android:layout_height="wrap_content"
             android:inputType="time"
             android:ems="10"
-            android:id="@+id/editText2"
+            android:id="@+id/zeit"
             android:hint="@string/zeit"
             android:editable="false"
             android:focusable="false"
             android:clickable="true"
             android:gravity="center"
             android:layout_below="@+id/LayoutZeit"
-            android:layout_alignLeft="@+id/editText"
-            android:layout_alignStart="@+id/editText"
+            android:layout_alignLeft="@+id/datum"
+            android:layout_alignStart="@+id/datum"
             android:layout_marginTop="41dp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -84,40 +84,42 @@
             />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        card_view:cardBackgroundColor="#ccffff"
-        card_view:cardCornerRadius="2dp"
-        card_view:cardElevation="6dp"
-        android:layout_marginTop="90dp"
-        android:layout_below="@+id/LayoutOrt"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:id="@+id/view">
-        <TextView android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8.5dp"
-            android:paddingBottom="8.5dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:textColor="#de000000"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/next"
-            android:gravity="center" />
-    </android.support.v7.widget.CardView>
-
-    <ImageView
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/LayoutPlz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/test"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/LayoutOrt"
+        android:layout_alignStart="@+id/LayoutOrt"
+        android:layout_below="@+id/LayoutOrt"
+        android:layout_marginTop="33dp"
+        android:layout_alignRight="@+id/LayoutOrt"
+        android:layout_alignEnd="@+id/LayoutOrt">
+        <EditText
+            android:id="@+id/plz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/LayoutOrt"
+            android:layout_alignLeft="@+id/LayoutOrt"
+            android:layout_alignRight="@+id/LayoutOrt"
+            android:layout_alignStart="@+id/LayoutOrt"
+            android:layout_below="@+id/LayoutOrt"
+            android:autoText="false"
+            android:hint="@string/plz"
+            android:gravity="center"
+            android:inputType="textCapWords"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:text="WEITER"
+        android:layout_marginTop="130dp"
+        android:id="@+id/next"
+        android:layout_below="@+id/LayoutOrt"
+        android:layout_centerHorizontal="true" />
+
 
 
 </RelativeLayout>

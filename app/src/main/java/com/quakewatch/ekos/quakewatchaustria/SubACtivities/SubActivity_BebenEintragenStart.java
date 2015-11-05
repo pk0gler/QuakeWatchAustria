@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,7 +18,6 @@ import android.widget.Toast;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 
-import java.sql.Time;
 import java.util.Calendar;
 
 /**
@@ -33,7 +33,7 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
     EditText zeit;
     EditText datum;
 
-    TextView weiter;
+    Button weiter;
 
     int hour_x,minute_x;
     int year_x,month_x,day_x;
@@ -56,7 +56,7 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
         showTimeDialog();
         showDialogOnClick();
 
-        weiter = (TextView) findViewById(R.id.text);
+        weiter = (Button) findViewById(R.id.next);
         weiter.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V){
                 Toast.makeText(getBaseContext(), "Weiter zu Cartoooooons",Toast.LENGTH_LONG).show();
@@ -84,7 +84,7 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
      * Methoden um die Zeit einstellen zu können
      */
     public void showTimeDialog(){
-        zeit = (EditText) findViewById(R.id.editText2);
+        zeit = (EditText) findViewById(R.id.zeit);
         zeit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
                 showDialog(TIME_ID);
@@ -105,7 +105,7 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
      * Methoden um das Datum eingeben zu können
      */
     public void showDialogOnClick(){
-        datum = (EditText) findViewById(R.id.editText);
+        datum = (EditText) findViewById(R.id.datum);
 
         datum.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {

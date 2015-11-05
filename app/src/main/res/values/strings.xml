@@ -5,6 +5,7 @@
     <string name="zeit">ZEIT</string>
     <string name="ort">ORT</string>
     <string name="next">WEITER</string>
+    <string name="plz">PLZ</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
