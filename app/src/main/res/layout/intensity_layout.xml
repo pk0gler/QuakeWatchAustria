@@ -6,5 +6,8 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/list" />
+        android:id="@+id/list"
+        android:smoothScrollbar="true"
+        android:scrollingCache="true"
+        android:stackFromBottom="false" />
 </RelativeLayout>
