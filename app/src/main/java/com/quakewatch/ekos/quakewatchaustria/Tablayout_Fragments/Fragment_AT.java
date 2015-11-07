@@ -201,7 +201,7 @@ public class Fragment_AT extends Fragment {
                 Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
                 boolean isNow = true;
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
-                Intent i = new Intent(getContext(), SubActivity_DiesesBebenEintragen.class);
+                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                 i.putExtra("state", isNow);
                 i.putExtra("bebenData", temp);
                 startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);

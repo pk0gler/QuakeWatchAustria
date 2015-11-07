@@ -66,7 +66,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
                 @Override
                 public void onClick(View v) {
                     boolean isNow = true;
-                    Intent i = new Intent(getBaseContext(), SubActivity_DiesesBebenEintragen.class);
+                    Intent i = new Intent(getBaseContext(), SubActivity_BebenEintragenStart.class);
                     i.putExtra("state", isNow);
                     i.putExtra("bebenData", bebenData);
                     startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
