@@ -109,59 +109,60 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         values.setText(bebenData.getRegion()+"\n"+bebenData.getMag()+"\n"+bebenData.getDepth()+"\n"+bebenData.getTime()+"\n"
         +"5.0, 1.3, -5.0");
         double temp = bebenData.getMag();
-        if ((temp >= 1) && (temp <= 2.4)) {
-            if ((temp >= 1) && (temp <= 1.4)) {
+        double mag = temp;
+
+        if ((mag >= 1) && (mag <= 2.4)) {
+            if ((mag >= 1) && (mag <= 1.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[0]));
-                //imgBottom.setBackgroundColor(Color.parseColor(colorCodes[0]));
             }
-            if ((temp >= 1.5) && (temp <= 1.9)) {
+            if ((mag >= 1.5) && (mag <= 1.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[1]));
             }
-            if ((temp >= 2) && (temp <= 2.4)) {
+            if ((mag >= 2) && (mag <= 2.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
             }
 
-        } /*NEXT COLOR*/else if ((temp >= 2.5) && (temp <= 3.9)) {
-            if ((temp >= 2.5) && (temp <= 2.9)) {
-                icon.setBackgroundColor(Color.parseColor(colorCodes[3]));
+        } /*NEXT COLOR*/else if ((mag >= 2.5) && (mag <= 3.9)) {
+            if ((mag >= 2.5) && (mag <= 2.9)) {
+                icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
             }
-            if ((temp >= 3) && (temp <= 3.4)) {
+            if ((mag >= 3) && (mag <= 3.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[4]));
             }
-            if ((temp >= 3.5) && (temp <= 3.9)) {
+            if ((mag >= 3.5) && (mag <= 3.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[5]));
             }
 
-        }/*NEXT COLOR*/else if ((temp >= 4) && (temp <= 5.4)) {
-            if ((temp >= 4) && (temp <= 4.4)) {
+        }/*NEXT COLOR*/else if ((mag >= 4) && (mag <= 5.4)) {
+            if ((mag >= 4) && (mag <= 4.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[6]));
             }
-            if ((temp >= 4.5) && (temp <= 4.9)) {
+            if ((mag >= 4.5) && (mag <= 4.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[7]));
             }
-            if ((temp >= 5) && (temp <= 5.4)) {
+            if ((mag >= 5) && (mag <= 5.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[8]));
             }
 
-        }/*NEXT COLOR*/else if ((temp >= 5.5) && (temp <= 6.9)) {
-            if ((temp >= 5.5) && (temp <= 5.9)) {
+        }/*NEXT COLOR*/else if ((mag >= 5.5) && (mag <= 6.9)) {
+            if ((mag >= 5.5) && (mag <= 5.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[9]));
             }
-            if ((temp >= 6) && (temp <= 6.4)) {
+            if ((mag >= 6) && (mag <= 6.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[10]));
             }
-            if ((temp >= 6.5) && (temp <= 6.9)) {
+            if ((mag >= 6.5) && (mag <= 6.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[11]));
             }
 
-        }/*NEXT COLOR*/else if ((temp >= 7) && (temp <= 8.9)) {
-            if ((temp >= 7) && (temp <= 7.9)) {
+        }/*NEXT COLOR*/else if ((mag >= 7) && (mag <= 8.9)) {
+            if ((mag >= 7) && (mag <= 7.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[12]));
             }
-            if ((temp >= 8) && (temp <= 8.9)) {
-                icon.setBackgroundColor(Color.parseColor(colorCodes[13]));
+            if ((mag >= 8) && (mag <= 8.9)) {
+                icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
             }
-        }/*NEXT COLOR*/else if ((temp >= 9) && (temp <= 12)) {
+        }/*NEXT COLOR*/else if ((mag >= 9) && (mag <= 12)) {
             icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
         }
         textMag.setText(bebenData.getMag()+"");

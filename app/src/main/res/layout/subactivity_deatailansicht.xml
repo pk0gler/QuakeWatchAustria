@@ -84,12 +84,10 @@
         android:textSize="12sp"
         android:id="@+id/textTime"
         android:gravity="center_vertical"
-        android:layout_alignBottom="@+id/textMag"
-        android:layout_alignRight="@+id/textViewLocation"
-        android:layout_alignEnd="@+id/textViewLocation"
-        android:layout_marginBottom="15dp"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false" />
+
+        android:layout_toLeftOf="@+id/action_button_map"
+        android:layout_toStartOf="@+id/action_button_map"
+        android:layout_alignTop="@+id/textDate" />
 
     <com.software.shell.fab.ActionButton
         android:id="@+id/action_button_map"

@@ -3,8 +3,11 @@ package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomIntensity;
 import com.quakewatch.ekos.quakewatchaustria.R;
@@ -46,5 +49,11 @@ public class SubActivity_Phase2 extends AppCompatActivity {
         ListAdapter test = new CustomIntensity(this, text);
         ListView list = (ListView) findViewById(R.id.list);
         list.setAdapter(test);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getBaseContext(), "Hi", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
