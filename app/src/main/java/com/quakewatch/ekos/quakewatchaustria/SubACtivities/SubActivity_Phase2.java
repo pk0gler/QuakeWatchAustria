@@ -1,5 +1,6 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -53,6 +54,8 @@ public class SubActivity_Phase2 extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getBaseContext(), "Hi", Toast.LENGTH_SHORT).show();
+                Intent detail = new Intent(view.getContext(),BebenInfo.class);
+                startActivity(detail);
             }
         });
     }

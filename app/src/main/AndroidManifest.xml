@@ -97,6 +97,10 @@
             android:label="@string/title_activity_sub_activity__settings"
             android:theme="@style/AppThemeSub">
         </activity>
+        <activity
+            android:name=".SubACtivities.BebenInfo"
+            android:label="BebenInfo">
+        </activity>
     </application>
 
 </manifest>
