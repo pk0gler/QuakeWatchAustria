@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class CustomArrayAdapter extends ArrayAdapter {
 
     //colorCodes depending on Magnitude
-    public final static String[] colorCodes = {
+    public final static String[] colorCodes2 = {
             //Green
             "#3EA739","#338B2E","#296F25",
             //Yellow
@@ -35,6 +35,20 @@ public class CustomArrayAdapter extends ArrayAdapter {
             "#D91283","#BB006A",
             //Red
             "#CA0000"
+    };
+    public final static String[] colorCodes = {
+            //Green
+            "#A5D6A7","#81C784","#66BB6A",
+            //Yellow
+            "#FFF59D","#FFF176","#FFEE58",
+            //Blue
+            "#2196F3","#1E88E5","#1976D2",
+            //Orange
+            "#FFA726","#FF9800","#FB8C00",
+            //Purple
+            "#9C27B0","#8E24AA",
+            //Red
+            "#C62828"
     };
 
     /**

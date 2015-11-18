@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.R;
 
 
@@ -157,7 +159,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     private void populateTabStrip() {
-        final PagerAdapter adapter = mViewPager.getAdapter();
+        final ViewPagerAdapter adapter = (ViewPagerAdapter)mViewPager.getAdapter();
         final View.OnClickListener tabClickListener = new TabClickListener();
 
         for (int i = 0; i < adapter.getCount(); i++) {
@@ -186,6 +188,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
 
             tabTitleView.setText(adapter.getPageTitle(i));
+            //tabTitleView.setCompoundDrawablesWithIntrinsicBounds(adapter.getDrawableId(i),0, 0,0);
+            tabTitleView.setCompoundDrawablePadding(0);
             tabView.setOnClickListener(tabClickListener);
             String desc = mContentDescriptions.get(i, null);
             if (desc != null) {

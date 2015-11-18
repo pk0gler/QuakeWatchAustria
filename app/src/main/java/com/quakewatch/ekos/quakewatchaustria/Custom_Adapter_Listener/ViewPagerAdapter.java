@@ -5,11 +5,13 @@ package com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener;
  */
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
+import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FRAGMENT_MAP;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FRAGMENT_WELT;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Fragment_AT;
@@ -76,6 +78,17 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return NumbOfTabs;
+    }
+
+    public final static int[] pictures = {
+            R.drawable.at,
+            R.drawable.eu,
+            R.drawable.welt,
+            R.drawable.map
+    };
+    public int getDrawableId(int i) {
+        //return pictures[i];
+        return R.drawable.at_banner;
     }
 
     
