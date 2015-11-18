@@ -61,16 +61,18 @@ public class Fragment_AT extends Fragment {
         v = inflater.inflate(R.layout.list_layout_at,container,false);
         actionButtonMain = (ActionButton) v.findViewById(R.id.action_button_main);
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
-        actionButtonMain.setButtonColor(R.color.fab_material_blue_500);
+        actionButtonMain.setButtonColor(getResources().getColor(R.color.ColorPrimary));
 
         actionButtonNow = (ActionButton) v.findViewById(R.id.action_button_jetzt);
         actionButtonAndere = (ActionButton) v.findViewById(R.id.action_button_andere);
 
         actionButtonNow.setType(ActionButton.Type.MINI);
         actionButtonNow.setImageResource(R.drawable.fab_plus_icon);
+        actionButtonNow.setButtonColor(getResources().getColor(R.color.ColorPrimary));
 
         actionButtonAndere.setType(ActionButton.Type.MINI);
         actionButtonAndere.setImageResource(R.drawable.fab_plus_icon);
+        actionButtonAndere.setButtonColor(getResources().getColor(R.color.ColorPrimary));
 
         actionButtonAndere.hide();
         actionButtonNow.hide();
