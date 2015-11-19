@@ -61,18 +61,22 @@ public class Fragment_AT extends Fragment {
         v = inflater.inflate(R.layout.list_layout_at,container,false);
         actionButtonMain = (ActionButton) v.findViewById(R.id.action_button_main);
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
-        actionButtonMain.setButtonColor(getResources().getColor(R.color.ColorPrimary));
+        actionButtonMain.setButtonColor(Color.parseColor("#26A69A"));
+        actionButtonMain.setButtonColorPressed(getResources().getColor(R.color.ColorPrimary));
+
 
         actionButtonNow = (ActionButton) v.findViewById(R.id.action_button_jetzt);
         actionButtonAndere = (ActionButton) v.findViewById(R.id.action_button_andere);
 
         actionButtonNow.setType(ActionButton.Type.MINI);
         actionButtonNow.setImageResource(R.drawable.fab_plus_icon);
-        actionButtonNow.setButtonColor(getResources().getColor(R.color.ColorPrimary));
+        actionButtonNow.setButtonColor(Color.parseColor("#26A69A"));
+        actionButtonNow.setButtonColorPressed(getResources().getColor(R.color.ColorPrimary));
 
         actionButtonAndere.setType(ActionButton.Type.MINI);
         actionButtonAndere.setImageResource(R.drawable.fab_plus_icon);
-        actionButtonAndere.setButtonColor(getResources().getColor(R.color.ColorPrimary));
+        actionButtonAndere.setButtonColor(Color.parseColor("#26A69A"));
+        actionButtonAndere.setButtonColorPressed(getResources().getColor(R.color.ColorPrimary));
 
         actionButtonAndere.hide();
         actionButtonNow.hide();

@@ -38,15 +38,15 @@ public class CustomArrayAdapter extends ArrayAdapter {
     };
     public final static String[] colorCodes = {
             //Green
-            "#A5D6A7","#81C784","#66BB6A",
+            "#66BB6A","#4CAF50","#43A047",
             //Yellow
-            "#FFF59D","#FFF176","#FFEE58",
-            //Blue
-            "#2196F3","#1E88E5","#1976D2",
+            "#FFEE58","#FFEB3B","#FDD835",
             //Orange
             "#FFA726","#FF9800","#FB8C00",
+            //Blue
+            "#5C6BC0","#3F51B5","#3949AB",
             //Purple
-            "#9C27B0","#8E24AA",
+            "#673AB7","#5E35B1",
             //Red
             "#C62828"
     };
