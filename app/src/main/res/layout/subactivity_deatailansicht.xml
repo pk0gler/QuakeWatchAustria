@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         fab:shadowResponsiveEffect_enabled="true"
-        fab:button_color="@color/ColorPrimary"
+        fab:button_color="#26A69A"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"

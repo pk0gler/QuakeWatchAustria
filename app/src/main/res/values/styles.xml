@@ -19,7 +19,7 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
     <style name="PopUp" parent="@android:style/Widget.PopupMenu">
-        <item name="android:popupBackground"> #FFFFFF </item>
+        <item name="android:popupBackground"> @color/ColorPrimary </item>
     </style>
 
 </resources>
