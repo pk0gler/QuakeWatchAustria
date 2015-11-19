@@ -3,6 +3,7 @@ package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import com.quakewatch.ekos.quakewatchaustria.R;
  */
 public class BebenInfo extends AppCompatActivity {
     NumberPicker np;
-    SeekBar sb;
+    CheckBox cb;
     TextView stock,gegenstand,janein;
 
     @Override
@@ -30,8 +31,7 @@ public class BebenInfo extends AppCompatActivity {
         stock = (TextView) findViewById(R.id.stock);
         stock.setText("In welchem Stock befanden Sie sich?");
 
-        sb = (SeekBar) findViewById(R.id.seekBar2);
-        sb.setMax(1);
+        cb = (CheckBox) findViewById(R.id.seekBar2);
         janein = (TextView) findViewById(R.id.textView2);
         janein.setText("NEIN/JA");
 

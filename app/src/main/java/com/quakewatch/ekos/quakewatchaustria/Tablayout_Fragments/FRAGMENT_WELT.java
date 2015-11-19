@@ -125,6 +125,7 @@ public class FRAGMENT_WELT extends Fragment {
             return null;
         }
 
+
         @Override
         protected void onPostExecute(String strFromDoInBg) {
             listView = (ListView) v.findViewById(R.id.listWorld);

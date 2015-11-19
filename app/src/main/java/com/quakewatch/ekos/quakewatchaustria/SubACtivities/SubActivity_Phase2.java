@@ -53,7 +53,7 @@ public class SubActivity_Phase2 extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), "Hi", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "Hi", Toast.LENGTH_SHORT).show();
                 Intent detail = new Intent(view.getContext(),BebenInfo.class);
                 startActivity(detail);
             }
