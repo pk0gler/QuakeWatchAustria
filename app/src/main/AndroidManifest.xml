@@ -99,7 +99,19 @@
         </activity>
         <activity
             android:name=".SubACtivities.BebenInfo"
-            android:label="BebenInfo">
+            android:label="BebenInfo"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeSub"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SubACtivities.SubActivity_Phase2" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

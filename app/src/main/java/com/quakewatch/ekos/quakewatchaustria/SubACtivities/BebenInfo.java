@@ -15,8 +15,8 @@ import com.quakewatch.ekos.quakewatchaustria.R;
  */
 public class BebenInfo extends AppCompatActivity {
     NumberPicker np;
-    CheckBox cb;
-    TextView stock,gegenstand,janein;
+    CheckBox cb1,cb2;
+    TextView stock,gegenstand,flucht;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +31,14 @@ public class BebenInfo extends AppCompatActivity {
         stock = (TextView) findViewById(R.id.stock);
         stock.setText("In welchem Stock befanden Sie sich?");
 
-        cb = (CheckBox) findViewById(R.id.seekBar2);
-        janein = (TextView) findViewById(R.id.textView2);
-        janein.setText("NEIN/JA");
+        cb1 = (CheckBox) findViewById(R.id.checkBox);
 
         gegenstand = (TextView) findViewById(R.id.umgefallen);
         gegenstand.setText("Sind Gegenstände umgefallen? ");
 
+        cb2 = (CheckBox) findViewById(R.id.flucht);
+        flucht = (TextView) findViewById(R.id.gefluechtet);
+        flucht.setText("Sind Sie aus Angst ins Freie geflüchtet?");
 
 
         };
