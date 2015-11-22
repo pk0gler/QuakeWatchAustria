@@ -102,9 +102,9 @@ public class Fragment_AT extends Fragment {
                     tAndere.startAnimation(AnimationUtils.loadAnimation(v.getContext(), R.anim.fab_fade_in));
                     tJetzt.startAnimation(AnimationUtils.loadAnimation(v.getContext(), R.anim.fab_fade_in));
 
-                    listView.setAlpha(0.17f);
+                    listView.setAlpha(0.35f);
                     actionButtonMain.setAlpha(1f);
-                    listView.setBackgroundColor(Color.DKGRAY);
+                    //listView.setBackgroundColor(Color.DKGRAY);
                     actionButtonMain.setImageResource(R.drawable.fab_x_but);
                     actionButtonNow.setHideAnimation(ActionButton.Animations.ROLL_TO_RIGHT);
                     actionButtonAndere.setHideAnimation(ActionButton.Animations.ROLL_TO_RIGHT);
