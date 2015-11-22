@@ -85,7 +85,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="10dp" />
 
     <com.software.shell.fab.ActionButton
@@ -95,9 +95,10 @@
         fab:shadowResponsiveEffect_enabled="true"
         fab:button_color="#26A69A"
         fab:button_colorPressed="@color/ColorPrimary"
-        android:layout_below="@+id/textTime"
-        android:layout_alignLeft="@+id/textTime"
-        android:layout_alignStart="@+id/textTime" />
+        android:layout_toEndOf="@+id/textDate"
+        android:layout_alignTop="@+id/action_button_jetzt"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBottom="@+id/action_button_jetzt" />
 
     <TextView
         android:layout_width="wrap_content"

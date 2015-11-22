@@ -146,45 +146,57 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         } /*NEXT COLOR*/else if ((mag >= 2.5) && (mag <= 3.9)) {
             if ((mag >= 2.5) && (mag <= 2.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[2])));
             }
             if ((mag >= 3) && (mag <= 3.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[4]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[4])));
             }
             if ((mag >= 3.5) && (mag <= 3.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[5]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[5])));
             }
 
         }/*NEXT COLOR*/else if ((mag >= 4) && (mag <= 5.4)) {
             if ((mag >= 4) && (mag <= 4.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[6]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[6])));
             }
             if ((mag >= 4.5) && (mag <= 4.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[7]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[7])));
             }
             if ((mag >= 5) && (mag <= 5.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[8]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[8])));
             }
 
         }/*NEXT COLOR*/else if ((mag >= 5.5) && (mag <= 6.9)) {
             if ((mag >= 5.5) && (mag <= 5.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[9]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[9])));
             }
             if ((mag >= 6) && (mag <= 6.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[10]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[10])));
             }
             if ((mag >= 6.5) && (mag <= 6.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[11]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[11])));
             }
 
         }/*NEXT COLOR*/else if ((mag >= 7) && (mag <= 8.9)) {
             if ((mag >= 7) && (mag <= 7.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[12]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[12])));
             }
             if ((mag >= 8) && (mag <= 8.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[14])));
             }
         }/*NEXT COLOR*/else if ((mag >= 9) && (mag <= 12)) {
             icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[14])));
         }
         textMag.setText(bebenData.getMag()+"");
         textDate.setText(bebenData.getDate());
