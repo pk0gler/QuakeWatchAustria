@@ -6,6 +6,11 @@
         <item name="colorPrimary"> @color/ColorPrimary</item>
         <item name="colorPrimaryDark"> @color/ColorPrimaryDark</item>
         <item name="android:popupMenuStyle">@style/PopUp</item>
+        <item name="drawerArrowStyle">@style/WhiteDrawerIconStyle</item>
+    </style>
+    <style name="WhiteDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
     </style>
 
 

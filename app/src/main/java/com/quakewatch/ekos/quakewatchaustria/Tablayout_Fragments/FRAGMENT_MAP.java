@@ -13,16 +13,19 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.OverlayItem;
 
-import java.util.Map;
+import java.util.ArrayList;
 
 /**
  * Created by pkogler on 22.10.2015.
  */
 public class FRAGMENT_MAP extends Fragment {
+    ArrayList<OverlayItem> overlayItemArray;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.maplayout,container,false);
+        View v = inflater.inflate(R.layout.maplayout, container, false);
         //asd
         MapView mapView = (MapView) v.findViewById(R.id.mapview);
         MapController mc = (MapController) mapView.getController();

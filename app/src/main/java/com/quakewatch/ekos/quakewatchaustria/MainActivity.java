@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,8 +17,6 @@ import android.view.MenuItem;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
-import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
-import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     int Numboftabs = 4;
     int wantedPosition = 0;
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
+    private ActionBarDrawerToggle hamburger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,19 @@ public class MainActivity extends AppCompatActivity {
         //Creating the Toolbar and setting it as the toolbar for the activity
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final DrawerLayout navDraw = (DrawerLayout) findViewById(R.id.drawer_layout);
+        hamburger = new ActionBarDrawerToggle(this, navDraw, toolbar, R.string.app_name, R.string.app_name);
+        navDraw.setDrawerListener(hamburger);
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                navDraw.closeDrawer(GravityCompat.START);
+                return false;
+            }
+        });
+
         //toolbar.colo
 
         //Creating and assigning the View Pager Adapter
@@ -75,28 +91,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(this.getBaseContext(), SubActivity_SettingsActivity.class);
-            startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
-            return true;
-        } else {
-            boolean isNow = false;
-            //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
-            Intent i = new Intent(getBaseContext(), SubActivity_BebenEintragenStart.class);
-            i.putExtra("state", isNow);
-            startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     public ViewPager getAdapter() {
         return pager;
@@ -116,5 +110,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        hamburger.syncState();
     }
 }

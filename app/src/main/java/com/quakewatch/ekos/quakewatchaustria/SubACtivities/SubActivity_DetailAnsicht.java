@@ -2,6 +2,7 @@ package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -100,6 +101,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
      * for convenience
      */
     private void setUpView() {
+        getSupportActionBar().setElevation(0f);
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.detailLayout);
         ImageView imgBottom = (ImageView) findViewById(R.id.imageViewBottom);
         TextView textMag = (TextView) findViewById(R.id.textMag);
@@ -130,12 +132,15 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         if ((mag >= 1) && (mag <= 2.4)) {
             if ((mag >= 1) && (mag <= 1.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[0]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[0])));
             }
             if ((mag >= 1.5) && (mag <= 1.9)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[1]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[1])));
             }
             if ((mag >= 2) && (mag <= 2.4)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[2])));
             }
 
         } /*NEXT COLOR*/else if ((mag >= 2.5) && (mag <= 3.9)) {
