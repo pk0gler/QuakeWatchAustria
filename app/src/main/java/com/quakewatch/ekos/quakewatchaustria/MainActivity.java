@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
@@ -47,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
+                Toast.makeText(getBaseContext(), "Hi",Toast.LENGTH_SHORT).show();
                 navDraw.closeDrawer(GravityCompat.START);
+                displayView();
                 return false;
             }
         });
@@ -91,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    private void displayView() {
+
+    }
 
     public ViewPager getAdapter() {
         return pager;
