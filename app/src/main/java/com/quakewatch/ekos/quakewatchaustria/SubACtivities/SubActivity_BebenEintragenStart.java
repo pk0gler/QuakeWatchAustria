@@ -26,7 +26,7 @@ import java.util.Calendar;
 
 public class SubActivity_BebenEintragenStart extends AppCompatActivity {
     public final static int SUCCESS_RETURN_CODE = 1;
-    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
+    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;a
 
 
     private TextView state;
