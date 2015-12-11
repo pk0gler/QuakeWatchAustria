@@ -96,7 +96,12 @@ public class CustomArrayAdapter extends ArrayAdapter {
             holder.textMag = (TextView) convertView.findViewById(R.id.listText);
             holder.region = (TextView) convertView.findViewById(R.id.textViewLocation);
             holder.time = (TextView) convertView.findViewById(R.id.textViewTime);
+
+
+
             holder.date = (TextView) convertView.findViewById(R.id.textViewDatum);
+
+
             holder.icon = (ImageView) convertView.findViewById(R.id.imagebild);
 
             convertView.setTag(holder);

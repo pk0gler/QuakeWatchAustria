@@ -76,7 +76,7 @@ public class Erdbeben implements Serializable {
     }
 
     private void seperateTimeWhole(String timeWhole) {
-        this.date = timeWhole.substring(0,9);
+        this.date = timeWhole.substring(0,10);
         this.time = timeWhole.substring(11,16);
     }
 

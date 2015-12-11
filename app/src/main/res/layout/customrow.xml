@@ -22,10 +22,10 @@
         android:textSize="30dp"
         android:id="@+id/listText"
         android:padding="0dp"
-        android:layout_alignTop="@+id/textViewTime"
         android:gravity="center_vertical|center_horizontal"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/imagebild"
-        android:layout_alignBottom="@+id/imagebild" />
+        android:layout_toEndOf="@+id/imagebild" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,10 +33,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Wien, TGM"
         android:id="@+id/textViewLocation"
-        android:textSize="15sp"
-        android:layout_centerVertical="true"
+        android:textSize="17sp"
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/listText"
-        android:layout_toEndOf="@+id/listText" />
+        android:layout_toEndOf="@+id/listText"
+        android:layout_marginTop="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,22 +45,24 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="20.10.2015"
         android:id="@+id/textViewDatum"
-        android:layout_alignTop="@+id/imagebild"
+        android:textSize="13sp"
+        android:layout_below="@+id/textViewLocation"
+        android:layout_toRightOf="@+id/textViewTime"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="2dp"
-        android:layout_marginRight="5dp"
-        android:textSize="12sp"/>
+        android:layout_alignParentEnd="true" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="20:15"
         android:id="@+id/textViewTime"
-        android:layout_alignTop="@+id/textViewDatum"
-        android:layout_toLeftOf="@+id/textViewDatum"
-        android:layout_toStartOf="@+id/textViewDatum"
-        android:layout_marginRight="15dp"
-        android:textSize="12sp"/>
+        android:textSize="13sp"
+        android:layout_below="@+id/textViewLocation"
+        android:layout_toRightOf="@+id/listText"
+        android:layout_toEndOf="@+id/listText"
+        android:layout_marginTop="7dp"
+        android:layout_alignBottom="@+id/textViewDatum" />
 
 </RelativeLayout>
