@@ -13,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
@@ -26,7 +25,7 @@ import java.util.Calendar;
 
 public class SubActivity_BebenEintragenStart extends AppCompatActivity {
     public final static int SUCCESS_RETURN_CODE = 1;
-    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;a
+    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
 
 
     private TextView state;

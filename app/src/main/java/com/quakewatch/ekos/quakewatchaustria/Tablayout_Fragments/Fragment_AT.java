@@ -1,9 +1,12 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -26,8 +29,10 @@ import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
-import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DiesesBebenEintragen;
 import com.software.shell.fab.ActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -49,6 +54,8 @@ public class Fragment_AT extends Fragment {
     private TextView tJetzt;
     private TextView tAndere;
 
+    Context context;
+
     private String magStaerke;
 
     private float mActionBarHeight;
@@ -56,13 +63,16 @@ public class Fragment_AT extends Fragment {
 
     private ViewPagerAdapter pager;
 
+    private ArrayList<Erdbeben> values = new ArrayList<>();
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.list_layout_at,container,false);
+        v = inflater.inflate(R.layout.list_layout_at, container, false);
         actionButtonMain = (ActionButton) v.findViewById(R.id.action_button_main);
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
-        actionButtonMain.setButtonColor(Color.parseColor("#26A69A"));
-        actionButtonMain.setButtonColorPressed(getResources().getColor(R.color.ColorPrimary));
+        actionButtonMain.setButtonColor(Color.parseColor("#3F51B5"));
+        actionButtonMain.setButtonColorPressed(getResources().getColor(R.color.ColorPrimaryDark));
 
 
         actionButtonNow = (ActionButton) v.findViewById(R.id.action_button_jetzt);
@@ -70,16 +80,22 @@ public class Fragment_AT extends Fragment {
 
         actionButtonNow.setType(ActionButton.Type.MINI);
         actionButtonNow.setImageResource(R.drawable.fab_plus_icon);
-        actionButtonNow.setButtonColor(Color.parseColor("#26A69A"));
-        actionButtonNow.setButtonColorPressed(getResources().getColor(R.color.ColorPrimary));
+        actionButtonNow.setButtonColor(Color.parseColor("#3F51B5"));
+        actionButtonNow.setButtonColorPressed(getResources().getColor(R.color.ColorPrimaryDark));
 
         actionButtonAndere.setType(ActionButton.Type.MINI);
         actionButtonAndere.setImageResource(R.drawable.fab_plus_icon);
-        actionButtonAndere.setButtonColor(Color.parseColor("#26A69A"));
-        actionButtonAndere.setButtonColorPressed(getResources().getColor(R.color.ColorPrimary));
+        actionButtonAndere.setButtonColor(Color.parseColor("#3F51B5"));
+        actionButtonAndere.setButtonColorPressed(getResources().getColor(R.color.ColorPrimaryDark));
 
         actionButtonAndere.hide();
         actionButtonNow.hide();
+
+        tJetzt = (TextView) v.findViewById(R.id.tJetzt);
+        tJetzt.setVisibility(View.GONE);
+        tAndere = (TextView) v.findViewById(R.id.tAndere);
+        tAndere.setVisibility(View.GONE);
+
 
         actionButtonMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +176,48 @@ public class Fragment_AT extends Fragment {
         });
 
 
+        tJetzt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listView.setEnabled(true);
+                tJetzt.setVisibility(View.GONE);
+                tAndere.setVisibility(View.GONE);
+                listView.setAlpha(1f);
+                listView.setBackgroundColor(Color.WHITE);
+                actionButtonAndere.hide();
+                actionButtonNow.hide();
+                show = false;
+
+                boolean isNow = true;
+                //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                i.putExtra("state", isNow);
+                startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+
+        tAndere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listView.setEnabled(true);
+                tJetzt.setVisibility(View.GONE);
+                tAndere.setVisibility(View.GONE);
+                listView.setAlpha(1f);
+                listView.setBackgroundColor(Color.WHITE);
+                actionButtonAndere.hide();
+                actionButtonNow.hide();
+                show = false;
+
+                boolean isNow = false;
+                //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                i.putExtra("state", isNow);
+                startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+
         final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(
                 new int[]{android.R.attr.actionBarSize});
         mActionBarHeight = styledAttributes.getDimension(0, 0);
@@ -179,28 +237,16 @@ public class Fragment_AT extends Fragment {
     }
 
     public void createConetent() {
+        this.context=this.getContext();
         listView = null;
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
-        this.magStaerke = SP.getString("magType", "1").charAt(0)+"";
+        this.magStaerke = SP.getString("magType", "1").charAt(0) + "";
         Log.d("Magni", Integer.parseInt(magStaerke) + "");
-        tJetzt = (TextView) v.findViewById(R.id.tJetzt);
-        tJetzt.setVisibility(View.GONE);
-        tAndere = (TextView) v.findViewById(R.id.tAndere);
-        tAndere.setVisibility(View.GONE);
         //tJetzt.setBackground("#FFFFFF");
         //return v;
         listView = (ListView) v.findViewById(R.id.listAt);
-        ArrayList<Erdbeben> values = new ArrayList<>();
-            for (int i = 1; i < 10; i++) {
-                int z1 = i;
-                for (int j = 0; j < 10; j++) {
-                    int z2 = j;
-                    if (Double.parseDouble(z1+"."+z2) == 12.1) break;
-                    values.add(new Erdbeben(Double.parseDouble(z1+"."+z2),"Oestereich, Wien", "2015-10-29T23:09:50.0Z", 3.4));
-                }
-            }
-
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        new AsyncTaskParseJson().execute();
+       /* listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
@@ -229,6 +275,103 @@ public class Fragment_AT extends Fragment {
                 }
         );
         //listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
-        actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
+        actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);*/
+    }
+
+    public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
+        ProgressDialog mDialog;
+        final String TAG = "AsyncTaskParseJson.java";
+
+        // contacts JSONArray
+        JSONArray dataJsonArr = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            mDialog = new ProgressDialog(context);
+            mDialog.setMessage("Beben werden geladen...");
+            mDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... arg0) {
+            try {
+                // instantiate our json parser
+                JsonParser jParser = new JsonParser();
+
+                // get the array of users
+                JSONObject json = JsonParser.readJsonFromUrl("http://www.seismicportal.eu/fdsnws/event/1/query?limit=1000&format=json&minlatitude=46&maxlatitude=49&minlongitude=9&maxlongitude=18");
+                dataJsonArr = json.getJSONArray("features");
+
+                // loop through all users
+                for (int i = 0; i < dataJsonArr.length(); i++) {
+
+                    JSONObject c = dataJsonArr.getJSONObject(i);
+                    JSONObject b = c.getJSONObject("properties");
+
+                    //Jason Parsing Methode
+                    //Server umstellungen dynamisch
+
+                    // Storing each json item in variable
+                    Double mag = Double.parseDouble(b.getString("mag"));
+                    String flynn_region = b.getString("flynn_region");
+                    String time = b.getString("time");
+                    double depth = Double.parseDouble(b.getString("depth"));
+                    //String username = c.getString("magtype");
+
+                    // show the values in our logcat
+                    Log.e("MyJsonAt", "|" + flynn_region + "|");
+                    if ((flynn_region.equals("AUSTRIA") && mag >= 1)) {
+                        Log.e("testla", "JA");
+                        values.add(new Erdbeben(mag, flynn_region, time, depth));
+                    } else
+                        Log.e("testla", "NEIN");
+
+                }
+                //JSONObject ob = json.getJSONObject("properties");
+                //values.add(0,ob.getString("magType"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //values.add(0,"hi");
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(String strFromDoInBg) {
+            mDialog.dismiss();
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
+                    boolean isNow = true;
+                    //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                    i.putExtra("state", isNow);
+                    i.putExtra("bebenData", temp);
+                    startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+                    return true;
+                }
+            });
+            ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(
+                    new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
+                            //Toast.makeText(getContext(), temp.getMag()+"", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
+                            i.putExtra("bebenData", temp);
+                            i.putExtra("isAt", true);
+                            startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+                        }
+                    }
+            );
+            //listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
+            actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
+        }
     }
 }
