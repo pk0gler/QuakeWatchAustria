@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,6 +54,9 @@ public class Fragment_AT extends Fragment {
     private View v;
     private TextView tJetzt;
     private TextView tAndere;
+    private TextView tmain;
+
+    private Button bgone;
 
     Context context;
 
@@ -95,6 +99,10 @@ public class Fragment_AT extends Fragment {
         tJetzt.setVisibility(View.GONE);
         tAndere = (TextView) v.findViewById(R.id.tAndere);
         tAndere.setVisibility(View.GONE);
+        tmain = (TextView) v.findViewById(R.id.bebenMelden);
+        bgone = (Button) v.findViewById(R.id.bgone);
+        bgone.getBackground().setAlpha(0);
+        bgone.setVisibility(View.GONE);
 
 
         actionButtonMain.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +110,9 @@ public class Fragment_AT extends Fragment {
             public void onClick(View view) {
                 if (show) {
                     //v.setAlpha(1f);
+                    bgone.setVisibility(View.GONE);
+                    //bgone.setEnabled(false);
+                    tmain.setText("Erdbeben melden");
                     actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
                     listView.setEnabled(true);
                     tJetzt.setVisibility(View.GONE);
@@ -112,6 +123,9 @@ public class Fragment_AT extends Fragment {
                     actionButtonNow.hide();
                     show = false;
                 } else {
+                    bgone.setVisibility(View.VISIBLE);
+                    bgone.setEnabled(true);
+                    tmain.setText("Abbrechen");
                     listView.setEnabled(false);
                     tJetzt.setVisibility(View.VISIBLE);
                     tAndere.setVisibility(View.VISIBLE);
@@ -218,6 +232,66 @@ public class Fragment_AT extends Fragment {
         });
 
 
+        tmain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (show) {
+                    //v.setAlpha(1f);
+                    bgone.setVisibility(View.GONE);
+                    //bgone.setEnabled(false);
+                    tmain.setText("Erdbeben melden");
+                    actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
+                    listView.setEnabled(true);
+                    tJetzt.setVisibility(View.GONE);
+                    tAndere.setVisibility(View.GONE);
+                    listView.setAlpha(1f);
+                    listView.setBackgroundColor(Color.WHITE);
+                    actionButtonAndere.hide();
+                    actionButtonNow.hide();
+                    show = false;
+                } else {
+                    bgone.setVisibility(View.VISIBLE);
+                    bgone.setEnabled(true);
+                    tmain.setText("Abbrechen");
+                    listView.setEnabled(false);
+                    tJetzt.setVisibility(View.VISIBLE);
+                    tAndere.setVisibility(View.VISIBLE);
+                    tAndere.startAnimation(AnimationUtils.loadAnimation(v.getContext(), R.anim.fab_fade_in));
+                    tJetzt.startAnimation(AnimationUtils.loadAnimation(v.getContext(), R.anim.fab_fade_in));
+
+                    listView.setAlpha(0.35f);
+                    actionButtonMain.setAlpha(1f);
+                    //listView.setBackgroundColor(Color.DKGRAY);
+                    actionButtonMain.setImageResource(R.drawable.fab_x_but);
+                    actionButtonNow.setHideAnimation(ActionButton.Animations.ROLL_TO_RIGHT);
+                    actionButtonAndere.setHideAnimation(ActionButton.Animations.ROLL_TO_RIGHT);
+                    actionButtonAndere.show();
+                    actionButtonNow.show();
+                    show = true;
+                }
+            }
+        });
+
+        bgone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //v.setAlpha(1f);
+                bgone.setVisibility(View.GONE);
+                //bgone.setEnabled(false);
+                tmain.setText("Erdbeben melden");
+                actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
+                listView.setEnabled(true);
+                tJetzt.setVisibility(View.GONE);
+                tAndere.setVisibility(View.GONE);
+                listView.setAlpha(1f);
+                listView.setBackgroundColor(Color.WHITE);
+                actionButtonAndere.hide();
+                actionButtonNow.hide();
+                show = false;
+            }
+        });
+
+
         final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(
                 new int[]{android.R.attr.actionBarSize});
         mActionBarHeight = styledAttributes.getDimension(0, 0);
@@ -242,40 +316,8 @@ public class Fragment_AT extends Fragment {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
         this.magStaerke = SP.getString("magType", "1").charAt(0) + "";
         Log.d("Magni", Integer.parseInt(magStaerke) + "");
-        //tJetzt.setBackground("#FFFFFF");
-        //return v;
         listView = (ListView) v.findViewById(R.id.listAt);
         new AsyncTaskParseJson().execute();
-       /* listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
-                boolean isNow = true;
-                //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
-                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
-                i.putExtra("state", isNow);
-                i.putExtra("bebenData", temp);
-                startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
-                return true;
-            }
-        });
-        ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
-                        //Toast.makeText(getContext(), temp.getMag()+"", Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
-                        i.putExtra("bebenData", temp);
-                        i.putExtra("isAt", true);
-                        startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
-                    }
-                }
-        );
-        //listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
-        actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);*/
     }
 
     public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
@@ -362,7 +404,6 @@ public class Fragment_AT extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
-                            //Toast.makeText(getContext(), temp.getMag()+"", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getContext(), SubActivity_DetailAnsicht.class);
                             i.putExtra("bebenData", temp);
                             i.putExtra("isAt", true);
@@ -370,7 +411,6 @@ public class Fragment_AT extends Fragment {
                         }
                     }
             );
-            //listView.setOnScrollListener(new MyOnScrollListner(mActionBar));
             actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
         }
     }
