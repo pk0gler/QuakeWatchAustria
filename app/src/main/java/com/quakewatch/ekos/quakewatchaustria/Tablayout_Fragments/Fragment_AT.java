@@ -307,7 +307,7 @@ public class Fragment_AT extends Fragment {
         //getActivity().getIntent().getExtras().get("save");
         //this.createConetent();
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
-
+        tmain.setText("Erdbeben melden");
     }
 
     public void createConetent() {
