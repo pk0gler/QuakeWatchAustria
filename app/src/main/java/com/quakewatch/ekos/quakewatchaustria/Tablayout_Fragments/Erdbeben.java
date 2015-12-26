@@ -75,6 +75,13 @@ public class Erdbeben implements Serializable {
         this.depth = depth;
     }
 
+    public Erdbeben() {
+        this.mag = 0;
+        this.region = "";
+        this.timeWhole = "";
+        this.depth = 0;
+    }
+
     private void seperateTimeWhole(String timeWhole) {
         this.date = timeWhole.substring(0,10);
         this.time = timeWhole.substring(11,16);

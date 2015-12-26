@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.Space;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -397,8 +399,15 @@ public class Fragment_AT extends Fragment {
                     return true;
                 }
             });
+            //values.add(new Erdbeben());
             ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
             listView.setAdapter(adapter);
+
+            Space space = new Space(listView.getContext());
+            space.setMinimumHeight(dpToPx(120));
+            listView.addFooterView(space);
+
+            //listView.addFooterView(new View());
             listView.setOnItemClickListener(
                     new AdapterView.OnItemClickListener() {
                         @Override
@@ -413,5 +422,9 @@ public class Fragment_AT extends Fragment {
             );
             actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
         }
+    }
+    public static int dpToPx(int dp)
+    {
+        return (int)(dp * Resources.getSystem().getDisplayMetrics().density);
     }
 }
