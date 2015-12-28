@@ -245,6 +245,11 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         textTime.setText(bebenData.getTime());
     }
 
+    /**
+     * When
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

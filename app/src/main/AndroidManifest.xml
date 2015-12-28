@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.quakewatch.ekos.quakewatchaustria" >
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -39,8 +39,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SubACtivities.SubActivity_BebenEintragenStart"
             android:label="Beben eintragen"
@@ -56,8 +54,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SubACtivities.SubActivity_DiesesBebenEintragen"
             android:label="Dieses Beben eintragen"
@@ -73,8 +69,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SubACtivities.SubActivity_Phase2"
             android:label="Waehlen Sie einen Cartoon"
@@ -90,19 +84,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SubACtivities.SubActivity_SettingsActivity"
             android:label="@string/title_activity_sub_activity__settings"
-            android:theme="@style/AppThemeSub">
+            android:theme="@style/AppThemeSub" >
         </activity>
         <activity
             android:name=".SubACtivities.BebenInfo"
             android:label="BebenInfo"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeSub"
-            >
+            android:theme="@style/AppThemeSub" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SubACtivities.SubActivity_Phase2" />
@@ -112,6 +103,15 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SubACtivities.ImageFullScreen"
+            android:label="@string/title_activity_image_full_screen"
+            android:parentActivityName=".SubACtivities.SubActivity_Phase2"
+            android:theme="@style/AppThemeSub" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_Phase2" />
         </activity>
     </application>
 

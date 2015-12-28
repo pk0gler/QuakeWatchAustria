@@ -14,6 +14,10 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 
 public class SubActivity_SettingsActivity extends PreferenceActivity {
 
+	/**
+	 * On Create
+	 * @param savedInstanceState
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

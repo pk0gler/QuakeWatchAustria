@@ -6,6 +6,10 @@ import java.io.Serializable;
 
 /**
  * Created by pkogler on 30.10.2015.
+ * Usage:   Erdbeben Class
+ *          Used for storing recieved Quake Files in one Object of
+ *          Type Erdbeben.
+ *          It also contains an array which has all used Countries in Europe
  */
 public class Erdbeben implements Serializable {
     public final static String[] countries = {
@@ -67,6 +71,13 @@ public class Erdbeben implements Serializable {
     private double depth;
     private String date;
 
+    /**
+     * Constructor
+     * @param mag
+     * @param region
+     * @param timeWhole
+     * @param depth
+     */
     public Erdbeben(double mag, String region, String timeWhole, double depth) {
         this.mag = mag;
         this.region = this.formatRegion(region);
@@ -75,6 +86,10 @@ public class Erdbeben implements Serializable {
         this.depth = depth;
     }
 
+    /**
+     * EMpty Constructor
+     * Initilazie all attributes with standard Values
+     */
     public Erdbeben() {
         this.mag = 0;
         this.region = "";
@@ -82,9 +97,14 @@ public class Erdbeben implements Serializable {
         this.depth = 0;
     }
 
+    /**
+     * Used for seperate the Whole Time String into
+     * Time and Date
+     * @param timeWhole
+     */
     private void seperateTimeWhole(String timeWhole) {
-        this.date = timeWhole.substring(0,10);
-        this.time = timeWhole.substring(11,16);
+        this.date = timeWhole.substring(0, 10);
+        this.time = timeWhole.substring(11, 16);
     }
 
     //Getter Methods
@@ -109,12 +129,11 @@ public class Erdbeben implements Serializable {
     }
 
     //Setter Methods
-
     public void setDate(String date) {
         this.date = date;
     }
 
-    public void setMag(double  mag) {
+    public void setMag(double mag) {
         this.mag = mag;
     }
 
@@ -138,14 +157,19 @@ public class Erdbeben implements Serializable {
         this.depth = depth;
     }
 
+    /**
+     * Formats the recieved Region String so it can be displayed
+     * @param t
+     * @return
+     */
     public String formatRegion(String t) {
         String a = t.toLowerCase();
         String[] temp = a.split(" ");
         String newStr = "";
-        for (int i = 0; i<temp.length; i++) {
+        for (int i = 0; i < temp.length; i++) {
             if (i == 1) newStr += " ";
-            newStr += temp[i].substring(0,1).toUpperCase();
-            newStr += temp[i].substring(1,temp[i].length());
+            newStr += temp[i].substring(0, 1).toUpperCase();
+            newStr += temp[i].substring(1, temp[i].length());
         }
         Log.d("Region", newStr);
         if (newStr.length() >= 20) {

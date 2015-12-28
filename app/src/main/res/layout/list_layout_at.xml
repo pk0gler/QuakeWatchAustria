@@ -36,7 +36,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:enabled="false"
-            android:layout_above="@+id/tJetzt" />
+            android:layout_above="@+id/action_button_jetzt" />
 
         <com.software.shell.fab.ActionButton
             android:id="@+id/action_button_main"

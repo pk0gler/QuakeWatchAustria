@@ -4,7 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,9 @@ import java.util.Calendar;
 
 /**
  * Created by pkogler on 22.10.2015.
+ * Usage: Defines :
+ * the DatePicker
+ * Timepicker
  */
 
 public class SubActivity_BebenEintragenStart extends AppCompatActivity {
@@ -33,11 +38,18 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
 
     EditText zeit;
     EditText datum;
+    EditText ort;
+    EditText plz;
+
+    TextInputLayout lZeit;
+    TextInputLayout lDate;
+    TextInputLayout lOrt;
+    TextInputLayout lPlz;
 
     Button weiter;
 
-    int hour_x,minute_x;
-    int year_x,month_x,day_x;
+    int hour_x, minute_x;
+    int year_x, month_x, day_x;
 
     static final int DATE_ID = 0;
     static final int TIME_ID = 1;
@@ -57,11 +69,37 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
         showTimeDialog();
         showDialogOnClick();
 
+        lZeit = (TextInputLayout) findViewById(R.id.LayoutZeit);
+        lDate = (TextInputLayout) findViewById(R.id.LayoutDatum);
+        lOrt = (TextInputLayout) findViewById(R.id.LayoutOrt);
+        lPlz = (TextInputLayout) findViewById(R.id.LayoutPlz);
+
+        plz = (EditText) findViewById(R.id.plz);
+        ort = (EditText) findViewById(R.id.Ort);
+
         weiter = (Button) findViewById(R.id.next);
-        weiter.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View V){
-                Intent i = new Intent(getBaseContext(), SubActivity_Phase2.class);
-                startActivity(i);
+        weiter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View V) {
+                if (zeit.getText().toString().trim().equals("")) {
+                    lZeit.setError("Zeit ist notwendig!");
+                    lZeit.setHint("Bitte Zeit auswählen");
+
+                } else if (datum.getText().toString().trim().equals("")){
+                    lDate.setError("Datum ist notwendig!");
+                    lDate.setHint("Bitte Datum auswählen");
+
+                } else if (plz.getText().toString().trim().equals("")){
+                    lPlz.setError("PLZ ist notwendig!");
+                    lPlz.setHint("Bitte PLZ eingeben");
+
+                } else if (ort.getText().toString().trim().equals("")){
+                    lOrt.setError("Ort ist notwendig!");
+                    lOrt.setHint("Bitte Ort auswählen");
+
+                } else {
+                    Intent i = new Intent(getBaseContext(), SubActivity_Phase2.class);
+                    startActivity(i);
+                }
             }
         });
 
@@ -69,23 +107,24 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
         if (state) {
             minute_x = cal.get(Calendar.MINUTE);
             hour_x = cal.get(Calendar.HOUR);
-            zeit.setText(hour_x+":"+minute_x);
+            zeit.setText(hour_x + ":" + minute_x);
         } else {
             setUp();
         }
     }
 
-    protected Dialog onCreateDialog(int id){
-        if(id == TIME_ID)
-            return new TimePickerDialog(this,kTimePickerListner,hour_x,minute_x,true);
-        if(id == DATE_ID)
-            return new DatePickerDialog(this, dpickerListener,year_x,month_x,day_x);
+    protected Dialog onCreateDialog(int id) {
+        if (id == TIME_ID)
+            return new TimePickerDialog(this, kTimePickerListner, hour_x, minute_x, true);
+        if (id == DATE_ID)
+            return new DatePickerDialog(this, dpickerListener, year_x, month_x, day_x);
         return null;
     }
+
     /**
      * Methoden um die Zeit einstellen zu können
      */
-    public void showTimeDialog(){
+    public void showTimeDialog() {
         zeit = (EditText) findViewById(R.id.zeit);
         zeit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
@@ -93,22 +132,22 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
             }
         });
     }
+
     protected TimePickerDialog.OnTimeSetListener kTimePickerListner =
             new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     hour_x = hourOfDay;
                     minute_x = minute;
-                    zeit.setText(hour_x+":"+minute_x);
+                    zeit.setText(hour_x + ":" + minute_x);
                 }
             };
 
     /**
      * Methoden um das Datum eingeben zu können
      */
-    public void showDialogOnClick(){
+    public void showDialogOnClick() {
         datum = (EditText) findViewById(R.id.datum);
-
         datum.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
                 showDialog(DATE_ID);
@@ -116,25 +155,20 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
         });
 
     }
+
     private DatePickerDialog.OnDateSetListener dpickerListener
-            = new DatePickerDialog.OnDateSetListener(){
-        public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth){
+            = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             year_x = year;
-            month_x = monthOfYear+1;
+            month_x = monthOfYear + 1;
             day_x = dayOfMonth;
-            datum.setText(year_x+"/"+month_x+"/"+day_x);
+            datum.setText(year_x + "/" + month_x + "/" + day_x);
         }
     };
 
 
     private void setUp() {
         //state.setText("Nicht Jetzt\n"+bebenData.getRegion()+"\n"+bebenData.getMag());
-
-    }
-
-
-    private void setUpNow() {
-        //  state.setText("Jetzt\n"+bebenData.getRegion()+"\n"+bebenData.getMag());
 
     }
 

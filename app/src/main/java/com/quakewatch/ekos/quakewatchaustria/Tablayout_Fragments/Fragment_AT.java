@@ -57,7 +57,6 @@ public class Fragment_AT extends Fragment {
     private TextView tJetzt;
     private TextView tAndere;
     private TextView tmain;
-
     private Button bgone;
 
     Context context;
@@ -313,7 +312,7 @@ public class Fragment_AT extends Fragment {
     }
 
     public void createConetent() {
-        this.context=this.getContext();
+        this.context = this.getContext();
         listView = null;
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
         this.magStaerke = SP.getString("magType", "1").charAt(0) + "";
@@ -423,8 +422,8 @@ public class Fragment_AT extends Fragment {
             actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
         }
     }
-    public static int dpToPx(int dp)
-    {
-        return (int)(dp * Resources.getSystem().getDisplayMetrics().density);
+
+    public static int dpToPx(int dp) {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 }

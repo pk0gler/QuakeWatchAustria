@@ -86,10 +86,4 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             R.drawable.welt,
             R.drawable.map
     };
-    public int getDrawableId(int i) {
-        //return pictures[i];
-        return R.drawable.at_banner;
-    }
-
-    
 }

@@ -1,7 +1,9 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
@@ -12,12 +14,20 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 
 /**
  * Created by Okan on 18.11.2015.
+ * Usage: Called after succesfll picking a cartoon
  */
 public class BebenInfo extends AppCompatActivity {
+    /**
+     * Attributes
+     */
     NumberPicker np;
-    CheckBox cb1,cb2;
-    TextView stock,gegenstand,flucht;
+    CheckBox cb1, cb2;
+    TextView stock, gegenstand, flucht;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +49,25 @@ public class BebenInfo extends AppCompatActivity {
         cb2 = (CheckBox) findViewById(R.id.flucht);
         flucht = (TextView) findViewById(R.id.gefluechtet);
         flucht.setText("Sind Sie aus Angst ins Freie geflüchtet?");
-
-
-        };
     }
+
+    /**
+     * When
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; go home
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+}
 
 
 

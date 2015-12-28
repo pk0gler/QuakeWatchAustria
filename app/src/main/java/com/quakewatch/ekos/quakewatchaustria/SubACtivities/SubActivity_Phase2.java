@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -26,7 +27,7 @@ public class SubActivity_Phase2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //finish();
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.intensity_layout);
+        setContentView(R.layout.intensity_layout);
 
         String[] text = {"Schwach verspürt: \n\n" +
                 "Leichtes Zittern oder Rütteln.Lampen/hängende Objekte pendeln schwach. \n\n" +
@@ -54,9 +55,27 @@ public class SubActivity_Phase2 extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(getBaseContext(), "Hi", Toast.LENGTH_SHORT).show();
-                Intent detail = new Intent(view.getContext(),BebenInfo.class);
+                Intent detail = new Intent(view.getContext(), BebenInfo.class);
                 startActivity(detail);
             }
         });
     }
+
+    /**
+     * When
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; go home
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
