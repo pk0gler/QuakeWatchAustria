@@ -12,5 +12,13 @@
         <item
             android:id="@+id/nav_settings"
             android:title="Einstellungen" />
+
+        <item
+            android:id="@+id/nav_guideApp"
+            android:title="App Guide" />
+
+        <item
+            android:id="@+id/nav_news"
+            android:title="News" />
     </group>
 </menu>

@@ -1,33 +1,24 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
-import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomIntensity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 
-public class ImageFullScreen extends AppCompatActivity {
+public class SubActivity_App_Guide extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_full_screen);
-        int position = (int) getIntent().getExtras().get("pos");
-        ImageView img = (ImageView) findViewById(R.id.img);
-        int imageRes = getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[position],null,getBaseContext().getPackageName());
-        Drawable res = getBaseContext().getResources().getDrawable(imageRes);
-        img.setImageDrawable(res);
-
+        setContentView(R.layout.activity_sub_activity__app__guide);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_image_full_screen, menu);
+        getMenuInflater().inflate(R.menu.menu_sub_activity__app__guide, menu);
         return true;
     }
 
@@ -37,6 +28,12 @@ public class ImageFullScreen extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

@@ -1,10 +1,17 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +22,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
@@ -28,7 +36,7 @@ import java.util.Calendar;
  * Timepicker
  */
 
-public class SubActivity_BebenEintragenStart extends AppCompatActivity {
+public class SubActivity_BebenEintragenStart extends AppCompatActivity implements LocationListener {
     public final static int SUCCESS_RETURN_CODE = 1;
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
 
@@ -45,6 +53,9 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
     TextInputLayout lDate;
     TextInputLayout lOrt;
     TextInputLayout lPlz;
+
+    LocationManager locationManager;
+    String provider;
 
     Button weiter;
 
@@ -77,6 +88,45 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
         plz = (EditText) findViewById(R.id.plz);
         ort = (EditText) findViewById(R.id.Ort);
 
+        /**
+        // Getting LocationManager object
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        // Creating an empty criteria object
+        Criteria criteria = new Criteria();
+
+        // Getting the name of the provider that meets the criteria
+        provider = locationManager.getBestProvider(criteria, false);
+
+        if (provider != null && !provider.equals("")) {
+
+            // Get the location from the given provider
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    public void requestPermissions(@NonNull String[] permissions, int requestCode)
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for Activity#requestPermissions for more details.
+                return;
+            }
+            Location location = locationManager.getLastKnownLocation(provider);
+
+            locationManager.requestLocationUpdates(provider, 20000, 1, this);
+
+            if(location!=null)
+                onLocationChanged(location);
+            else
+                Toast.makeText(getBaseContext(), "Location can't be retrieved", Toast.LENGTH_SHORT).show();
+
+        }else{
+            Toast.makeText(getBaseContext(), "No Provider Found", Toast.LENGTH_SHORT).show();
+        }
+
+        **/
+
+
         weiter = (Button) findViewById(R.id.next);
         weiter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
@@ -84,15 +134,15 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
                     lZeit.setError("Zeit ist notwendig!");
                     lZeit.setHint("Bitte Zeit auswählen");
 
-                } else if (datum.getText().toString().trim().equals("")){
+                } else if (datum.getText().toString().trim().equals("")) {
                     lDate.setError("Datum ist notwendig!");
                     lDate.setHint("Bitte Datum auswählen");
 
-                } else if (plz.getText().toString().trim().equals("")){
+                } else if (plz.getText().toString().trim().equals("")) {
                     lPlz.setError("PLZ ist notwendig!");
                     lPlz.setHint("Bitte PLZ eingeben");
 
-                } else if (ort.getText().toString().trim().equals("")){
+                } else if (ort.getText().toString().trim().equals("")) {
                     lOrt.setError("Ort ist notwendig!");
                     lOrt.setHint("Bitte Ort auswählen");
 
@@ -186,5 +236,25 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        this.ort.setText(location.getLatitude()+"-|-"+location.getLongitude());
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }

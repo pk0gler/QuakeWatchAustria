@@ -13,4 +13,7 @@
     <string name="stock">Stockwerk</string>
     <string name="jnein">JA/NEIN</string>
     <string name="title_activity_image_full_screen">ImageFullScreen</string>
+    <string name="title_activity_sub_activity__guide">SubActivity_Guide</string>
+    <string name="title_activity_sub_activity__app__guide">SubActivity_App_Guide</string>
+    <string name="title_activity_sub_activity__news">SubActivity_News</string>
 </resources>

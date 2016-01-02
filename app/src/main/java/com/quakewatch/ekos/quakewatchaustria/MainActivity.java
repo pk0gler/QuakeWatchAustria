@@ -18,6 +18,10 @@ import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_App_Guide;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_Guide;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_News;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                Toast.makeText(getBaseContext(), "Hi",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "Hi",Toast.LENGTH_SHORT).show();
                 navDraw.closeDrawer(GravityCompat.START);
-                displayView();
+                displayView(item);
                 return false;
             }
         });
@@ -94,8 +98,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void displayView() {
-
+    private void displayView(MenuItem item) {
+        if (item.toString().equals("Guide")) {
+            Log.d("NavDrawer",item.toString());
+            startActivity(new Intent(getBaseContext(), SubActivity_Guide.class));
+        } else if (item.toString().equals("Einstellungen")) {
+            Log.d("NavDrawer",item.toString());
+            startActivity(new Intent(getBaseContext(), SubActivity_SettingsActivity.class));
+        } else if (item.toString().equals("App Guide")) {
+            Log.d("NavDrawer",item.toString());
+            startActivity(new Intent(getBaseContext(), SubActivity_App_Guide.class));
+        } else if (item.toString().equals("News")) {
+            startActivity(new Intent(getBaseContext(), SubActivity_News.class));
+        }
     }
 
     public ViewPager getAdapter() {

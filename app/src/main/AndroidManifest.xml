@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -112,6 +114,30 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_Phase2" />
+        </activity>
+        <activity
+            android:name=".SubACtivities.SubActivity_Guide"
+            android:label="@string/title_activity_sub_activity__guide"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SubACtivities.SubActivity_App_Guide"
+            android:label="@string/title_activity_sub_activity__guide"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SubACtivities.SubActivity_News"
+            android:label="@string/title_activity_sub_activity__news"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
         </activity>
     </application>
 
