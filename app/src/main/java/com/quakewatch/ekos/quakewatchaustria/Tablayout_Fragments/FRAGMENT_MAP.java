@@ -2,43 +2,40 @@ package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.quakewatch.ekos.quakewatchaustria.R;
-
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapController;
-import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.OverlayItem;
-
-import java.util.ArrayList;
 
 /**
  * Created by pkogler on 22.10.2015.
  */
-public class FRAGMENT_MAP extends Fragment {
-    ArrayList<OverlayItem> overlayItemArray;
-
+public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
+private GoogleMap googleMap;
+    static final LatLng TutorialsPoint = new LatLng(21 , 57);
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.maplayout, container, false);
-        //asd
-        MapView mapView = (MapView) v.findViewById(R.id.mapview);
-        MapController mc = (MapController) mapView.getController();
-        mapView.setTileSource(TileSourceFactory.MAPQUESTAERIAL);
-        mapView.setMultiTouchControls(true);
+        View v = inflater.inflate(R.layout.activity_mapact, container, false);
+        GoogleMap mGoogleMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
+        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(37.78,-121.97)).title("Okis Marker"));
+        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(37.78,-121.97 )).title("SAN FRANCISCO BAY AREA"));
+        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(37.25,-98.0 )).title("KANSAS"));
+        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(-19.19, -69.96 )).title("TARAPACA, CHILE"));
+        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        mGoogleMap.setMyLocationEnabled(true);
+        CameraUpdate center=
+                CameraUpdateFactory.newLatLng(new LatLng(-19.19, -69.96));
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo(1);
 
-        GeoPoint point = new GeoPoint(48.2083537, 16.3725042);
-        mc.setCenter(point);
-        mc.setZoom(6);
-
-        mapView.setMinZoomLevel(4);
-        mapView.setMaxZoomLevel(19);
-
+        mGoogleMap.moveCamera(center);
+        mGoogleMap.animateCamera(zoom);
         return v;
     }
 }
