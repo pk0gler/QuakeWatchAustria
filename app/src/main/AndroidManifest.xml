@@ -118,7 +118,8 @@
         <activity
             android:name=".SubACtivities.SubActivity_Guide"
             android:label="@string/title_activity_sub_activity__guide"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeSub">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
@@ -126,7 +127,8 @@
         <activity
             android:name=".SubACtivities.SubActivity_App_Guide"
             android:label="@string/title_activity_sub_activity__guide"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeSub">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
@@ -134,7 +136,8 @@
         <activity
             android:name=".SubACtivities.SubActivity_News"
             android:label="@string/title_activity_sub_activity__news"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppThemeSub">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />

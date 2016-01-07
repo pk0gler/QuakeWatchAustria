@@ -25,16 +25,16 @@ public class SubActivity_SettingsActivity extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.preferences);
 		this.setContentView(R.layout.settings_help);
 		ListView v = getListView();
-		Button saveButton = (Button) findViewById(R.id.saveButton);
-		saveButton.setText("Übernehmen");
-		saveButton.setPadding(10, 30, 10, 30);
-		saveButton.setOnClickListener(new View.OnClickListener() {
+		//Button saveButton = (Button) findViewById(R.id.saveButton);
+		//saveButton.setText("Übernehmen");
+		//saveButton.setPadding(10, 30, 10, 30);
+		/*saveButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//startActivityForResult(new Intent(getBaseContext(), MainActivity.class), 12);
 				finish();
 			}
-		});
+		});*/
 		findPreference("email").setOnPreferenceChangeListener(
 				new Preference.OnPreferenceChangeListener() {
 

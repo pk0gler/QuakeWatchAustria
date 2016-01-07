@@ -18,7 +18,7 @@ public class SubActivity_App_Guide extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_sub_activity__app__guide, menu);
+        getMenuInflater().inflate(R.menu.menu_sub_activity__app_guide, menu);
         return true;
     }
 
