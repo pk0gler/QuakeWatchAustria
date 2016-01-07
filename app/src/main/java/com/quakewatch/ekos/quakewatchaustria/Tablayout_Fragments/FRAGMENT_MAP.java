@@ -24,7 +24,7 @@ import org.json.JSONObject;
  * Created by pkogler on 22.10.2015.
  */
 public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
-    private LatLng currentClick = new LatLng(0,0);
+    private LatLng currentClick = new LatLng(0, 0);
     private GoogleMap mGoogleMap;
     Marker mine;
     private Erdbeben[] marker;
@@ -56,36 +56,34 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
 
          /**
          * Created by pkogler on 22.10.2015.
-            public class FRAGMENT_MAP extends Fragment {
-                ArrayList<OverlayItem> overlayItemArray;
+         public class FRAGMENT_MAP extends Fragment {
+         ArrayList<OverlayItem> overlayItemArray;
 
-                @Override
-                public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-                    View v = inflater.inflate(R.layout.maplayout, container, false);
-                    //asd
-                    MapView mapView = (MapView) v.findViewById(R.id.mapview);
-                    MapController mc = (MapController) mapView.getController();
-                    mapView.setTileSource(TileSourceFactory.MAPQUESTAERIAL);
-                    mapView.setMultiTouchControls(true);
+         @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+         View v = inflater.inflate(R.layout.maplayout, container, false);
+         //asd
+         MapView mapView = (MapView) v.findViewById(R.id.mapview);
+         MapController mc = (MapController) mapView.getController();
+         mapView.setTileSource(TileSourceFactory.MAPQUESTAERIAL);
+         mapView.setMultiTouchControls(true);
 
-                    GeoPoint point = new GeoPoint(48.2083537, 16.3725042);
-                    mc.setCenter(point);
-                    mc.setZoom(6);
+         GeoPoint point = new GeoPoint(48.2083537, 16.3725042);
+         mc.setCenter(point);
+         mc.setZoom(6);
 
-                    mapView.setMinZoomLevel(4);
-                    mapView.setMaxZoomLevel(19);
+         mapView.setMinZoomLevel(4);
+         mapView.setMaxZoomLevel(19);
 
-                    return v;
-                }
-            }
+         return v;
+         }
+         }
          */
         v = inflater.inflate(R.layout.activity_mapact, container, false);
         mGoogleMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        CameraUpdate center=
+        CameraUpdate center =
                 CameraUpdateFactory.newLatLng(new LatLng(-19.19, -69.96));
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(1);
-
 
 
         mGoogleMap.moveCamera(center);
@@ -93,6 +91,7 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
         new AsyncTaskParseJson().execute();
         return v;
     }
+
     @Override
     public void setMenuVisibility(final boolean visible) {
         super.setMenuVisibility(visible);
@@ -102,7 +101,24 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
     }
 
     public void setCurrentLoc(Erdbeben temp) {
-        mine = mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(temp.lat,temp.lon)).title(temp.getRegion()));
+        float tempf = 1;
+        double mag = temp.getMag();
+        if ((mag >= 1) && (mag <= 2.4)) {
+            tempf = 0.4f;
+        } else if ((mag >= 2.5) && (mag <= 3.9)) {
+            tempf = 0.5f;
+        } else if ((mag >= 4) && (mag <= 5.4)) {
+            tempf = 0.6f;
+        } else if ((mag >= 5.5) && (mag <= 6.9)) {
+            tempf = 0.7f;
+        } else if ((mag >= 7) && (mag <= 8.9)) {
+            tempf = 0.9f;
+        }
+            mine = mGoogleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(temp.lat, temp.lon))
+                    .title(temp.getRegion())
+                    .alpha(tempf)
+                    .snippet("Mag: " + String.valueOf(temp.getMag())));
         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mine.getPosition(), 6));
     }
 
@@ -160,7 +176,7 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
                     //String username = c.getString("magtype");
 
 
-                    values[i] = new Erdbeben(mag, flynn_region, time, depth, lat,lon);
+                    values[i] = new Erdbeben(mag, flynn_region, time, depth, lat, lon);
                 }
                 //JSONObject ob = json.getJSONObject("properties");
                 //values.add(0,ob.getString("magType"));
@@ -174,9 +190,26 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
 
         @Override
         protected void onPostExecute(String strFromDoInBg) {
-            mDialog.dismiss();
-            for (int i=0; i<values.length; i++) {
-                mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(values[i].lat, values[i].lon)).title(values[i].getRegion()));
+            for (int i = 0; i < values.length; i++) {
+                mDialog.dismiss();
+                float tempf = 1;
+                double mag = values[i].getMag();
+                if ((mag >= 1) && (mag <= 2.4)) {
+                    tempf = 0.4f;
+                } else if ((mag >= 2.5) && (mag <= 3.9)) {
+                    tempf = 0.5f;
+                } else if ((mag >= 4) && (mag <= 5.4)) {
+                    tempf = 0.6f;
+                } else if ((mag >= 5.5) && (mag <= 6.9)) {
+                    tempf = 0.7f;
+                } else if ((mag >= 7) && (mag <= 8.9)) {
+                    tempf = 0.9f;
+                }
+                mGoogleMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(values[i].lat, values[i].lon))
+                        .title(values[i].getRegion())
+                        .alpha(tempf)
+                        .snippet("Mag: " + values[i].getMag()));
             }
         }
     }
