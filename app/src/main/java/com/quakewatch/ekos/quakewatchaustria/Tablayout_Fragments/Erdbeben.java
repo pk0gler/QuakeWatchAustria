@@ -70,6 +70,8 @@ public class Erdbeben implements Serializable {
     private String time;
     private double depth;
     private String date;
+    public double lat;
+    public double lon;
 
     /**
      * Constructor
@@ -78,12 +80,14 @@ public class Erdbeben implements Serializable {
      * @param timeWhole
      * @param depth
      */
-    public Erdbeben(double mag, String region, String timeWhole, double depth) {
+    public Erdbeben(double mag, String region, String timeWhole, double depth, double lat, double lon) {
         this.mag = mag;
         this.region = this.formatRegion(region);
         this.timeWhole = timeWhole;
         this.seperateTimeWhole(timeWhole);
         this.depth = depth;
+        this.lon = lon;
+        this.lat = lat;
     }
 
     /**

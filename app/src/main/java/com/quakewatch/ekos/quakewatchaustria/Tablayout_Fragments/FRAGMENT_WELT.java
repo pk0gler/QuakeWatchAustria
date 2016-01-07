@@ -67,6 +67,14 @@ public class FRAGMENT_WELT extends Fragment {
         //return v;
     }
 
+    public Erdbeben[] getMarker() {
+        Erdbeben[] temp = new Erdbeben[30];
+        for (int i = 0; i<30; i++) {
+            temp[i] = values.get(i);
+        }
+        return temp;
+    }
+
 
     public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
         ProgressDialog mDialog;
@@ -108,6 +116,8 @@ public class FRAGMENT_WELT extends Fragment {
                     Double mag = Double.parseDouble(b.getString("mag"));
                     String flynn_region = b.getString("flynn_region");
                     String time = b.getString("time");
+                    Double lat = b.getDouble("lat");
+                    Double lon = b.getDouble("lon");
                     double depth = Double.parseDouble(b.getString("depth"));
                     //String username = c.getString("magtype");
 
@@ -115,7 +125,7 @@ public class FRAGMENT_WELT extends Fragment {
                     Log.e("MyJsonWelt", "mag: " + mag
                             + ", flynn_region: " + flynn_region
                             + ", time: " + time);
-                    values.add(i,new Erdbeben(mag, flynn_region, time, depth));
+                    values.add(i,new Erdbeben(mag, flynn_region, time, depth, lat,lon));
                 }
                 //JSONObject ob = json.getJSONObject("properties");
                 //values.add(0,ob.getString("magType"));
@@ -149,7 +159,8 @@ public class FRAGMENT_WELT extends Fragment {
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                    ((MainActivity)getActivity()).setPager(3);
+                    Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
+                    ((MainActivity) getActivity()).setPager(3,temp);
                     return true;
                 }
             });

@@ -360,6 +360,8 @@ public class Fragment_AT extends Fragment {
                     Double mag = Double.parseDouble(b.getString("mag"));
                     String flynn_region = b.getString("flynn_region");
                     String time = b.getString("time");
+                    Double lat = b.getDouble("lat");
+                    Double lon = b.getDouble("lon");
                     double depth = Double.parseDouble(b.getString("depth"));
                     //String username = c.getString("magtype");
 
@@ -367,7 +369,7 @@ public class Fragment_AT extends Fragment {
                     Log.e("MyJsonAt", "|" + flynn_region + "|");
                     if ((flynn_region.equals("AUSTRIA") && mag >= 1)) {
                         Log.e("testla", "JA");
-                        values.add(new Erdbeben(mag, flynn_region, time, depth));
+                        values.add(new Erdbeben(mag, flynn_region, time, depth, lat,lon));
                     } else
                         Log.e("testla", "NEIN");
 
@@ -388,13 +390,17 @@ public class Fragment_AT extends Fragment {
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                    Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
+                    /**Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
                     boolean isNow = true;
                     //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                     i.putExtra("state", isNow);
                     i.putExtra("bebenData", temp);
                     startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+                    return true;**/
+                    //Toast.makeText(getContext(), "Beben auf map anzeigen", Toast.LENGTH_LONG).show();
+                    Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
+                    ((MainActivity) getActivity()).setPager(3,temp);
                     return true;
                 }
             });

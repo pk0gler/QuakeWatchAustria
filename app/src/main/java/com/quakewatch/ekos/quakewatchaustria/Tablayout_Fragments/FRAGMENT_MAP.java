@@ -1,5 +1,7 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,31 +13,171 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.quakewatch.ekos.quakewatchaustria.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Created by pkogler on 22.10.2015.
  */
 public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
-private GoogleMap googleMap;
-    static final LatLng TutorialsPoint = new LatLng(21 , 57);
+    private LatLng currentClick = new LatLng(0,0);
+    private GoogleMap mGoogleMap;
+    Marker mine;
+    private Erdbeben[] marker;
+    View v;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_mapact, container, false);
-        GoogleMap mGoogleMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
-        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(37.78,-121.97)).title("Okis Marker"));
-        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(37.78,-121.97 )).title("SAN FRANCISCO BAY AREA"));
-        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(37.25,-98.0 )).title("KANSAS"));
-        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(-19.19, -69.96 )).title("TARAPACA, CHILE"));
+
+        /**
+         * OSM MAP
+         * package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
+
+         import android.os.Bundle;
+         import android.support.annotation.Nullable;
+         import android.support.v4.app.Fragment;
+         import android.view.LayoutInflater;
+         import android.view.View;
+         import android.view.ViewGroup;
+
+         import com.quakewatch.ekos.quakewatchaustria.R;
+
+         import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+         import org.osmdroid.util.GeoPoint;
+         import org.osmdroid.views.MapController;
+         import org.osmdroid.views.MapView;
+         import org.osmdroid.views.overlay.OverlayItem;
+
+         import java.util.ArrayList;
+
+         /**
+         * Created by pkogler on 22.10.2015.
+            public class FRAGMENT_MAP extends Fragment {
+                ArrayList<OverlayItem> overlayItemArray;
+
+                @Override
+                public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+                    View v = inflater.inflate(R.layout.maplayout, container, false);
+                    //asd
+                    MapView mapView = (MapView) v.findViewById(R.id.mapview);
+                    MapController mc = (MapController) mapView.getController();
+                    mapView.setTileSource(TileSourceFactory.MAPQUESTAERIAL);
+                    mapView.setMultiTouchControls(true);
+
+                    GeoPoint point = new GeoPoint(48.2083537, 16.3725042);
+                    mc.setCenter(point);
+                    mc.setZoom(6);
+
+                    mapView.setMinZoomLevel(4);
+                    mapView.setMaxZoomLevel(19);
+
+                    return v;
+                }
+            }
+         */
+        v = inflater.inflate(R.layout.activity_mapact, container, false);
+        mGoogleMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        mGoogleMap.setMyLocationEnabled(true);
         CameraUpdate center=
                 CameraUpdateFactory.newLatLng(new LatLng(-19.19, -69.96));
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(1);
 
+
+
         mGoogleMap.moveCamera(center);
         mGoogleMap.animateCamera(zoom);
+        new AsyncTaskParseJson().execute();
         return v;
+    }
+    @Override
+    public void setMenuVisibility(final boolean visible) {
+        super.setMenuVisibility(visible);
+        if (!visible) {
+            //mine.remove();
+        }
+    }
+
+    public void setCurrentLoc(Erdbeben temp) {
+        mine = mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(temp.lat,temp.lon)).title(temp.getRegion()));
+        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mine.getPosition(), 6));
+    }
+
+    public void setMarker(Erdbeben[] marker) {
+        this.marker = marker;
+    }
+
+
+    public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
+        ProgressDialog mDialog;
+
+        final String TAG = "AsyncTaskParseJson.java";
+
+        // contacts JSONArray
+        JSONArray dataJsonArr = null;
+        private Erdbeben[] values;
+
+        @Override
+        protected void onPreExecute() {
+            mDialog = new ProgressDialog(v.getContext());
+            mDialog.setMessage("Beben werden geladen...");
+            mDialog.show();
+
+        }
+
+        @Override
+        protected String doInBackground(String... arg0) {
+            values = new Erdbeben[30];
+            try {
+                // instantiate our json parser
+                JsonParser jParser = new JsonParser();
+
+                // get the array of users
+                JSONObject json = JsonParser.readJsonFromUrl("http://www.seismicportal.eu/fdsnws/event/1/query?limit=30&format=json");
+                dataJsonArr = json.getJSONArray("features");
+
+                // loop through all users
+                for (int i = 0; i < dataJsonArr.length(); i++) {
+
+                    JSONObject c = dataJsonArr.getJSONObject(i);
+                    JSONObject b = c.getJSONObject("properties");
+
+                    //Json Parsing Methode
+                    //Server umstellungen dynamisch
+
+                    // Storing each json item in variable
+                    Double mag = Double.parseDouble(b.getString("mag"));
+                    String flynn_region = b.getString("flynn_region");
+                    String time = b.getString("time");
+                    //LatLng loc = new LatLng(b.getDouble("lat"),b.getDouble("lon"));
+                    Double lat = b.getDouble("lat");
+                    Double lon = b.getDouble("lon");
+                    double depth = Double.parseDouble(b.getString("depth"));
+
+                    //String username = c.getString("magtype");
+
+
+                    values[i] = new Erdbeben(mag, flynn_region, time, depth, lat,lon);
+                }
+                //JSONObject ob = json.getJSONObject("properties");
+                //values.add(0,ob.getString("magType"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //values.add(0,"hi");
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(String strFromDoInBg) {
+            mDialog.dismiss();
+            for (int i=0; i<values.length; i++) {
+                mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(values[i].lat, values[i].lon)).title(values[i].getRegion()));
+            }
+        }
     }
 }

@@ -135,6 +135,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
         </activity>
+
         <activity
             android:name=".SubACtivities.SubActivity_News"
             android:label="@string/title_activity_sub_activity__news"
@@ -143,7 +144,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
+
+
+
+
 
         <activity
             android:name=".MapAct"

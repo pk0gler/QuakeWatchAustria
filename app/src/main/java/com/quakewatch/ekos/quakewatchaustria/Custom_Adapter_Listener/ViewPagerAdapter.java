@@ -22,11 +22,12 @@ import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Fragment_EUROPA
  * Usage:   Adapter for swiping through Fragments
  */
 public class ViewPagerAdapter extends FragmentPagerAdapter {
-
+    public FRAGMENT_MAP mapf;
     CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
     int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
     Context context;
     String magStaerke;
+    private FRAGMENT_WELT weltf;
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
     public ViewPagerAdapter(FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb, Context context) {
@@ -36,7 +37,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         this.context = context;
 
     }
-
+    public FRAGMENT_MAP getMapf() {
+        return this.mapf;
+    }
     /**
      * This method return the fragment for the every position in the View Pager
      * @param position
@@ -51,10 +54,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new Fragment_EUROPA();
             case 2:
-                return new FRAGMENT_WELT();
+                this.weltf = new FRAGMENT_WELT();
+                return this.weltf;
             case 3:
                 Log.d("drin page", "page");
-                return new FRAGMENT_MAP();
+                this.mapf = new FRAGMENT_MAP();
+                //this.mapf.setMarker(this.weltf.getMarker());
+                return this.mapf;
             default:
                 return null;
         }

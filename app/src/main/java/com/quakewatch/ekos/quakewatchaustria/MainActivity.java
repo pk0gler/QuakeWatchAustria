@@ -21,6 +21,7 @@ import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_App_Guide
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_Guide;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_News;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
+import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -116,8 +117,9 @@ public class MainActivity extends AppCompatActivity {
         return pager;
     }
 
-    public void setPager(int i) {
+    public void setPager(int i, Erdbeben temp) {
         this.pager.setCurrentItem(i);
+        this.adapter.getMapf().setCurrentLoc(temp);
     }
 
     @Override
@@ -125,7 +127,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             if (Integer.parseInt(data.getStringExtra("position")) == 3) {
-                pager.setCurrentItem(Integer.parseInt(data.getStringExtra("position")),true);
+                pager.setCurrentItem(Integer.parseInt(data.getStringExtra("position")), true);
+                Log.d("NavDrawer", "philippkoggler"+data.getExtras().getSerializable("data"));
+                this.adapter.getMapf().setCurrentLoc((Erdbeben) data.getExtras().getSerializable("data"));
+
             }
         } catch (NullPointerException e) {
             e.printStackTrace();

@@ -126,10 +126,10 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         butMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getParentActivityIntent().putExtra("position", 3);
                 //onActivityResult(10,9,getIntent());
                 Intent i = new Intent();
                 i.putExtra("position", "3");
+                i.putExtra("data",bebenData);
                 setResult(SUCCESS_RETURN_CODE, i);
                 //startActivityForResult(new Intent(getBaseContext(), MainActivity.class), 12);
                 finish();

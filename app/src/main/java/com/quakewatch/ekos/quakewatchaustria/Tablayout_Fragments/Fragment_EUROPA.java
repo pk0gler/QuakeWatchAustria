@@ -108,14 +108,15 @@ public class Fragment_EUROPA extends Fragment {
                     Double mag = Double.parseDouble(b.getString("mag"));
                     String flynn_region = b.getString("flynn_region");
                     String time = b.getString("time");
+                    Double lat = b.getDouble("lat");
+                    Double lon = b.getDouble("lon");
                     double depth = Double.parseDouble(b.getString("depth"));
                     //String username = c.getString("magtype");
-
-                    // show the values in our logcat
+                     // show the values in our logcat
                     Log.e("MyJsonAt", "|" + flynn_region + "|");
                     //if (flynn_region.equals("AUSTRIA")) {
                     //Log.e("testla", "JA");
-                    if (Arrays.asList(Erdbeben.countries).contains(flynn_region))values.add(new Erdbeben(mag, flynn_region, time, depth));
+                    if (Arrays.asList(Erdbeben.countries).contains(flynn_region))values.add(new Erdbeben(mag, flynn_region, time, depth, lat,lon));
                     //} else
                     // Log.e("testla", "NEIN");
 
@@ -153,7 +154,8 @@ public class Fragment_EUROPA extends Fragment {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     //Toast.makeText(getContext(), "Beben auf map anzeigen", Toast.LENGTH_LONG).show();
-                    ((MainActivity) getActivity()).setPager(3);
+                    Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
+                    ((MainActivity) getActivity()).setPager(3,temp);
                     return true;
                 }
             });
