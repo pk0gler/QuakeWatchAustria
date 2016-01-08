@@ -147,7 +147,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         if ((mag >= 1) && (mag <= 2.4)) {
-            window.setStatusBarColor(Color.parseColor(colorCodes[15]));
+            if (android.os.Build.VERSION.SDK_INT >= 21) window.setStatusBarColor(Color.parseColor(colorCodes[15]));
             butMap.setButtonColor(Color.parseColor(colorCodes[15]));
             if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[15]));
             if ((mag >= 1) && (mag <= 1.4)) {
@@ -164,11 +164,11 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
             }
 
         } /*NEXT COLOR*/else if ((mag >= 2.5) && (mag <= 3.9)) {
-            window.setStatusBarColor(Color.parseColor(colorCodes[16]));
+            if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[16]));
             butMap.setButtonColor(Color.parseColor(colorCodes[16]));
             if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[16]));
             if ((mag >= 2.5) && (mag <= 2.9)) {
-                window.setStatusBarColor(Color.parseColor(colorCodes[15]));
+                if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[15]));
                 butMap.setButtonColor(Color.parseColor(colorCodes[15]));
                 if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[15]));
                 icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
@@ -184,7 +184,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
             }
 
         }/*NEXT COLOR*/else if ((mag >= 4) && (mag <= 5.4)) {
-            window.setStatusBarColor(Color.parseColor(colorCodes[17]));
+            if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[17]));
             butMap.setButtonColor(Color.parseColor(colorCodes[17]));
             if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[17]));
             if ((mag >= 4) && (mag <= 4.4)) {
@@ -201,7 +201,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
             }
 
         }/*NEXT COLOR*/else if ((mag >= 5.5) && (mag <= 6.9)) {
-            window.setStatusBarColor(Color.parseColor(colorCodes[18]));
+            if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[18]));
             butMap.setButtonColor(Color.parseColor(colorCodes[18]));
             if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[18]));
             if ((mag >= 5.5) && (mag <= 5.9)) {
@@ -218,7 +218,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
             }
 
         }/*NEXT COLOR*/else if ((mag >= 7) && (mag <= 8.9)) {
-            window.setStatusBarColor(Color.parseColor(colorCodes[19]));
+            if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[19]));
             butMap.setButtonColor(Color.parseColor(colorCodes[19]));
             if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[19]));
             if ((mag >= 7) && (mag <= 7.9)) {
@@ -226,14 +226,14 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[12])));
             }
             if ((mag >= 8) && (mag <= 8.9)) {
-                window.setStatusBarColor(Color.parseColor(colorCodes[20]));
+                if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[20]));
                 butMap.setButtonColor(Color.parseColor(colorCodes[20]));
                 if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[20]));
                 icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[14])));
             }
         }/*NEXT COLOR*/else if ((mag >= 9) && (mag <= 12)) {
-            window.setStatusBarColor(Color.parseColor(colorCodes[20]));
+            if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[20]));
             butMap.setButtonColor(Color.parseColor(colorCodes[20]));
             if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[20]));
             icon.setBackgroundColor(Color.parseColor(colorCodes[14]));

@@ -80,6 +80,7 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
          */
         v = inflater.inflate(R.layout.activity_mapact, container, false);
         mGoogleMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
+        /**
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         CameraUpdate center =
                 CameraUpdateFactory.newLatLng(new LatLng(-19.19, -69.96));
@@ -88,7 +89,7 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
 
         mGoogleMap.moveCamera(center);
         mGoogleMap.animateCamera(zoom);
-        new AsyncTaskParseJson().execute();
+        new AsyncTaskParseJson().execute();**/
         return v;
     }
 

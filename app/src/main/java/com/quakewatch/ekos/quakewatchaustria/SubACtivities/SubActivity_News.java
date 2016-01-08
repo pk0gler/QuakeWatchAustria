@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ContactAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ContactInfo;
@@ -36,6 +39,17 @@ public class SubActivity_News extends AppCompatActivity {
         ArrayList<ContactInfo> temp = new ArrayList<>();
         this.createContent(temp);
         mAdapter = new ContactAdapter(temp);
+
+        ContactAdapter.OnItemClickListener clickListener = new ContactAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getBaseContext(),"Pos: "+position,Toast.LENGTH_SHORT).show();
+                Log.d("Card", "drin");
+            }
+        };
+
+        
+
         mRecyclerView.setAdapter(mAdapter);
     }
 
