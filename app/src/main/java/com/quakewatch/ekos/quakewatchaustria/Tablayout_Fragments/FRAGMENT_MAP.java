@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -20,6 +21,8 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 /**
  * Created by pkogler on 22.10.2015.
  */
@@ -29,10 +32,11 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
     Marker mine;
     private Erdbeben[] marker;
     View v;
+    private HashMap<String,Erdbeben> markerId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        markerId = new HashMap<>();
         /**
          * OSM MAP
          * package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
@@ -80,16 +84,26 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
          */
         v = inflater.inflate(R.layout.activity_mapact, container, false);
         mGoogleMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
-        /**
+
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         CameraUpdate center =
                 CameraUpdateFactory.newLatLng(new LatLng(-19.19, -69.96));
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(1);
 
+        mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Toast.makeText(getContext(), "Hi", Toast.LENGTH_LONG).show();
+                Map_Fragment dFragment = new Map_Fragment(markerId.get(marker.getId()));
+                // Show DialogFragmen
+                dFragment.show(getFragmentManager(), "Dialog Fragment");
+            }
+        });
+
 
         mGoogleMap.moveCamera(center);
         mGoogleMap.animateCamera(zoom);
-        new AsyncTaskParseJson().execute();**/
+        new AsyncTaskParseJson().execute();
         return v;
     }
 
@@ -115,12 +129,14 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
         } else if ((mag >= 7) && (mag <= 8.9)) {
             tempf = 0.9f;
         }
-            mine = mGoogleMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(temp.lat, temp.lon))
-                    .title(temp.getRegion())
-                    .alpha(tempf)
-                    .snippet("Mag: " + String.valueOf(temp.getMag())));
+        mine = mGoogleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(temp.lat, temp.lon))
+                .title(temp.getRegion())
+                .alpha(tempf)
+                .snippet("Mag: " + String.valueOf(temp.getMag())));
         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mine.getPosition(), 6));
+        mine.showInfoWindow();
+        this.markerId.put(mine.getId(),temp);
     }
 
     public void setMarker(Erdbeben[] marker) {
@@ -142,7 +158,6 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
             mDialog = new ProgressDialog(v.getContext());
             mDialog.setMessage("Beben werden geladen...");
             mDialog.show();
-
         }
 
         @Override
@@ -206,11 +221,12 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
                 } else if ((mag >= 7) && (mag <= 8.9)) {
                     tempf = 0.9f;
                 }
-                mGoogleMap.addMarker(new MarkerOptions()
+                Marker temp = mGoogleMap.addMarker(new MarkerOptions()
                         .position(new LatLng(values[i].lat, values[i].lon))
                         .title(values[i].getRegion())
                         .alpha(tempf)
                         .snippet("Mag: " + values[i].getMag()));
+                markerId.put(temp.getId(), values[i]);
             }
         }
     }

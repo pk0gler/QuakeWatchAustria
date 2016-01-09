@@ -1,6 +1,8 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,16 +19,16 @@ import java.util.ArrayList;
 
 public class SubActivity_News extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ContactAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_activity__news);
-
+        actionBar = getSupportActionBar();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
@@ -38,27 +40,32 @@ public class SubActivity_News extends AppCompatActivity {
         // specify an adapter (see also next example)
         ArrayList<ContactInfo> temp = new ArrayList<>();
         this.createContent(temp);
-        mAdapter = new ContactAdapter(temp);
+        mAdapter = new ContactAdapter(temp, getBaseContext());
 
         ContactAdapter.OnItemClickListener clickListener = new ContactAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getBaseContext(),"Pos: "+position,Toast.LENGTH_SHORT).show();
                 Log.d("Card", "drin");
+                //actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.canada));
+                Intent i = new Intent(getBaseContext(), SubActivity_News_Detail.class);
+                i.putExtra("position",position);
+                startActivity(i);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         };
-
-        
+        mAdapter.setOnItemClickListener(clickListener);
 
         mRecyclerView.setAdapter(mAdapter);
     }
 
     private void createContent(ArrayList<ContactInfo> temp) {
-        temp.add(new ContactInfo(R.drawable.canada, "Canada"));
-        temp.add(new ContactInfo(R.drawable.dubai, "Dubai"));
-        temp.add(new ContactInfo(R.drawable.hongkong, "Hongkong"));
-        temp.add(new ContactInfo(R.drawable.iceland, "Iceland"));
-        temp.add(new ContactInfo(R.drawable.canada, "Canada"));
+        temp.add(new ContactInfo(R.drawable.schwach, "Schwach"));
+        temp.add(new ContactInfo(R.drawable.deutlich, "deutlich"));
+        temp.add(new ContactInfo(R.drawable.startk, "stark"));
+        temp.add(new ContactInfo(R.drawable.leichte, "leichte"));
+        temp.add(new ContactInfo(R.drawable.gebaeudenschaden, "Bebäudeschäden"));
+        temp.add(new ContactInfo(R.drawable.schwere, "Schwere"));
     }
 
     @Override

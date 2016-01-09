@@ -91,7 +91,7 @@
         <activity
             android:name=".SubACtivities.SubActivity_SettingsActivity"
             android:label="@string/title_activity_sub_activity__settings"
-            android:theme="@style/AppThemeSub"></activity>
+            android:theme="@style/AppThemeSub" />
         <activity
             android:name=".SubACtivities.BebenInfo"
             android:label="BebenInfo"
@@ -149,6 +149,23 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".SubACtivities.SubActivity_News_Detail"
+            android:label="@string/title_activity_sub_activity__news"
+            android:parentActivityName=".SubACtivities.Detail_News">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".MapAct"
             android:label="Map"
@@ -163,6 +180,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyC_0jqsiHGiP4sQEwKHuTzf_FztmMHy_ao" />
 
+        <activity android:name=".SubACtivities.Detail_News"></activity>
     </application>
 
 </manifest>

@@ -1,28 +1,20 @@
 package com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener;
 
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.quakewatch.ekos.quakewatchaustria.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,9 +25,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     private List<ContactInfo> contactList;
     OnItemClickListener mItemClickListener;
+    private Context context;
+    private int lastPosition = -1;
 
-    public ContactAdapter(List<ContactInfo> contactList) {
+    public ContactAdapter(List<ContactInfo> contactList, Context context) {
         this.contactList = contactList;
+        this.context = context;
     }
 
     @Override
@@ -47,7 +42,33 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
         ContactInfo ci = contactList.get(i);
         contactViewHolder.placename.setText(ci.placeName);
-        contactViewHolder.imgv.setImageResource(ci.img);
+        //contactViewHolder.imgv.setImageResource(ci.img);
+        Picasso.with(context).load(ci.img).resize(270, 270).centerCrop().into(contactViewHolder.imgv);
+        setAnimation(contactViewHolder.placeCard,i);
+    }
+    /**
+     * Here is the key method to apply the animation
+     */
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        Log.d("Duration",position+"--"+lastPosition);
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if ((position > lastPosition))
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+
+            //animation.setDuration(900);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+        if ((lastPosition > position))
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
+
+            //animation.setDuration(900);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
     @Override
@@ -61,19 +82,24 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     public class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected TextView placename;
+        public LinearLayout placeHolder;
+        public CardView placeCard;
         protected ImageView imgv;
 
 
         public ContactViewHolder(View v) {
             super(v);
+            placeHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
+            placeCard = (CardView) v.findViewById(R.id.placeCard);
             placename =  (TextView) v.findViewById(R.id.placeName);
             imgv = (ImageView) v.findViewById(R.id.placeImage);
+            placeHolder.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             if (mItemClickListener != null) {
-                mItemClickListener.onItemClick(itemView, getPosition());
+                mItemClickListener.onItemClick(itemView, getAdapterPosition());
             }
         }
     }
