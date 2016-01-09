@@ -2,14 +2,19 @@ package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * Created by pkogler on 30.10.2015.
  * Usage:   Erdbeben Class
- *          Used for storing recieved Quake Files in one Object of
- *          Type Erdbeben.
- *          It also contains an array which has all used Countries in Europe
+ * Used for storing recieved Quake Files in one Object of
+ * Type Erdbeben.
+ * It also contains an array which has all used Countries in Europe
  */
 public class Erdbeben implements Serializable {
     public final static String[] countries = {
@@ -72,15 +77,17 @@ public class Erdbeben implements Serializable {
     private String date;
     public double lat;
     public double lon;
+    private HashMap<String, String> places;
 
     /**
      * Constructor
+     *
      * @param mag
      * @param region
      * @param timeWhole
      * @param depth
      */
-    public Erdbeben(double mag, String region, String timeWhole, double depth, double lat, double lon) {
+    public Erdbeben(double mag, String region, String timeWhole, double depth, double lat, double lon, JSONArray places) {
         this.mag = mag;
         this.region = this.formatRegion(region);
         this.timeWhole = timeWhole;
@@ -88,6 +95,35 @@ public class Erdbeben implements Serializable {
         this.depth = depth;
         this.lon = lon;
         this.lat = lat;
+        this.places = new HashMap<>();
+    }
+
+    private void getPlaces(JSONArray places) {
+        for (int i = 0; i < places.length(); i++) {
+            try {
+                JSONObject temp = places.getJSONObject(i);
+
+                switch (i) {
+                    case 0:
+                        this.places.put("text", temp.getString("text"));
+                        break;
+                    case 1:
+                        this.places.put("dist", temp.getString("dist"));
+                        break;
+                    case 2:
+                        this.places.put("place", temp.getString("place"));
+                        break;
+                    case 3:
+                        this.places.put("rank", temp.getString("rank"));
+                        break;
+                    case 4:
+                        this.places.put("azi", temp.getString("azi"));
+                        break;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -104,6 +140,7 @@ public class Erdbeben implements Serializable {
     /**
      * Used for seperate the Whole Time String into
      * Time and Date
+     *
      * @param timeWhole
      */
     private void seperateTimeWhole(String timeWhole) {
@@ -163,6 +200,7 @@ public class Erdbeben implements Serializable {
 
     /**
      * Formats the recieved Region String so it can be displayed
+     *
      * @param t
      * @return
      */

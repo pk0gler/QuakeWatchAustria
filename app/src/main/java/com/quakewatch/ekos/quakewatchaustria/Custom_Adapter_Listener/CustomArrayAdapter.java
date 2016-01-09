@@ -153,68 +153,68 @@ public class CustomArrayAdapter extends ArrayAdapter {
         /**
          * This if divides by the magnitude which color to use
          */
-        if ((mag >= 1) && (mag <= 2.4)) {
-            if ((mag >= 1) && (mag <= 1.4)) {
+        if ((mag >= 0) && (mag <= 2.4)) {
+            if ((mag >= 1) && (mag <= 1.49)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[0]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[0]));
             }
-            if ((mag >= 1.5) && (mag <= 1.9)) {
+            if ((mag >= 1.50) && (mag <= 1.99)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[1]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[1]));
             }
-            if ((mag >= 2) && (mag <= 2.4)) {
+            if ((mag >= 2.0) && (mag <= 2.49)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[2]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
             }
 
-        } /*NEXT COLOR*/else if ((mag >= 2.5) && (mag <= 3.9)) {
-            if ((mag >= 2.5) && (mag <= 2.9)) {
+        } /*NEXT COLOR*/else if ((mag >= 2.50) && (mag <= 3.99)) {
+            if ((mag >= 2.50) && (mag <= 2.99)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[2]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
             }
-            if ((mag >= 3) && (mag <= 3.4)) {
+            if ((mag >= 3.0) && (mag <= 3.49)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[4]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[4]));
             }
-            if ((mag >= 3.5) && (mag <= 3.9)) {
+            if ((mag >= 3.5) && (mag <= 3.99)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[5]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[5]));
             }
 
-        }/*NEXT COLOR*/else if ((mag >= 4) && (mag <= 5.4)) {
-            if ((mag >= 4) && (mag <= 4.4)) {
+        }/*NEXT COLOR*/else if ((mag >= 4) && (mag <= 5.49)) {
+            if ((mag >= 4) && (mag <= 4.49)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[6]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[6]));
             }
-            if ((mag >= 4.5) && (mag <= 4.9)) {
+            if ((mag >= 4.5) && (mag <= 4.99)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[7]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[7]));
             }
-            if ((mag >= 5) && (mag <= 5.4)) {
+            if ((mag >= 5) && (mag <= 5.49)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[8]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[8]));
             }
 
-        }/*NEXT COLOR*/else if ((mag >= 5.5) && (mag <= 6.9)) {
-            if ((mag >= 5.5) && (mag <= 5.9)) {
+        }/*NEXT COLOR*/else if ((mag >= 5.5) && (mag <= 6.99)) {
+            if ((mag >= 5.5) && (mag <= 5.99)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[9]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[9]));
             }
-            if ((mag >= 6) && (mag <= 6.4)) {
+            if ((mag >= 6) && (mag <= 6.49)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[10]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[10]));
             }
-            if ((mag >= 6.5) && (mag <= 6.9)) {
+            if ((mag >= 6.5) && (mag <= 6.99)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[11]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[11]));
             }
 
-        }/*NEXT COLOR*/else if ((mag >= 7) && (mag <= 8.9)) {
-            if ((mag >= 7) && (mag <= 7.9)) {
+        }/*NEXT COLOR*/else if ((mag >= 7) && (mag <= 8.99)) {
+            if ((mag >= 7) && (mag <= 7.99)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[12]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[12]));
             }
-            if ((mag >= 8) && (mag <= 8.9)) {
+            if ((mag >= 8) && (mag <= 8.99)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[14]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
             }

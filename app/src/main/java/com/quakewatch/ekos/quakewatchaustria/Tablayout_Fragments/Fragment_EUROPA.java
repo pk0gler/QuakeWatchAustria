@@ -29,7 +29,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by pkogler on 22.10.2015.
@@ -44,6 +43,7 @@ public class Fragment_EUROPA extends Fragment {
     private boolean jetzt = true;
     private ArrayList<Erdbeben> values = new ArrayList<>();
     Context context;
+    private double minMag;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,6 +66,8 @@ public class Fragment_EUROPA extends Fragment {
 
         //return v;
         listView = (ListView) v.findViewById(R.id.listEu);
+        SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(getContext());
+        this.minMag = Double.parseDouble(spf.getString("magType", "1"));
         new AsyncTaskParseJson().execute();
     }
 
@@ -88,11 +90,12 @@ public class Fragment_EUROPA extends Fragment {
         @Override
         protected String doInBackground(String... arg0) {
             try {
+                /*
                 // instantiate our json parser
                 JsonParser jParser = new JsonParser();
 
                 // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://www.seismicportal.eu/fdsnws/event/1/query?limit=1000&format=json&minlatitude=47");
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Austria&limit=100");
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -116,7 +119,7 @@ public class Fragment_EUROPA extends Fragment {
                     Log.e("MyJsonAt", "|" + flynn_region + "|");
                     //if (flynn_region.equals("AUSTRIA")) {
                     //Log.e("testla", "JA");
-                    if (Arrays.asList(Erdbeben.countries).contains(flynn_region))values.add(new Erdbeben(mag, flynn_region, time, depth, lat,lon));
+                    values.add(new Erdbeben(mag, flynn_region, time, depth, lat,lon));
                     //} else
                     // Log.e("testla", "NEIN");
 
@@ -126,7 +129,50 @@ public class Fragment_EUROPA extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //values.add(0,"hi");
+            //values.add(0,"hi");*/
+
+                // instantiate our json parser
+                JsonParser jParser = new JsonParser();
+
+                // get the array of users
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Europa&limit=100&mag>=1");
+                dataJsonArr = json.getJSONArray("features");
+
+                // loop through all users
+                for (int i = 0; i < dataJsonArr.length(); i++) {
+
+                    JSONObject c = dataJsonArr.getJSONObject(i);
+                    JSONObject b = c.getJSONObject("properties");
+
+                    //Jason Parsing Methode
+                    //Server umstellungen dynamisch
+
+                    // Storing each json item in variable
+                    Double mag = Double.parseDouble(b.getString("mag"));
+                    String flynn_region = b.getString("region");
+                    String time = b.getString("time");
+                    Double lat = b.getDouble("lat");
+                    Double lon = b.getDouble("lon");
+                    double depth = Double.parseDouble(b.getString("depth"));
+                    //String username = c.getString("magtype");
+                    JSONArray places = b.getJSONArray("places");
+
+                    Log.d("newjson","err"+mag);
+                    // show the values in our logcat
+                    //Log.e("MyJsonAt", "|" + flynn_region + "|");
+                    if ((mag >= minMag)) {
+                        Log.e("testla", "JA");
+                        values.add(new Erdbeben(mag, flynn_region, time, depth, lat, lon, places));
+                    }//} else
+                    //Log.e("testla", "NEIN");
+
+                }
+                //JSONObject ob = json.getJSONObject("properties");
+                //values.add(0,ob.getString("magType"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             return null;
         }
 

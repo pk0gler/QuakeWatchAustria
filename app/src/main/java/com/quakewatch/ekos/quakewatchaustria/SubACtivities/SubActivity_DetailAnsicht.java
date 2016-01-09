@@ -1,9 +1,11 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -16,7 +18,6 @@ import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
-import com.software.shell.fab.ActionButton;
 
 import java.io.Serializable;
 
@@ -73,8 +74,8 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
     };
 
     public boolean isAt;
-    private ActionButton butJetzt;
-    private ActionButton butMap;
+    private FloatingActionButton butJetzt;
+    private FloatingActionButton butMap;
 
     private ViewPager pager;
     private Erdbeben bebenData;
@@ -92,8 +93,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         this.isAt = (boolean)getIntent().getExtras().get("isAt");
         if (isAt) {
             setContentView(R.layout.subactivity_deatailansicht_at);
-            butJetzt = (ActionButton) findViewById(R.id.action_button_jetzt);
-            butJetzt.setImageResource(R.drawable.fab_x_but_rotate);
+            butJetzt = (FloatingActionButton) findViewById(R.id.fab_jetzt);
             butJetzt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -118,11 +118,11 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
     private void setUpView() {
         getSupportActionBar().setElevation(0f);
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.detailLayout);
-        ImageView imgBottom = (ImageView) findViewById(R.id.imageViewBottom);
+        //ImageView imgBottom = (ImageView) findViewById(R.id.imageViewBottom);
         TextView textMag = (TextView) findViewById(R.id.textMag);
         ImageView icon = (ImageView) findViewById(R.id.detailImg);
-        butMap = (ActionButton) findViewById(R.id.action_button_map);
-        butMap.setImageResource(R.drawable.map);
+        butMap = (FloatingActionButton) findViewById(R.id.fab_map);
+       // butMap.setImageResource(R.drawable.map);
         butMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +138,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         TextView textDate = (TextView) findViewById(R.id.textDate);
         TextView textTime = (TextView) findViewById(R.id.textTime);
         TextView textLocation = (TextView) findViewById(R.id.textViewLocation);
-        TextView values = (TextView) findViewById(R.id.textViewValues);
+        TextView values = (TextView) findViewById(R.id.textViewProperties);
         values.setText(bebenData.getRegion()+"\n"+bebenData.getMag()+"\n"+bebenData.getDepth()+"\n"+bebenData.getTime()+"\n"
         +"5.0, 1.3, -5.0");
         double temp = bebenData.getMag();
@@ -146,96 +146,96 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        if ((mag >= 1) && (mag <= 2.4)) {
+        if ((mag >= 1) && (mag <= 2.49)) {
             if (android.os.Build.VERSION.SDK_INT >= 21) window.setStatusBarColor(Color.parseColor(colorCodes[15]));
-            butMap.setButtonColor(Color.parseColor(colorCodes[15]));
-            if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[15]));
-            if ((mag >= 1) && (mag <= 1.4)) {
+            butMap.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[15])));
+            if(this.butJetzt != null) butJetzt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[15])));
+            if ((mag >= 1.0) && (mag <= 1.49)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[0]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[0])));
             }
-            if ((mag >= 1.5) && (mag <= 1.9)) {
+            if ((mag >= 1.50) && (mag <= 1.99)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[1]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[1])));
             }
-            if ((mag >= 2) && (mag <= 2.4)) {
+            if ((mag >= 2.0) && (mag <= 2.49)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[2])));
             }
 
-        } /*NEXT COLOR*/else if ((mag >= 2.5) && (mag <= 3.9)) {
+        } /*NEXT COLOR*/else if ((mag >= 2.50) && (mag <= 3.99)) {
             if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[16]));
-            butMap.setButtonColor(Color.parseColor(colorCodes[16]));
-            if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[16]));
-            if ((mag >= 2.5) && (mag <= 2.9)) {
+            butMap.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[16])));
+            if(this.butJetzt != null) butJetzt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[16])));
+            if ((mag >= 2.50) && (mag <= 2.99)) {
                 if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[15]));
-                butMap.setButtonColor(Color.parseColor(colorCodes[15]));
-                if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[15]));
+                butMap.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[15])));
+                if(this.butJetzt != null) butJetzt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[15])));
                 icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[2])));
             }
-            if ((mag >= 3) && (mag <= 3.4)) {
+            if ((mag >= 3.0) && (mag <= 3.49)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[4]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[4])));
             }
-            if ((mag >= 3.5) && (mag <= 3.9)) {
+            if ((mag >= 3.50) && (mag <= 3.99)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[5]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[5])));
             }
 
-        }/*NEXT COLOR*/else if ((mag >= 4) && (mag <= 5.4)) {
+        }/*NEXT COLOR*/else if ((mag >= 4.0) && (mag <= 5.49)) {
             if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[17]));
-            butMap.setButtonColor(Color.parseColor(colorCodes[17]));
-            if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[17]));
-            if ((mag >= 4) && (mag <= 4.4)) {
+            butMap.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[17])));
+            if(this.butJetzt != null) butJetzt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[17])));
+            if ((mag >= 4.0) && (mag <= 4.49)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[6]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[6])));
             }
-            if ((mag >= 4.5) && (mag <= 4.9)) {
+            if ((mag >= 4.50) && (mag <= 4.99)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[7]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[7])));
             }
-            if ((mag >= 5) && (mag <= 5.4)) {
+            if ((mag >= 5.0) && (mag <= 5.49)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[8]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[8])));
             }
 
-        }/*NEXT COLOR*/else if ((mag >= 5.5) && (mag <= 6.9)) {
+        }/*NEXT COLOR*/else if ((mag >= 5.50) && (mag <= 6.99)) {
             if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[18]));
-            butMap.setButtonColor(Color.parseColor(colorCodes[18]));
-            if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[18]));
-            if ((mag >= 5.5) && (mag <= 5.9)) {
+            butMap.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[18])));
+            if(this.butJetzt != null) butJetzt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[18])));
+            if ((mag >= 5.50) && (mag <= 5.99)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[9]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[9])));
             }
-            if ((mag >= 6) && (mag <= 6.4)) {
+            if ((mag >= 6.0) && (mag <= 6.49)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[10]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[10])));
             }
-            if ((mag >= 6.5) && (mag <= 6.9)) {
+            if ((mag >= 6.50) && (mag <= 6.99)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[11]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[11])));
             }
 
-        }/*NEXT COLOR*/else if ((mag >= 7) && (mag <= 8.9)) {
+        }/*NEXT COLOR*/else if ((mag >= 7.0) && (mag <= 8.99)) {
             if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[19]));
-            butMap.setButtonColor(Color.parseColor(colorCodes[19]));
-            if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[19]));
-            if ((mag >= 7) && (mag <= 7.9)) {
+            butMap.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[19])));
+            if(this.butJetzt != null) butJetzt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[19])));
+            if ((mag >= 7.0) && (mag <= 7.99)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[12]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[12])));
             }
-            if ((mag >= 8) && (mag <= 8.9)) {
+            if ((mag >= 8.0) && (mag <= 8.99)) {
                 if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[20]));
-                butMap.setButtonColor(Color.parseColor(colorCodes[20]));
-                if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[20]));
+                butMap.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[20])));
+                if(this.butJetzt != null) butJetzt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[20])));
                 icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[14])));
             }
-        }/*NEXT COLOR*/else if ((mag >= 9) && (mag <= 12)) {
+        }/*NEXT COLOR*/else if ((mag >= 9.0) && (mag <= 12)) {
             if (android.os.Build.VERSION.SDK_INT >= 21)window.setStatusBarColor(Color.parseColor(colorCodes[20]));
-            butMap.setButtonColor(Color.parseColor(colorCodes[20]));
-            if(this.butJetzt != null) butJetzt.setButtonColor(Color.parseColor(colorCodes[20]));
+            butMap.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[20])));
+            if(this.butJetzt != null) butJetzt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[20])));
             icon.setBackgroundColor(Color.parseColor(colorCodes[14]));
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[14])));
         }

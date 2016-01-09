@@ -1,14 +1,9 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -22,7 +17,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
@@ -147,7 +141,7 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
                     lOrt.setHint("Bitte Ort auswählen");
 
                 } else {
-                    Intent i = new Intent(getBaseContext(), SubActivity_Phase2.class);
+                    Intent i = new Intent(getBaseContext(), SubActivity_News.class);
                     startActivity(i);
                 }
             }

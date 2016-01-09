@@ -50,7 +50,7 @@ public class Fragment_AT extends Fragment {
     private ActionButton actionButtonNow;
     private ActionButton actionButtonMain;
     private ActionButton actionButtonAndere;
-
+    private Double minMag;
     ListView listView;
 
     private View v;
@@ -318,6 +318,8 @@ public class Fragment_AT extends Fragment {
         this.magStaerke = SP.getString("magType", "1").charAt(0) + "";
         Log.d("Magni", Integer.parseInt(magStaerke) + "");
         listView = (ListView) v.findViewById(R.id.listAt);
+        SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(getContext());
+        this.minMag = Double.parseDouble(spf.getString("magType", "1"));
         new AsyncTaskParseJson().execute();
     }
 
@@ -327,6 +329,7 @@ public class Fragment_AT extends Fragment {
 
         // contacts JSONArray
         JSONArray dataJsonArr = null;
+
 
         @Override
         protected void onPreExecute() {
@@ -344,7 +347,7 @@ public class Fragment_AT extends Fragment {
                 JsonParser jParser = new JsonParser();
 
                 // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://www.seismicportal.eu/fdsnws/event/1/query?limit=1000&format=json&minlatitude=46&maxlatitude=49&minlongitude=9&maxlongitude=18");
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Austria&limit=100&mag>=1");
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -358,20 +361,21 @@ public class Fragment_AT extends Fragment {
 
                     // Storing each json item in variable
                     Double mag = Double.parseDouble(b.getString("mag"));
-                    String flynn_region = b.getString("flynn_region");
+                    String flynn_region = b.getString("region");
                     String time = b.getString("time");
                     Double lat = b.getDouble("lat");
                     Double lon = b.getDouble("lon");
                     double depth = Double.parseDouble(b.getString("depth"));
+                    JSONArray places = b.getJSONArray("places");
                     //String username = c.getString("magtype");
-
+                    Log.d("newjson","err"+mag);
                     // show the values in our logcat
-                    Log.e("MyJsonAt", "|" + flynn_region + "|");
-                    if ((flynn_region.equals("AUSTRIA") && mag >= 1)) {
+                    //Log.e("MyJsonAt", "|" + flynn_region + "|");
+                    if ((mag >= minMag)) {
                         Log.e("testla", "JA");
-                        values.add(new Erdbeben(mag, flynn_region, time, depth, lat,lon));
-                    } else
-                        Log.e("testla", "NEIN");
+                        values.add(new Erdbeben(mag, flynn_region, time, depth, lat, lon, places));
+                    }//} else
+                        //Log.e("testla", "NEIN");
 
                 }
                 //JSONObject ob = json.getJSONObject("properties");

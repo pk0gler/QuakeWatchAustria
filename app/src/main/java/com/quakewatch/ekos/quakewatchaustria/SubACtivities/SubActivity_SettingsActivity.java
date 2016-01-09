@@ -2,6 +2,7 @@
 
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 
 public class SubActivity_SettingsActivity extends PreferenceActivity {
@@ -65,8 +67,11 @@ public class SubActivity_SettingsActivity extends PreferenceActivity {
         }
     }
 
-
     @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+        @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long

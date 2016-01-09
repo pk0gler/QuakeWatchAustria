@@ -13,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
@@ -61,7 +60,7 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
         weiter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
                 //Toast.makeText(getBaseContext(), "Weiter zu Cartoooooons", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(getBaseContext(), SubActivity_Phase2.class);
+                Intent i = new Intent(getBaseContext(), SubActivity_News.class);
                 startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
             }
         });

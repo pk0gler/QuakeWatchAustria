@@ -100,7 +100,7 @@ public class FRAGMENT_WELT extends Fragment {
                 JsonParser jParser = new JsonParser();
 
                 // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://www.seismicportal.eu/fdsnws/event/1/query?limit=1000&format=json");
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Welt&limit=100");
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -114,18 +114,19 @@ public class FRAGMENT_WELT extends Fragment {
 
                     // Storing each json item in variable
                     Double mag = Double.parseDouble(b.getString("mag"));
-                    String flynn_region = b.getString("flynn_region");
+                    String flynn_region = b.getString("region");
                     String time = b.getString("time");
                     Double lat = b.getDouble("lat");
                     Double lon = b.getDouble("lon");
                     double depth = Double.parseDouble(b.getString("depth"));
                     //String username = c.getString("magtype");
+                    JSONArray places = b.getJSONArray("places");
 
                     // show the values in our logcat
                     Log.e("MyJsonWelt", "mag: " + mag
                             + ", flynn_region: " + flynn_region
                             + ", time: " + time);
-                    values.add(i,new Erdbeben(mag, flynn_region, time, depth, lat,lon));
+                    values.add(i,new Erdbeben(mag, flynn_region, time, depth, lat,lon,places));
                 }
                 //JSONObject ob = json.getJSONObject("properties");
                 //values.add(0,ob.getString("magType"));

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:id="@+id/detailImg"
+        android:background="@color/ColorPrimary"
         android:text="Wien, Oesterreich"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -37,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Wien, Oesterreich"
+        android:text="Unzmarkt /Österreich"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:id="@+id/textViewLocation"
@@ -57,10 +58,9 @@
         android:textSize="12sp"
         android:id="@+id/textDate"
         android:gravity="center_vertical"
-        android:layout_alignBottom="@+id/textMag"
-        android:layout_alignLeft="@+id/textViewLocation"
+        android:layout_below="@+id/textViewLocation"
         android:layout_alignStart="@+id/textViewLocation"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,34 +71,10 @@
         android:textSize="12sp"
         android:id="@+id/textTime"
         android:gravity="center_vertical"
-        android:layout_alignTop="@+id/textDate"
-        android:layout_alignLeft="@+id/action_button_jetzt"
-        android:layout_alignStart="@+id/action_button_jetzt" />
-
-    <com.software.shell.fab.ActionButton
-        android:id="@+id/action_button_jetzt"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        fab:shadowResponsiveEffect_enabled="true"
-        fab:button_color="#26A69A"
-        fab:button_colorPressed="@color/ColorPrimary"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="10dp" />
-
-    <com.software.shell.fab.ActionButton
-        android:id="@+id/action_button_map"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        fab:shadowResponsiveEffect_enabled="true"
-        fab:button_color="#26A69A"
-        fab:button_colorPressed="@color/ColorPrimary"
-        android:layout_toEndOf="@+id/textDate"
-        android:layout_alignTop="@+id/action_button_jetzt"
-        android:layout_marginLeft="10dp"
-        android:layout_alignBottom="@+id/action_button_jetzt" />
+        android:layout_toRightOf="@+id/textDate"
+        android:layout_below="@+id/textViewLocation"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -107,19 +83,32 @@
         android:text="Region:\nMag:\nDepth:\nTime:\nLocation"
         android:id="@+id/textViewProperties"
         android:lineSpacingExtra="20dp"
-        android:layout_below="@+id/action_button_map"
-        android:layout_alignLeft="@+id/textMag"
-        android:layout_alignStart="@+id/textMag" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false" />
 
-    <TextView
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_jetzt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Location:"
-        android:id="@+id/textViewValues"
-        android:lineSpacingExtra="20dp"
-        android:layout_below="@+id/action_button_map"
-        android:layout_centerHorizontal="true" />
+        android:clickable="true"
+        android:src="@drawable/fab_plus_icon"
+        android:layout_above="@+id/textViewProperties"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="20dp" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/map"
+        android:layout_above="@+id/textViewProperties"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="90dp" />
 
 
 </RelativeLayout>
