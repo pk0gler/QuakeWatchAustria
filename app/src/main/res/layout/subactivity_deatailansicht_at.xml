@@ -1,114 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/detailLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/detailLayout">
+    android:orientation="vertical">
 
 
     <ImageView
+        android:id="@+id/detailImg"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:id="@+id/detailImg"
-        android:background="@color/ColorPrimary"
-        android:text="Wien, Oesterreich"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/ColorPrimary"
+        android:cropToPadding="false"
+        android:text="Wien, Oesterreich" />
 
     <TextView
+        android:id="@+id/textMag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="60sp"
-        android:text="3.0"
-        android:id="@+id/textMag"
-        android:textColor="#FFFFFF"
-        android:gravity="center_vertical|center_horizontal"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="20dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Unzmarkt /Österreich"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:id="@+id/textViewLocation"
-        android:gravity="center_vertical"
-        android:layout_alignTop="@+id/textMag"
-        android:layout_toRightOf="@+id/textMag"
-        android:layout_toEndOf="@+id/textMag"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="20dp" />
+        android:gravity="center_vertical|center_horizontal"
+        android:text="3.0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp" />
 
     <TextView
+        android:id="@+id/textViewLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textMag"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/textMag"
+        android:layout_toRightOf="@+id/textMag"
+        android:gravity="center_vertical"
+        android:text="Unzmarkt /Österreich"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="2015-10-2"
         android:textColor="#FFFFFF"
-        android:textSize="12sp"
+        android:textSize="16sp" />
+
+    <TextView
         android:id="@+id/textDate"
-        android:gravity="center_vertical"
-        android:layout_below="@+id/textViewLocation"
-        android:layout_alignStart="@+id/textViewLocation"
-        android:layout_marginTop="10dp" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="23:09"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        android:id="@+id/textTime"
-        android:gravity="center_vertical"
-        android:layout_toRightOf="@+id/textDate"
+        android:layout_alignStart="@+id/textViewLocation"
         android:layout_below="@+id/textViewLocation"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp" />
+        android:gravity="center_vertical"
+        android:text="2015-10-2"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
 
     <TextView
+        android:id="@+id/textTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Region:\nMag:\nDepth:\nTime:\nLocation"
-        android:id="@+id/textViewProperties"
-        android:lineSpacingExtra="20dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false" />
+        android:layout_below="@+id/textViewLocation"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/textDate"
+        android:gravity="center_vertical"
+        android:text="23:09"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_jetzt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/fab_plus_icon"
-        android:layout_above="@+id/textViewProperties"
+        android:layout_alignParentEnd="false"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginRight="20dp" />
+        android:layout_below="@+id/detailImg"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="-28dp"
+        android:clickable="true"
+        android:src="@drawable/fab_plus_icon" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/map"
-        android:layout_above="@+id/textViewProperties"
+        android:layout_alignParentEnd="false"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginRight="90dp" />
+        android:layout_below="@+id/detailImg"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="-28dp"
+        android:clickable="true"
+        android:src="@drawable/map" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:clickable="false"
+        android:layout_below="@+id/detailImg"
+        android:paddingLeft="0dp"
+        android:paddingTop="15dp" />
 
 
 </RelativeLayout>

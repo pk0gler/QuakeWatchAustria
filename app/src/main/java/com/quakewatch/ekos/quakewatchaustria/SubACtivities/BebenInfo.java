@@ -1,13 +1,10 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
@@ -25,7 +22,6 @@ public class BebenInfo extends AppCompatActivity {
     TextView stock, gegenstand, flucht;
 
     /**
-     *
      * @param savedInstanceState
      */
     @Override
@@ -53,6 +49,7 @@ public class BebenInfo extends AppCompatActivity {
 
     /**
      * When
+     *
      * @param item
      * @return
      */

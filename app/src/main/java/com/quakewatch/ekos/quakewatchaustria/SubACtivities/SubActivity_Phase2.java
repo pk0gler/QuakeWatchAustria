@@ -3,13 +3,11 @@ package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomIntensity;
 import com.quakewatch.ekos.quakewatchaustria.R;
@@ -63,6 +61,7 @@ public class SubActivity_Phase2 extends AppCompatActivity {
 
     /**
      * When
+     *
      * @param item
      * @return
      */

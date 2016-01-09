@@ -1,24 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/l1">
 
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listEu"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:dividerHeight="0.5dp"
+        android:clickable="true"
+        android:contextClickable="true"
 
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/listEu"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:footerDividersEnabled="false"
-            android:headerDividersEnabled="false"
-            android:dividerHeight="0.5dp"
-            android:clickable="true"
-            android:contextClickable="true"
-            android:drawSelectorOnTop="false"
-            android:background="#FFFFFF"
-            />
+        android:drawSelectorOnTop="false"
+        android:background="#FFFFFF" />
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/card_view"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        card_view:cardCornerRadius="4dp"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@color/fab_material_grey_500"
+                android:text="contact det"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:gravity="center_vertical"
+                android:textSize="10dp"
+                android:layout_below="@id/title"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/txtSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Surname"
+                android:gravity="center_vertical"
+                android:textSize="10dp"
+                android:layout_below="@id/txtName"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="150dp"
+                android:layout_alignBaseline="@id/txtName" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:text="empty"></TextView>
 
 </LinearLayout>

@@ -44,25 +44,23 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         contactViewHolder.placename.setText(ci.placeName);
         //contactViewHolder.imgv.setImageResource(ci.img);
         Picasso.with(context).load(ci.img).resize(270, 270).centerCrop().into(contactViewHolder.imgv);
-        setAnimation(contactViewHolder.placeCard,i);
+        setAnimation(contactViewHolder.placeCard, i);
     }
+
     /**
      * Here is the key method to apply the animation
      */
-    private void setAnimation(View viewToAnimate, int position)
-    {
-        Log.d("Duration",position+"--"+lastPosition);
+    private void setAnimation(View viewToAnimate, int position) {
+        Log.d("Duration", position + "--" + lastPosition);
         // If the bound view wasn't previously displayed on screen, it's animated
-        if ((position > lastPosition))
-        {
+        if ((position > lastPosition)) {
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
 
             //animation.setDuration(900);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }
-        if ((lastPosition > position))
-        {
+        if ((lastPosition > position)) {
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
 
             //animation.setDuration(900);
@@ -91,7 +89,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             super(v);
             placeHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
             placeCard = (CardView) v.findViewById(R.id.placeCard);
-            placename =  (TextView) v.findViewById(R.id.placeName);
+            placename = (TextView) v.findViewById(R.id.placeName);
             imgv = (ImageView) v.findViewById(R.id.placeImage);
             placeHolder.setOnClickListener(this);
         }

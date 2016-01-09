@@ -1,8 +1,8 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -18,7 +18,7 @@ public class ImageFullScreen extends AppCompatActivity {
         setContentView(R.layout.activity_image_full_screen);
         int position = (int) getIntent().getExtras().get("pos");
         ImageView img = (ImageView) findViewById(R.id.img);
-        int imageRes = getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[position],null,getBaseContext().getPackageName());
+        int imageRes = getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[position], null, getBaseContext().getPackageName());
         Drawable res = getBaseContext().getResources().getDrawable(imageRes);
         img.setImageDrawable(res);
 

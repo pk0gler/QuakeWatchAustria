@@ -17,10 +17,12 @@ import java.util.ArrayList;
  */
 public class Mapadapter extends ArrayAdapter<String> {
     private Erdbeben beben;
+
     public Mapadapter(Context context, ArrayList<String> values) {
         super(context, R.layout.custom_detail_map);
         this.beben = beben;
     }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         String temp = getItem(position);

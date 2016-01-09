@@ -3,13 +3,14 @@
     <!-- Base application theme. -->
     <style name="AppThemeSub" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary"> @color/ColorPrimary</item>
-        <item name="colorPrimaryDark"> @color/ColorPrimaryDark</item>
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
     </style>
+
     <style name="AppThemeDetail" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary"> @color/ColorPrimary</item>
-        <item name="colorPrimaryDark"> @color/ColorPrimaryDark</item>
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
         <item name="android:actionBarSize">200dp</item>
     </style>
 

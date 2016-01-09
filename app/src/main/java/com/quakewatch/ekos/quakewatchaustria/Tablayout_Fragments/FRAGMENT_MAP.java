@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -32,10 +35,11 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
     Marker mine;
     private Erdbeben[] marker;
     View v;
-    private HashMap<String,Erdbeben> markerId;
+    private HashMap<String, Erdbeben> markerId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         markerId = new HashMap<>();
         /**
          * OSM MAP
@@ -136,13 +140,29 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
                 .snippet("Mag: " + String.valueOf(temp.getMag())));
         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mine.getPosition(), 6));
         mine.showInfoWindow();
-        this.markerId.put(mine.getId(),temp);
+        this.markerId.put(mine.getId(), temp);
     }
 
     public void setMarker(Erdbeben[] marker) {
         this.marker = marker;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_frag, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                Toast.makeText(getContext(),"hi",Toast.LENGTH_LONG).show();
+                new AsyncTaskParseJson().execute();
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
         ProgressDialog mDialog;
@@ -155,8 +175,10 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
 
         @Override
         protected void onPreExecute() {
-            mDialog = new ProgressDialog(v.getContext());
+            mDialog = new ProgressDialog(getContext());
             mDialog.setMessage("Beben werden geladen...");
+            mDialog.setCancelable(false);
+            mDialog.setCanceledOnTouchOutside(false);
             mDialog.show();
         }
 
@@ -188,12 +210,13 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
                     Double lon = b.getDouble("lon");
                     double depth = Double.parseDouble(b.getString("depth"));
                     //String username = c.getString("magtype");
+                    int id = c.getInt("id");
                     JSONArray places = b.getJSONArray("places");
 
                     //String username = c.getString("magtype");
 
 
-                    values[i] = new Erdbeben(mag, flynn_region, time, depth, lat, lon, places);
+                    values[i] = new Erdbeben(mag, flynn_region, time, depth, lat, lon, places, id);
                 }
                 //JSONObject ob = json.getJSONObject("properties");
                 //values.add(0,ob.getString("magType"));

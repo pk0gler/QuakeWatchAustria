@@ -13,11 +13,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
@@ -44,12 +48,31 @@ public class FRAGMENT_WELT extends Fragment {
     View v;
     ArrayList<Erdbeben> values;
     ArrayAdapter<String> adapter;
+    private double minMag;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v =inflater.inflate(R.layout.list_layout_world,container,false);
+        setHasOptionsMenu(true);
+        v = inflater.inflate(R.layout.list_layout_world, container, false);
         this.createContent();
         return v;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_frag, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                Toast.makeText(getContext(),"hi",Toast.LENGTH_LONG).show();
+                new AsyncTaskParseJson().execute();
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -63,13 +86,15 @@ public class FRAGMENT_WELT extends Fragment {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
         this.magStaerke = SP.getString("magType", "1").charAt(0) + "";
         Log.d("Magni", Integer.parseInt(magStaerke) + "");
+        SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(getContext());
+        this.minMag = Double.parseDouble(spf.getString("magType", "1"));
         new AsyncTaskParseJson().execute();
         //return v;
     }
 
     public Erdbeben[] getMarker() {
         Erdbeben[] temp = new Erdbeben[30];
-        for (int i = 0; i<30; i++) {
+        for (int i = 0; i < 30; i++) {
             temp[i] = values.get(i);
         }
         return temp;
@@ -88,6 +113,8 @@ public class FRAGMENT_WELT extends Fragment {
         protected void onPreExecute() {
             mDialog = new ProgressDialog(context);
             mDialog.setMessage("Beben werden geladen...");
+            mDialog.setCancelable(false);
+            mDialog.setCanceledOnTouchOutside(false);
             mDialog.show();
 
         }
@@ -121,12 +148,13 @@ public class FRAGMENT_WELT extends Fragment {
                     double depth = Double.parseDouble(b.getString("depth"));
                     //String username = c.getString("magtype");
                     JSONArray places = b.getJSONArray("places");
-
+                    int id = c.getInt("id");
                     // show the values in our logcat
                     Log.e("MyJsonWelt", "mag: " + mag
                             + ", flynn_region: " + flynn_region
                             + ", time: " + time);
-                    values.add(i,new Erdbeben(mag, flynn_region, time, depth, lat,lon,places));
+                    if (mag >= minMag)
+                        values.add(i, new Erdbeben(mag, flynn_region, time, depth, lat, lon, places, id));
                 }
                 //JSONObject ob = json.getJSONObject("properties");
                 //values.add(0,ob.getString("magType"));
@@ -161,7 +189,7 @@ public class FRAGMENT_WELT extends Fragment {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
-                    ((MainActivity) getActivity()).setPager(3,temp);
+                    ((MainActivity) getActivity()).setPager(3, temp);
                     return true;
                 }
             });

@@ -35,8 +35,8 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
 
     Button weiter;
 
-    int hour_x,minute_x;
-    int year_x,month_x,day_x;
+    int hour_x, minute_x;
+    int year_x, month_x, day_x;
 
     static final int DATE_ID = 0;
     static final int TIME_ID = 1;
@@ -67,23 +67,24 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
 
         boolean state = (boolean) getIntent().getExtras().get("state");
         if (state) {
-           setUpNow();
+            setUpNow();
         } else {
             setUp();
         }
-   }
+    }
 
-    protected Dialog onCreateDialog(int id){
-        if(id == TIME_ID)
-            return new TimePickerDialog(this,kTimePickerListner,hour_x,minute_x,true);
-        if(id == DATE_ID)
-            return new DatePickerDialog(this, dpickerListener,year_x,month_x,day_x);
+    protected Dialog onCreateDialog(int id) {
+        if (id == TIME_ID)
+            return new TimePickerDialog(this, kTimePickerListner, hour_x, minute_x, true);
+        if (id == DATE_ID)
+            return new DatePickerDialog(this, dpickerListener, year_x, month_x, day_x);
         return null;
     }
+
     /**
      * Methoden um die Zeit einstellen zu können
      */
-    public void showTimeDialog(){
+    public void showTimeDialog() {
         zeit = (EditText) findViewById(R.id.zeit);
         zeit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
@@ -91,20 +92,21 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
             }
         });
     }
+
     protected TimePickerDialog.OnTimeSetListener kTimePickerListner =
             new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     hour_x = hourOfDay;
                     minute_x = minute;
-                    zeit.setText(hour_x+":"+minute_x);
+                    zeit.setText(hour_x + ":" + minute_x);
                 }
             };
 
     /**
      * Methoden um das Datum eingeben zu können
      */
-    public void showDateDialog(){
+    public void showDateDialog() {
         datum = (EditText) findViewById(R.id.datum);
         //datum.setCompoundDrawablesWithIntrinsicBounds(R.drawable.welticon, 0, 0, 0);
         datum.setOnClickListener(new View.OnClickListener() {
@@ -114,13 +116,14 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
         });
 
     }
+
     private DatePickerDialog.OnDateSetListener dpickerListener
-            = new DatePickerDialog.OnDateSetListener(){
-        public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth){
+            = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             year_x = year;
-            month_x = monthOfYear+1;
+            month_x = monthOfYear + 1;
             day_x = dayOfMonth;
-            datum.setText(year_x+"/"+month_x+"/"+day_x);
+            datum.setText(year_x + "/" + month_x + "/" + day_x);
         }
     };
 
@@ -132,7 +135,7 @@ public class SubActivity_DiesesBebenEintragen extends AppCompatActivity {
 
 
     private void setUpNow() {
-      //  state.setText("Jetzt\n"+bebenData.getRegion()+"\n"+bebenData.getMag());
+        //  state.setText("Jetzt\n"+bebenData.getRegion()+"\n"+bebenData.getMag());
 
     }
 

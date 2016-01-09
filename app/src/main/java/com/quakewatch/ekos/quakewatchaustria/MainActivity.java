@@ -14,7 +14,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
@@ -93,22 +92,17 @@ public class MainActivity extends AppCompatActivity {
         Log.d("pref", "Email Addresse: " + email + "  -  Notifications: " + notif + "  -  Magnitude: " + magn);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+
 
     private void displayView(MenuItem item) {
         if (item.toString().equals("Guide")) {
-            Log.d("NavDrawer",item.toString());
+            Log.d("NavDrawer", item.toString());
             startActivity(new Intent(getBaseContext(), SubActivity_Guide.class));
         } else if (item.toString().equals("Einstellungen")) {
-            Log.d("NavDrawer",item.toString());
+            Log.d("NavDrawer", item.toString());
             startActivity(new Intent(getBaseContext(), SubActivity_SettingsActivity.class));
         } else if (item.toString().equals("App Guide")) {
-            Log.d("NavDrawer",item.toString());
+            Log.d("NavDrawer", item.toString());
             startActivity(new Intent(getBaseContext(), SubActivity_App_Guide.class));
         } else if (item.toString().equals("News")) {
             startActivity(new Intent(getBaseContext(), SubActivity_News.class));
@@ -130,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             if (Integer.parseInt(data.getStringExtra("position")) == 3) {
                 pager.setCurrentItem(Integer.parseInt(data.getStringExtra("position")), true);
-                Log.d("NavDrawer", "philippkoggler"+data.getExtras().getSerializable("data"));
+                Log.d("NavDrawer", "philippkoggler" + data.getExtras().getSerializable("data"));
                 this.adapter.getMapf().setCurrentLoc((Erdbeben) data.getExtras().getSerializable("data"));
 
             }
@@ -145,8 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("App schließen")
                 .setMessage("Sind sie sicher dass sie die App beenden wollen")
-                .setPositiveButton("Ja", new DialogInterface.OnClickListener()
-                {
+                .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();

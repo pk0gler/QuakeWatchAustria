@@ -13,6 +13,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -47,10 +50,30 @@ public class Fragment_EUROPA extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         v = inflater.inflate(R.layout.list_layout_eu, container, false);
         this.createContent();
         return v;
     }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_frag, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                Toast.makeText(getContext(),"hi",Toast.LENGTH_LONG).show();
+                new AsyncTaskParseJson().execute();
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     @Override
     public void onResume() {
@@ -66,6 +89,7 @@ public class Fragment_EUROPA extends Fragment {
 
         //return v;
         listView = (ListView) v.findViewById(R.id.listEu);
+        listView.setEmptyView(v.findViewById(R.id.empty));
         SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(getContext());
         this.minMag = Double.parseDouble(spf.getString("magType", "1"));
         new AsyncTaskParseJson().execute();
@@ -83,10 +107,10 @@ public class Fragment_EUROPA extends Fragment {
         protected void onPreExecute() {
             mDialog = new ProgressDialog(context);
             mDialog.setMessage("Beben werden geladen...");
+            mDialog.setCancelable(false);
+            mDialog.setCanceledOnTouchOutside(false);
             mDialog.show();
-
         }
-
         @Override
         protected String doInBackground(String... arg0) {
             try {
@@ -155,14 +179,15 @@ public class Fragment_EUROPA extends Fragment {
                     Double lon = b.getDouble("lon");
                     double depth = Double.parseDouble(b.getString("depth"));
                     //String username = c.getString("magtype");
+                    int id = c.getInt("id");
                     JSONArray places = b.getJSONArray("places");
 
-                    Log.d("newjson","err"+mag);
+                    Log.d("newjson", "err" + mag);
                     // show the values in our logcat
                     //Log.e("MyJsonAt", "|" + flynn_region + "|");
                     if ((mag >= minMag)) {
                         Log.e("testla", "JA");
-                        values.add(new Erdbeben(mag, flynn_region, time, depth, lat, lon, places));
+                        values.add(new Erdbeben(mag, flynn_region, time, depth, lat, lon, places, id));
                     }//} else
                     //Log.e("testla", "NEIN");
 
@@ -201,7 +226,7 @@ public class Fragment_EUROPA extends Fragment {
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     //Toast.makeText(getContext(), "Beben auf map anzeigen", Toast.LENGTH_LONG).show();
                     Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
-                    ((MainActivity) getActivity()).setPager(3,temp);
+                    ((MainActivity) getActivity()).setPager(3, temp);
                     return true;
                 }
             });

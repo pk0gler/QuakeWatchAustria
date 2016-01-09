@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 
-android:key="preferences">
+    android:key="preferences">
     <PreferenceCategory android:title="Benutzereinstellungen">
-        <EditTextPreference android:title="Ihre Email Adresse"
+        <EditTextPreference
+            android:title="Ihre Email Adresse"
             android:dialogTitle="Email Addresse"
             android:key="email"
             android:defaultValue="example@gmail.com"
-            android:summary="Email"/>
+            android:summary="Email" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Anwendungseinstellungen">
-        <CheckBoxPreference android:title="Application Notifications"
+        <CheckBoxPreference
+            android:title="Application Notifications"
             android:defaultValue="true"
             android:summary="Wenn Sie diese Option aktivieren erlauben Sie der App Informationen anzuzeigen"
             android:key="notifications"></CheckBoxPreference>

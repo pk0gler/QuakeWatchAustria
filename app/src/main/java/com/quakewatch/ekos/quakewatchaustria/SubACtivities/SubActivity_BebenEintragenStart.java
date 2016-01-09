@@ -83,42 +83,42 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         ort = (EditText) findViewById(R.id.Ort);
 
         /**
-        // Getting LocationManager object
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+         // Getting LocationManager object
+         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        // Creating an empty criteria object
-        Criteria criteria = new Criteria();
+         // Creating an empty criteria object
+         Criteria criteria = new Criteria();
 
-        // Getting the name of the provider that meets the criteria
-        provider = locationManager.getBestProvider(criteria, false);
+         // Getting the name of the provider that meets the criteria
+         provider = locationManager.getBestProvider(criteria, false);
 
-        if (provider != null && !provider.equals("")) {
+         if (provider != null && !provider.equals("")) {
 
-            // Get the location from the given provider
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    public void requestPermissions(@NonNull String[] permissions, int requestCode)
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for Activity#requestPermissions for more details.
-                return;
-            }
-            Location location = locationManager.getLastKnownLocation(provider);
+         // Get the location from the given provider
+         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+         // TODO: Consider calling
+         //    public void requestPermissions(@NonNull String[] permissions, int requestCode)
+         // here to request the missing permissions, and then overriding
+         //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+         //                                          int[] grantResults)
+         // to handle the case where the user grants the permission. See the documentation
+         // for Activity#requestPermissions for more details.
+         return;
+         }
+         Location location = locationManager.getLastKnownLocation(provider);
 
-            locationManager.requestLocationUpdates(provider, 20000, 1, this);
+         locationManager.requestLocationUpdates(provider, 20000, 1, this);
 
-            if(location!=null)
-                onLocationChanged(location);
-            else
-                Toast.makeText(getBaseContext(), "Location can't be retrieved", Toast.LENGTH_SHORT).show();
+         if(location!=null)
+         onLocationChanged(location);
+         else
+         Toast.makeText(getBaseContext(), "Location can't be retrieved", Toast.LENGTH_SHORT).show();
 
-        }else{
-            Toast.makeText(getBaseContext(), "No Provider Found", Toast.LENGTH_SHORT).show();
-        }
+         }else{
+         Toast.makeText(getBaseContext(), "No Provider Found", Toast.LENGTH_SHORT).show();
+         }
 
-        **/
+         **/
 
 
         weiter = (Button) findViewById(R.id.next);
@@ -234,7 +234,7 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
 
     @Override
     public void onLocationChanged(Location location) {
-        this.ort.setText(location.getLatitude()+"-|-"+location.getLongitude());
+        this.ort.setText(location.getLatitude() + "-|-" + location.getLongitude());
     }
 
     @Override

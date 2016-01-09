@@ -1,5 +1,3 @@
-
-
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
 import android.content.Intent;
@@ -18,8 +16,10 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 
 public class SubActivity_SettingsActivity extends PreferenceActivity {
     private AppCompatDelegate mDelegate;
+
     /**
      * On Create
+     *
      * @param savedInstanceState
      */
     @Override
@@ -27,14 +27,13 @@ public class SubActivity_SettingsActivity extends PreferenceActivity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
-
         addPreferencesFromResource(R.xml.preferences);
         this.setContentView(R.layout.settings_help);
         ListView v = getListView();
         //Button saveButton = (Button) findViewById(R.id.saveButton);
         //saveButton.setText("Übernehmen");
         //saveButton.setPadding(10, 30, 10, 30);
-		/*saveButton.setOnClickListener(new View.OnClickListener() {
+        /*saveButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//startActivityForResult(new Intent(getBaseContext(), MainActivity.class), 12);
@@ -47,8 +46,8 @@ public class SubActivity_SettingsActivity extends PreferenceActivity {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object newValue) {
                         EditTextPreference prefText = (EditTextPreference) preference;
-                        Log.d("isRichtigDiemal", prefText.getText()+"----"+isValidEmail((String)newValue));
-                        if (isValidEmail((String)newValue)) {
+                        Log.d("isRichtigDiemal", prefText.getText() + "----" + isValidEmail((String) newValue));
+                        if (isValidEmail((String) newValue)) {
                             return true;
                         } else {
                             Toast.makeText(getBaseContext(), "Ihre Email ist nicht gültig", Toast.LENGTH_LONG).show();
@@ -71,7 +70,8 @@ public class SubActivity_SettingsActivity extends PreferenceActivity {
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
     }
-        @Override
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long

@@ -30,24 +30,27 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     private FRAGMENT_WELT weltf;
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
-    public ViewPagerAdapter(FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb, Context context) {
+    public ViewPagerAdapter(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb, Context context) {
         super(fm);
         this.Titles = mTitles;
         this.NumbOfTabs = mNumbOfTabsumb;
         this.context = context;
 
     }
+
     public FRAGMENT_MAP getMapf() {
         return this.mapf;
     }
+
     /**
      * This method return the fragment for the every position in the View Pager
+     *
      * @param position
      * @return
      */
     @Override
     public Fragment getItem(int position) {
-        
+
         switch (position) {
             case 0:
                 return new Fragment_AT();
@@ -68,6 +71,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     /**
      * This method return the titles for the Tabs in the Tab Strip
+     *
      * @param position
      * @return
      */
@@ -78,6 +82,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     /**
      * This method return the Number of tabs for the tabs Strip
+     *
      * @return
      */
     @Override

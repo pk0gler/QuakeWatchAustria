@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -77,7 +78,9 @@ public class Erdbeben implements Serializable {
     private String date;
     public double lat;
     public double lon;
-    private HashMap<String, String> places;
+    private ArrayList<HashMap<String, String>> places;
+    private int id;
+    public String placesString;
 
     /**
      * Constructor
@@ -87,7 +90,7 @@ public class Erdbeben implements Serializable {
      * @param timeWhole
      * @param depth
      */
-    public Erdbeben(double mag, String region, String timeWhole, double depth, double lat, double lon, JSONArray places) {
+    public Erdbeben(double mag, String region, String timeWhole, double depth, double lat, double lon, JSONArray places, int id) {
         this.mag = mag;
         this.region = this.formatRegion(region);
         this.timeWhole = timeWhole;
@@ -95,34 +98,79 @@ public class Erdbeben implements Serializable {
         this.depth = depth;
         this.lon = lon;
         this.lat = lat;
-        this.places = new HashMap<>();
+        this.places = new ArrayList<>();
+        getPlaces(places);
+        this.placesString = placesToString(this.places);
+        this.id = id;
+    }
+
+    private String placesToString(ArrayList<HashMap<String, String>> temp) {
+        String erg = "";
+        for (int i = 0; i < places.size(); i++) {
+            if (i == 0) {
+                erg = places.get(i).get("text");
+            } else {
+                erg += ",\n" + places.get(i).get("text");
+            }
+        }
+        return erg;
     }
 
     private void getPlaces(JSONArray places) {
+        /*HashMap<String,String> tempH;
         for (int i = 0; i < places.length(); i++) {
+            tempH = new HashMap<>();
             try {
                 JSONObject temp = places.getJSONObject(i);
-
                 switch (i) {
                     case 0:
-                        this.places.put("text", temp.getString("text"));
+                        tempH.put("text", temp.getString("text"));
                         break;
                     case 1:
-                        this.places.put("dist", temp.getString("dist"));
+                        tempH.put("dist", temp.getString("dist"));
                         break;
                     case 2:
-                        this.places.put("place", temp.getString("place"));
+                        tempH.put("place", temp.getString("place"));
                         break;
                     case 3:
-                        this.places.put("rank", temp.getString("rank"));
+                        tempH.put("rank", temp.getString("rank"));
                         break;
                     case 4:
-                        this.places.put("azi", temp.getString("azi"));
+                        tempH.put("azi", temp.getString("azi"));
                         break;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            this.places.add(tempH);
+        }*/
+        for (int i = 0; i < places.length(); i++) {
+            HashMap<String, String> tempH = new HashMap<>();
+            try {
+                JSONObject temp = places.getJSONObject(i);
+                for (int j = 0; j < temp.length(); j++) {
+                    switch (j) {
+                        case 0:
+                            tempH.put("text", temp.getString("text"));
+                            break;
+                        case 1:
+                            tempH.put("dist", temp.getString("dist"));
+                            break;
+                        case 2:
+                            tempH.put("place", temp.getString("place"));
+                            break;
+                        case 3:
+                            tempH.put("rank", temp.getString("rank"));
+                            break;
+                        case 4:
+                            tempH.put("azi", temp.getString("azi"));
+                            break;
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            this.places.add(tempH);
         }
     }
 
@@ -220,4 +268,7 @@ public class Erdbeben implements Serializable {
         return newStr;
     }
 
+    public int getId() {
+        return id;
+    }
 }

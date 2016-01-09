@@ -51,6 +51,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="41dp"
             android:layout_marginStart="41dp" />
+
         <TextView
             android:id="@+id/umgefallen"
             android:textSize="20dp"
@@ -62,6 +63,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="41dp"
             android:layout_marginStart="41dp" />
+
         <TextView
             android:id="@+id/gefluechtet"
             android:textSize="20dp"

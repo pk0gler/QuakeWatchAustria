@@ -15,24 +15,30 @@ public class SubActivity_News_Detail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_news);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         //toolbar.setNavigationIcon(R.drawable.ic_menu_back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        switch (getIntent().getIntExtra("position",1)) {
-            case 0: toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[0], null, getBaseContext().getPackageName())));
+        switch (getIntent().getIntExtra("position", 1)) {
+            case 0:
+                toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[0], null, getBaseContext().getPackageName())));
                 break;
-            case 1: toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[1], null, getBaseContext().getPackageName())));
+            case 1:
+                toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[1], null, getBaseContext().getPackageName())));
                 break;
-            case 2: toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[2], null, getBaseContext().getPackageName())));
+            case 2:
+                toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[2], null, getBaseContext().getPackageName())));
                 break;
-            case 3: toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[3], null, getBaseContext().getPackageName())));
+            case 3:
+                toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[3], null, getBaseContext().getPackageName())));
                 break;
-            case 4: toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[4], null, getBaseContext().getPackageName())));
+            case 4:
+                toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[4], null, getBaseContext().getPackageName())));
                 break;
-            case 5: toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[5], null, getBaseContext().getPackageName())));
+            case 5:
+                toolbar.setBackgroundDrawable(getResources().getDrawable(getBaseContext().getResources().getIdentifier(CustomIntensity.bilder[5], null, getBaseContext().getPackageName())));
                 break;
         }
     }

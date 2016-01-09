@@ -1,4 +1,5 @@
 package com.quakewatch.ekos.quakewatchaustria;
+
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -9,7 +10,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapAct extends Activity {
-    static final LatLng TutorialsPoint = new LatLng(21 , 57);
+    static final LatLng TutorialsPoint = new LatLng(21, 57);
     private GoogleMap googleMap;
 
     @Override
@@ -25,8 +26,7 @@ public class MapAct extends Activity {
             googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
             Marker TP = googleMap.addMarker(new MarkerOptions().
                     position(TutorialsPoint).title("TutorialsPoint"));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

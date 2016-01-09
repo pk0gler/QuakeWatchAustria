@@ -45,11 +45,11 @@ public class SubActivity_News extends AppCompatActivity {
         ContactAdapter.OnItemClickListener clickListener = new ContactAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getBaseContext(),"Pos: "+position,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Pos: " + position, Toast.LENGTH_SHORT).show();
                 Log.d("Card", "drin");
                 //actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.canada));
                 Intent i = new Intent(getBaseContext(), SubActivity_News_Detail.class);
-                i.putExtra("position",position);
+                i.putExtra("position", position);
                 startActivity(i);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }

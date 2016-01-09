@@ -16,6 +16,9 @@ import android.support.v4.widget.Space;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -25,6 +28,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
@@ -73,6 +77,7 @@ public class Fragment_AT extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         v = inflater.inflate(R.layout.list_layout_at, container, false);
         actionButtonMain = (ActionButton) v.findViewById(R.id.action_button_main);
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
@@ -303,6 +308,23 @@ public class Fragment_AT extends Fragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_frag, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                Toast.makeText(getContext(), "hi", Toast.LENGTH_LONG).show();
+                new AsyncTaskParseJson().execute();
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         //getActivity().getIntent().getExtras().get("save");
@@ -334,9 +356,10 @@ public class Fragment_AT extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             mDialog = new ProgressDialog(context);
             mDialog.setMessage("Beben werden geladen...");
+            mDialog.setCancelable(false);
+            mDialog.setCanceledOnTouchOutside(false);
             mDialog.show();
         }
 
@@ -367,15 +390,15 @@ public class Fragment_AT extends Fragment {
                     Double lon = b.getDouble("lon");
                     double depth = Double.parseDouble(b.getString("depth"));
                     JSONArray places = b.getJSONArray("places");
+                    int id = c.getInt("id");
                     //String username = c.getString("magtype");
-                    Log.d("newjson","err"+mag);
                     // show the values in our logcat
                     //Log.e("MyJsonAt", "|" + flynn_region + "|");
                     if ((mag >= minMag)) {
                         Log.e("testla", "JA");
-                        values.add(new Erdbeben(mag, flynn_region, time, depth, lat, lon, places));
+                        values.add(new Erdbeben(mag, flynn_region, time, depth, lat, lon, places, id));
                     }//} else
-                        //Log.e("testla", "NEIN");
+                    //Log.e("testla", "NEIN");
 
                 }
                 //JSONObject ob = json.getJSONObject("properties");
@@ -395,16 +418,16 @@ public class Fragment_AT extends Fragment {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     /**Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
-                    boolean isNow = true;
-                    //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
-                    i.putExtra("state", isNow);
-                    i.putExtra("bebenData", temp);
-                    startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
-                    return true;**/
+                     boolean isNow = true;
+                     //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
+                     Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                     i.putExtra("state", isNow);
+                     i.putExtra("bebenData", temp);
+                     startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
+                     return true;**/
                     //Toast.makeText(getContext(), "Beben auf map anzeigen", Toast.LENGTH_LONG).show();
                     Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
-                    ((MainActivity) getActivity()).setPager(3,temp);
+                    ((MainActivity) getActivity()).setPager(3, temp);
                     return true;
                 }
             });
