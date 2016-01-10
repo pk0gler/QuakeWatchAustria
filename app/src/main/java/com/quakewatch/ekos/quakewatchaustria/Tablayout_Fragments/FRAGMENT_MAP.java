@@ -1,6 +1,7 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -133,10 +135,12 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
         } else if ((mag >= 7) && (mag <= 8.9)) {
             tempf = 0.9f;
         }
+        Color.RGBToHSV(183, 28, 28, new float[3]);
+        //Log.d("Hue", );
         mine = mGoogleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(temp.lat, temp.lon))
                 .title(temp.getRegion())
-                .alpha(tempf)
+                .icon(BitmapDescriptorFactory.defaultMarker(getHue(mag)))
                 .snippet("Mag: " + String.valueOf(temp.getMag())));
         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mine.getPosition(), 6));
         mine.showInfoWindow();
@@ -156,7 +160,7 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.refresh:
-                Toast.makeText(getContext(),"hi",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "hi", Toast.LENGTH_LONG).show();
                 new AsyncTaskParseJson().execute();
                 return false;
             default:
@@ -248,10 +252,62 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
                 Marker temp = mGoogleMap.addMarker(new MarkerOptions()
                         .position(new LatLng(values[i].lat, values[i].lon))
                         .title(values[i].getRegion())
-                        .alpha(tempf)
+                        .icon(BitmapDescriptorFactory.defaultMarker(getHue(values[i].getMag())))
                         .snippet("Mag: " + values[i].getMag()));
                 markerId.put(temp.getId(), values[i]);
             }
         }
     }
+
+    public float getHue(double mag) {
+        float erg = 0;
+        if ((mag >= 1.0) && (mag <= 1.49)) {
+            erg = 123;
+        } else if ((mag >= 1.50) && (mag <= 1.99)) {
+            erg = 80;
+        } else if ((mag >= 2.0) && (mag <= 2.49)) {
+            erg = 80;
+        } else if ((mag >= 2.50) && (mag <= 2.99)) {
+            erg = 80;
+        }
+        if ((mag >= 3.0) && (mag <= 3.49)) {
+            erg = 54;
+        }
+        if ((mag >= 3.50) && (mag <= 3.99)) {
+            erg = 49;
+        } else if ((mag >= 4.0) && (mag <= 4.49))
+
+        {
+            erg = 36;
+        }
+
+        if ((mag >= 4.50) && (mag <= 4.99))
+
+        {
+            erg = 36;
+        }
+
+        if ((mag >= 5.0) && (mag <= 5.49))
+
+        {
+            erg = 33;
+        } else if ((mag >= 5.50) && (mag <= 5.99)) {
+            erg = 231;
+        }
+        if ((mag >= 6.0) && (mag <= 6.49)) {
+            erg = 231;
+        }
+        if ((mag >= 6.50) && (mag <= 6.99)) {
+           erg = 231;
+        } else if ((mag >= 7.0) && (mag <= 7.99)) {
+            erg = 262;
+        }
+        if ((mag >= 8.0) && (mag <= 8.99)) {
+            erg = 260;
+        } else if ((mag >= 9.0) && (mag <= 12)) {
+            erg =0;
+        }
+        return erg;
+    }
+
 }

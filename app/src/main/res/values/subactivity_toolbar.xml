@@ -8,6 +8,7 @@
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
     </style>
 
+
     <style name="AppThemeDetail" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/ColorPrimary</item>

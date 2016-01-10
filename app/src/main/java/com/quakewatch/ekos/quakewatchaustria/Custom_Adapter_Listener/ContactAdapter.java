@@ -53,15 +53,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     private void setAnimation(View viewToAnimate, int position) {
         Log.d("Duration", position + "--" + lastPosition);
         // If the bound view wasn't previously displayed on screen, it's animated
+        //if (lastPosition==position) lastPosition = -1;
         if ((position > lastPosition)) {
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
-
-            //animation.setDuration(900);
-            viewToAnimate.startAnimation(animation);
-            lastPosition = position;
-        }
-        if ((lastPosition > position)) {
-            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
 
             //animation.setDuration(900);
             viewToAnimate.startAnimation(animation);

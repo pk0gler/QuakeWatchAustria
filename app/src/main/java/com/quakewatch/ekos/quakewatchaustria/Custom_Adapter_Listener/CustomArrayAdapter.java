@@ -234,14 +234,7 @@ public class CustomArrayAdapter extends ArrayAdapter {
         }
         if ((position > lastPosition)) {
             Animation animation = AnimationUtils.loadAnimation(getContext(), android.R.anim.slide_in_left);
-
-            //animation.setDuration(900);
-            convertView.startAnimation(animation);
-            lastPosition = position;
-        }
-        if ((lastPosition > position)) {
-            Animation animation = AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_in);
-
+            animation.setDuration(300);
             //animation.setDuration(900);
             convertView.startAnimation(animation);
             lastPosition = position;

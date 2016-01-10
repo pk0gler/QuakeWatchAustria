@@ -1,5 +1,6 @@
 package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -8,12 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.DetailStringAdapter;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.DetailStrings;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
 
 import java.util.ArrayList;
 
@@ -42,7 +44,6 @@ public class Map_Fragment extends DialogFragment {
         region = (TextView) rootView.findViewById(R.id.textView3);
         date.setText(beben.getDate());
         region.setText(beben.getRegion());
-        fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         ArrayList<String> values2 = new ArrayList<>();
         String[] values = new String[]{"Region: \t" + beben.getRegion(),
                 "Magnitude: \t" + beben.getMag(),
@@ -69,14 +70,75 @@ public class Map_Fragment extends DialogFragment {
         listView.setAdapter(adapter);
         // Do something else
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),
-                        "Bin da", Toast.LENGTH_LONG)
-                        .show();
-            }
-        });
+
+
+        double mag = beben.getMag();
+        TextView magT = (TextView)rootView.findViewById(R.id.mag);
+        magT.setText(beben.getMag()+"");
+        RelativeLayout img = (RelativeLayout) rootView.findViewById(R.id.header);
+
+
+        if ((mag >= 1.0) && (mag <= 1.49)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[0]));
+        } else if ((mag >= 1.50) && (mag <= 1.99)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[1]));
+        } else if ((mag >= 2.0) && (mag <= 2.49)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[2]));
+        }
+
+         /*NEXT COLOR*/
+        else if ((mag >= 2.50) && (mag <= 2.99)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[2]));
+        }
+        if ((mag >= 3.0) && (mag <= 3.49)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[4]));
+        }
+        if ((mag >= 3.50) && (mag <= 3.99)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[5]));
+        }
+
+    /*NEXT COLOR*/
+
+        else if ((mag >= 4.0) && (mag <= 4.49))
+
+        {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[6]));
+        }
+
+        if ((mag >= 4.50) && (mag <= 4.99))
+
+        {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[7]));
+        }
+
+        if ((mag >= 5.0) && (mag <= 5.49))
+
+        {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[8]));
+        }
+
+/*NEXT COLOR*/
+        else if ((mag >= 5.50) && (mag <= 5.99)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[9]));
+        }
+        if ((mag >= 6.0) && (mag <= 6.49)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[10]));
+        }
+        if ((mag >= 6.50) && (mag <= 6.99)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[11]));
+        }
+
+        /*NEXT COLOR*/
+        else if ((mag >= 7.0) && (mag <= 7.99)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[12]));
+        }
+        if ((mag >= 8.0) && (mag <= 8.99)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[13]));
+        }
+        /*NEXT COLOR*/
+        else if ((mag >= 9.0) && (mag <= 12)) {
+            img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[14]));
+        }
         return rootView;
     }
 }

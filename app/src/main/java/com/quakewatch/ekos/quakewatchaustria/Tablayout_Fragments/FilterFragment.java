@@ -48,11 +48,11 @@ public class FilterFragment extends DialogFragment {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
 
-        Spinner spinner3 = (Spinner) view.findViewById(R.id.spinnerDistance);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getActivity(),
-                R.array.distance, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner3.setAdapter(adapter3);
+        Spinner spinner4 = (Spinner) view.findViewById(R.id.spinnerLimit);
+        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(getActivity(),
+                R.array.limit, android.R.layout.simple_spinner_item);
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner4.setAdapter(adapter4);
 
 
         builder.setView(view);
