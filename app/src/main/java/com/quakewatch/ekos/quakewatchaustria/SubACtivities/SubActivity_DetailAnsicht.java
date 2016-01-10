@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.DetailStringAdapter;
 import com.quakewatch.ekos.quakewatchaustria.R;
@@ -148,14 +149,16 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         DetailStringAdapter adapter = new DetailStringAdapter(this,
                 R.layout.deatiail_string, strings);
         list.setAdapter(adapter);
-        /*TextView textDate = (TextView) findViewById(R.id.textDate);
+        TextView textDate = (TextView) findViewById(R.id.textDate);
         TextView textTime = (TextView) findViewById(R.id.textTime);
-        TextView textLocation = (TextView) findViewById(R.id.textViewLocation);
-        TextView values = (TextView) findViewById(R.id.textViewProperties);
-        values.setText(bebenData.getRegion()+"\n"+bebenData.getMag()+"\n"+bebenData.getDepth()+"\n"+bebenData.getTime()+"\n"
-        +"5.0, 1.3, -5.0");*/
+        TextView textlocation = (TextView) findViewById(R.id.textViewLocation);
         double temp = bebenData.getMag();
         double mag = temp;
+        TextView magnitude = (TextView) findViewById(R.id.textMag);
+        magnitude.setText(""+mag);
+        textDate.setText(bebenData.getDate());
+        textTime.setText(bebenData.getTime());
+        textlocation.setText(bebenData.getRegion());
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

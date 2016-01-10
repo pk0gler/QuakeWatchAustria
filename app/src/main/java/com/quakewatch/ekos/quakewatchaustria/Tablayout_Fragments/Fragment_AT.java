@@ -319,6 +319,10 @@ public class Fragment_AT extends Fragment {
                 Toast.makeText(getContext(), "hi", Toast.LENGTH_LONG).show();
                 new AsyncTaskParseJson().execute();
                 return false;
+            case R.id.filter:
+                FilterFragment dFragment = new FilterFragment();
+                // Show DialogFragmen
+                dFragment.show(getFragmentManager(), "Dialog Fragment");
             default:
                 return super.onOptionsItemSelected(item);
         }

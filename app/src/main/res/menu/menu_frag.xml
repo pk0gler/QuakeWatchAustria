@@ -8,4 +8,9 @@
         android:icon="@drawable/ic_cached_white_24dp"
         android:title="refresh"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/filter"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="refresh"
+        app:showAsAction="ifRoom" />
 </menu>

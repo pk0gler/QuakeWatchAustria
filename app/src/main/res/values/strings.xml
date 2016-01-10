@@ -17,4 +17,33 @@
     <string name="title_activity_sub_activity__app__guide">SubActivity_App_Guide</string>
     <string name="title_activity_sub_activity__news">SubActivity_News</string>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <string-array name="magAa">
+        <item>1</item>
+        <item>1.0+</item>
+        <item>2.0+</item>
+        <item>3.0+</item>
+        <item>4.0+</item>
+        <item>5.0+</item>
+        <item>6.0+</item>
+        <item>7.0+</item>
+        <item>8.0+</item>
+        <item>9.0+</item>
+    </string-array>
+
+    <string-array name="date">
+        <item>Letzte Stunde</item>
+        <item>Heute</item>
+        <item>Letzten 24 Stunden</item>
+        <item>Letzte Woche</item>
+        <item>Alle</item>
+    </string-array>
+
+    <string-array name="distance">
+        <item>Near me</item>
+        <item>1000 km entfernt</item>
+        <item>2000 km entfernt</item>
+        <item>3000 km entfernt</item>
+        <item>Alle</item>
+    </string-array>
 </resources>

@@ -16,6 +16,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
+        android:elevation="5dp"
         android:layout_alignParentEnd="true"
         android:cropToPadding="false" />
 
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="60sp"
+        android:elevation="10dp"
         android:text="3.0"
         android:id="@+id/textMag"
         android:textColor="#FFFFFF"
@@ -35,6 +37,7 @@
         android:layout_marginTop="15dp" />
 
     <TextView
+        android:elevation="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -50,6 +53,7 @@
         android:layout_marginLeft="20dp" />
 
     <TextView
+        android:elevation="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -63,6 +67,7 @@
         android:layout_marginTop="10dp" />
 
     <TextView
+        android:elevation="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -77,6 +82,7 @@
         android:layout_marginTop="10dp" />
 
     <android.support.design.widget.FloatingActionButton
+        android:elevation="10dp"
         android:id="@+id/fab_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
