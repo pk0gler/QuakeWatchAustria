@@ -194,7 +194,7 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
                 JsonParser jParser = new JsonParser();
 
                 // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Welt&limit=30");
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Welt&limit=30"+"&orderby=time");
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users

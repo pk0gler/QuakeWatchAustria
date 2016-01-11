@@ -163,8 +163,8 @@ public class CustomArrayAdapter extends ArrayAdapter {
          /**
          * This if divides by the magnitude which color to use
          */
-        if ((mag >= 0) && (mag <= 2.4)) {
-            if ((mag >= 1) && (mag <= 1.49)) {
+        if ((mag >= 0) && (mag <= 2.49)) {
+            if ((mag >= 0) && (mag <= 1.49)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[0]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[0]));
             }
@@ -172,7 +172,7 @@ public class CustomArrayAdapter extends ArrayAdapter {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[1]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[1]));
             }
-            if ((mag >= 2.0) && (mag <= 2.49)) {
+            if ((mag >= 2.00) && (mag <= 2.49)) {
                 holder.textMag.setTextColor(Color.parseColor(colorCodes[2]));
                 holder.icon.setBackgroundColor(Color.parseColor(colorCodes[2]));
             }

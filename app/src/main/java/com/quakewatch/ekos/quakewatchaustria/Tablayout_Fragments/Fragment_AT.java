@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.Space;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +31,7 @@ import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
+import com.quakewatch.ekos.quakewatchaustria.Interfaces.onSpinnerClick;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
@@ -46,7 +46,7 @@ import java.util.ArrayList;
 /**
  * Created by pkogler on 22.10.2015.
  */
-public class Fragment_AT extends Fragment {
+public class Fragment_AT extends Fragment implements onSpinnerClick {
 
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
     private ImageButton FAB;
@@ -54,7 +54,7 @@ public class Fragment_AT extends Fragment {
     private ActionButton actionButtonNow;
     private ActionButton actionButtonMain;
     private ActionButton actionButtonAndere;
-    private Double minMag;
+    private Double minMag=0.0;
     ListView listView;
 
     private View v;
@@ -73,6 +73,8 @@ public class Fragment_AT extends Fragment {
     private ViewPagerAdapter pager;
 
     private ArrayList<Erdbeben> values = new ArrayList<>();
+    private String[] spinnerValues = {"0.0+","","10"};
+    private boolean filter;
 
 
     @Override
@@ -320,9 +322,9 @@ public class Fragment_AT extends Fragment {
                 new AsyncTaskParseJson().execute();
                 return false;
             case R.id.filter:
-                FilterFragment dFragment = new FilterFragment();
-                // Show DialogFragmen
+                FilterFragment dFragment = new FilterFragment(this,this.spinnerValues);
                 dFragment.show(getFragmentManager(), "Dialog Fragment");
+                filter = true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -344,8 +346,15 @@ public class Fragment_AT extends Fragment {
         this.magStaerke = SP.getString("magType", "1").charAt(0) + "";
         Log.d("Magni", Integer.parseInt(magStaerke) + "");
         listView = (ListView) v.findViewById(R.id.listAt);
+        //listView.setOverScrollMode(ListView.OVER_SCROLL_NEVER);
         SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(getContext());
         this.minMag = Double.parseDouble(spf.getString("magType", "1"));
+        new AsyncTaskParseJson().execute();
+    }
+
+    @Override
+    public void saveSpinnerData(String[] values) {
+        this.spinnerValues = values;
         new AsyncTaskParseJson().execute();
     }
 
@@ -370,11 +379,13 @@ public class Fragment_AT extends Fragment {
         @Override
         protected String doInBackground(String... arg0) {
             try {
+                values = new ArrayList<>();
                 // instantiate our json parser
                 JsonParser jParser = new JsonParser();
 
                 // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Austria&limit=100&mag>=1");
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Austria&limit=" + spinnerValues[2] + "&orderby=time");
+                minMag = Double.valueOf(spinnerValues[0].substring(0,2));
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -418,6 +429,10 @@ public class Fragment_AT extends Fragment {
         @Override
         protected void onPostExecute(String strFromDoInBg) {
             mDialog.dismiss();
+            if (filter) {
+                filter = false;
+                Toast.makeText(getContext(),values.size()+" Ergebnisse gefunden",Toast.LENGTH_SHORT).show();
+            }
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -438,11 +453,7 @@ public class Fragment_AT extends Fragment {
             //values.add(new Erdbeben());
             ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
             listView.setAdapter(adapter);
-
-            Space space = new Space(listView.getContext());
-            space.setMinimumHeight(dpToPx(120));
-            listView.addFooterView(space);
-
+            listView.deferNotifyDataSetChanged();
             //listView.addFooterView(new View());
             listView.setOnItemClickListener(
                     new AdapterView.OnItemClickListener() {

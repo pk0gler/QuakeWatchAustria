@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
+import com.quakewatch.ekos.quakewatchaustria.Interfaces.onSpinnerClick;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
@@ -36,11 +37,13 @@ import java.util.ArrayList;
 /**
  * Created by pkogler on 22.10.2015.
  */
-public class FRAGMENT_WELT extends Fragment {
+public class FRAGMENT_WELT extends Fragment implements onSpinnerClick {
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
     Context context;
     private float mActionBarHeight;
     private ActionBar mActionBar;
+
+    public boolean filter;
 
     ListView listView;
     String magStaerke;
@@ -48,7 +51,8 @@ public class FRAGMENT_WELT extends Fragment {
     View v;
     ArrayList<Erdbeben> values;
     ArrayAdapter<String> adapter;
-    private double minMag;
+    private double minMag=0;
+    private String[] spinnerValues = {"0.0+","","10"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,9 +75,10 @@ public class FRAGMENT_WELT extends Fragment {
                 new AsyncTaskParseJson().execute();
                 return false;
             case R.id.filter:
-                FilterFragment dFragment = new FilterFragment();
+                FilterFragment dFragment = new FilterFragment(this,this.spinnerValues);
                 // Show DialogFragmen
                 dFragment.show(getFragmentManager(), "Dialog Fragment");
+                filter = true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -90,8 +95,6 @@ public class FRAGMENT_WELT extends Fragment {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
         this.magStaerke = SP.getString("magType", "1").charAt(0) + "";
         Log.d("Magni", Integer.parseInt(magStaerke) + "");
-        SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(getContext());
-        this.minMag = Double.parseDouble(spf.getString("magType", "1"));
         new AsyncTaskParseJson().execute();
         //return v;
     }
@@ -102,6 +105,12 @@ public class FRAGMENT_WELT extends Fragment {
             temp[i] = values.get(i);
         }
         return temp;
+    }
+
+    @Override
+    public void saveSpinnerData(String[] values) {
+        this.spinnerValues = values;
+        new AsyncTaskParseJson().execute();
     }
 
 
@@ -131,7 +140,8 @@ public class FRAGMENT_WELT extends Fragment {
                 JsonParser jParser = new JsonParser();
 
                 // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Welt&limit=100");
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Welt&limit=" + spinnerValues[2] + "&orderby=time");
+                minMag = Double.parseDouble(spinnerValues[0].substring(0,2));
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -157,7 +167,7 @@ public class FRAGMENT_WELT extends Fragment {
                     Log.e("MyJsonWelt", "mag: " + mag
                             + ", flynn_region: " + flynn_region
                             + ", time: " + time);
-                    if (mag >= minMag)
+                    //if (mag >= minMag)
                         values.add(i, new Erdbeben(mag, flynn_region, time, depth, lat, lon, places, id));
                 }
                 //JSONObject ob = json.getJSONObject("properties");
@@ -174,8 +184,13 @@ public class FRAGMENT_WELT extends Fragment {
         @Override
         protected void onPostExecute(String strFromDoInBg) {
             mDialog.dismiss();
+            if (filter) {
+                filter = false;
+                Toast.makeText(getContext(),values.size()+" Ergebnisse gefunden",Toast.LENGTH_SHORT).show();
+            }
             listView = (ListView) v.findViewById(R.id.listWorld);
             listView.setAdapter(adapter);
+            listView.deferNotifyDataSetChanged();
             listView.setOnItemClickListener(
                     new AdapterView.OnItemClickListener() {
                         @Override

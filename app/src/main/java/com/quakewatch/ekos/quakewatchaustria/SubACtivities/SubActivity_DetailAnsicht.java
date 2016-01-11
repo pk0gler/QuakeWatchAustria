@@ -162,13 +162,13 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        if ((mag >= 1) && (mag <= 2.49)) {
+        if ((mag >= 0) && (mag <= 2.49)) {
             if (android.os.Build.VERSION.SDK_INT >= 21)
                 window.setStatusBarColor(Color.parseColor(colorCodes[15]));
             butMap.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[15])));
             if (this.butJetzt != null)
                 butJetzt.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCodes[15])));
-            if ((mag >= 1.0) && (mag <= 1.49)) {
+            if ((mag >= 0) && (mag <= 1.49)) {
                 icon.setBackgroundColor(Color.parseColor(colorCodes[0]));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(colorCodes[0])));
             }

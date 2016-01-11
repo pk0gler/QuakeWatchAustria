@@ -22,7 +22,8 @@
             android:clickable="true"
             android:contextClickable="true"
             android:drawSelectorOnTop="false"
-            android:background="#FFFFFF" />
+            android:background="#FFFFFF"
+            android:paddingBottom="100dp" />
 
         <Button
             android:layout_width="wrap_content"

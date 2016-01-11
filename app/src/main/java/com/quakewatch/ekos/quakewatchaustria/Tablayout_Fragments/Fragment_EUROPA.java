@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
+import com.quakewatch.ekos.quakewatchaustria.Interfaces.onSpinnerClick;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 /**
  * Created by pkogler on 22.10.2015.
  */
-public class Fragment_EUROPA extends Fragment {
+public class Fragment_EUROPA extends Fragment implements onSpinnerClick {
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
     ListView listView;
     View v;
@@ -46,7 +47,9 @@ public class Fragment_EUROPA extends Fragment {
     private boolean jetzt = true;
     private ArrayList<Erdbeben> values = new ArrayList<>();
     Context context;
-    private double minMag;
+    private double minMag=0;
+    private String[] spinnerValues = {"0.0+","","10"};
+    private boolean filter = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,13 +69,14 @@ public class Fragment_EUROPA extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.refresh:
-                Toast.makeText(getContext(),"hi",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "hi", Toast.LENGTH_LONG).show();
                 new AsyncTaskParseJson().execute();
                 return false;
             case R.id.filter:
-                FilterFragment dFragment = new FilterFragment();
+                FilterFragment dFragment = new FilterFragment(this,this.spinnerValues);
                 // Show DialogFragmen
                 dFragment.show(getFragmentManager(), "Dialog Fragment");
+                filter = true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -95,7 +99,12 @@ public class Fragment_EUROPA extends Fragment {
         listView = (ListView) v.findViewById(R.id.listEu);
         listView.setEmptyView(v.findViewById(R.id.empty));
         SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(getContext());
-        this.minMag = Double.parseDouble(spf.getString("magType", "1"));
+        new AsyncTaskParseJson().execute();
+    }
+
+    @Override
+    public void saveSpinnerData(String[] values) {
+        this.spinnerValues = values;
         new AsyncTaskParseJson().execute();
     }
 
@@ -115,55 +124,17 @@ public class Fragment_EUROPA extends Fragment {
             mDialog.setCanceledOnTouchOutside(false);
             mDialog.show();
         }
+
         @Override
         protected String doInBackground(String... arg0) {
             try {
-                /*
+                values = new ArrayList<>();
                 // instantiate our json parser
                 JsonParser jParser = new JsonParser();
 
                 // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Austria&limit=100");
-                dataJsonArr = json.getJSONArray("features");
-
-                // loop through all users
-                for (int i = 0; i < dataJsonArr.length(); i++) {
-
-                    JSONObject c = dataJsonArr.getJSONObject(i);
-                    JSONObject b = c.getJSONObject("properties");
-
-                    //Jason Parsing Methode
-                    //Server umstellungen dynamisch
-
-                    // Storing each json item in variable
-                    Double mag = Double.parseDouble(b.getString("mag"));
-                    String flynn_region = b.getString("flynn_region");
-                    String time = b.getString("time");
-                    Double lat = b.getDouble("lat");
-                    Double lon = b.getDouble("lon");
-                    double depth = Double.parseDouble(b.getString("depth"));
-                    //String username = c.getString("magtype");
-                     // show the values in our logcat
-                    Log.e("MyJsonAt", "|" + flynn_region + "|");
-                    //if (flynn_region.equals("AUSTRIA")) {
-                    //Log.e("testla", "JA");
-                    values.add(new Erdbeben(mag, flynn_region, time, depth, lat,lon));
-                    //} else
-                    // Log.e("testla", "NEIN");
-
-                }
-                //JSONObject ob = json.getJSONObject("properties");
-                //values.add(0,ob.getString("magType"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            //values.add(0,"hi");*/
-
-                // instantiate our json parser
-                JsonParser jParser = new JsonParser();
-
-                // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Europa&limit=100&mag>=1");
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Europa&limit="+spinnerValues[2]+"&orderby=time");
+                minMag = Double.parseDouble(spinnerValues[0].substring(0,2));
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -209,8 +180,13 @@ public class Fragment_EUROPA extends Fragment {
         @Override
         protected void onPostExecute(String strFromDoInBg) {
             mDialog.dismiss();
+            if (filter) {
+                filter = false;
+                Toast.makeText(getContext(),values.size()+" Ergebnisse gefunden",Toast.LENGTH_SHORT).show();
+            }
             ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
             listView.setAdapter(adapter);
+            listView.deferNotifyDataSetChanged();
             listView.setOnItemClickListener(
                     new AdapterView.OnItemClickListener() {
                         @Override
