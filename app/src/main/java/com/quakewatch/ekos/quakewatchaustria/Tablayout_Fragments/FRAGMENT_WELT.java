@@ -33,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by pkogler on 22.10.2015.
@@ -52,7 +53,7 @@ public class FRAGMENT_WELT extends Fragment implements onSpinnerClick {
     ArrayList<Erdbeben> values;
     ArrayAdapter<String> adapter;
     private double minMag=0;
-    private String[] spinnerValues = {"0.0+","","10"};
+    private String[] spinnerValues = {"0.0+","","10","nach Datum"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -167,14 +168,17 @@ public class FRAGMENT_WELT extends Fragment implements onSpinnerClick {
                     Log.e("MyJsonWelt", "mag: " + mag
                             + ", flynn_region: " + flynn_region
                             + ", time: " + time);
-                    //if (mag >= minMag)
-                        values.add(i, new Erdbeben(mag, flynn_region, time, depth, lat, lon, places, id));
+                    double testMag = minMag;
+                    if (mag >= minMag) {
+                        values.add(new Erdbeben(mag, flynn_region, time, depth, lat, lon, places, id));
+                    }
                 }
                 //JSONObject ob = json.getJSONObject("properties");
                 //values.add(0,ob.getString("magType"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            if (spinnerValues[3].equals("nach Magnitude")) Collections.sort(values);
             //values.add(0,"hi");
             adapter = new CustomArrayAdapter(getContext(), values);
             return null;

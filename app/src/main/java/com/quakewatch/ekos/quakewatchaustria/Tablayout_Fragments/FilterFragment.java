@@ -65,6 +65,12 @@ public class FilterFragment extends DialogFragment {
         adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner4.setAdapter(adapter4);
 
+        final Spinner spinner5 = (Spinner) view.findViewById(R.id.spinnerSort);
+        ArrayAdapter<CharSequence> adapter5 = ArrayAdapter.createFromResource(getActivity(),
+                R.array.sort, android.R.layout.simple_spinner_item);
+        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner5.setAdapter(adapter5);
+
 
         spinner.post(new Runnable() {
             @Override
@@ -85,20 +91,33 @@ public class FilterFragment extends DialogFragment {
             }
         });
 
+        spinner4.post(new Runnable() {
+            @Override
+            public void run() {
+                spinner5.setSelection(getRightSort());
+            }
+        });
+
 
         builder.setView(view);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String[] data = new String[3];
+                String[] data = new String[4];
                 data[0] = spinner.getSelectedItem().toString();
                 data[1] = spinner2.getSelectedItem().toString();
                 data[2] = spinner4.getSelectedItem().toString();
+                data[3] = spinner5.getSelectedItem().toString();
                 saveSpinner.saveSpinnerData(data);
             }
         });
         builder.setNegativeButton("Abbrechen", null);
         return builder.create();
+    }
+
+    private int getRightSort() {
+        if (this.spinnerValues[3].equals("nach Datum")) return 1;
+        return 0;
     }
 
     private int getRightLim() {

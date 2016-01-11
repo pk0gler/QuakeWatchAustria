@@ -59,14 +59,14 @@
             android:layout_marginRight="20dp"></Spinner>
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="0dp"
-        android:text="Limit"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold"
-        android:textColor="#000000"></TextView>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:text="Limit"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:textColor="#000000"></TextView>
 
         <Spinner
             android:id="@+id/spinnerLimit"
@@ -78,12 +78,25 @@
             android:layout_marginBottom="20dp"
             android:layout_marginRight="20dp"></Spinner>
 
-        <CheckBox
-            android:id="@+id/saveFilter"
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="0dp"
+        android:text="Sortieren nach"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:textColor="#000000"></TextView>
+
+        <Spinner
+            android:id="@+id/spinnerSort"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="Standard Filtert"/>
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:spinnerMode="dropdown"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"></Spinner>
 
     </TableLayout>
 </RelativeLayout>

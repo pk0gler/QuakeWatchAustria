@@ -42,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by pkogler on 22.10.2015.
@@ -73,7 +74,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick {
     private ViewPagerAdapter pager;
 
     private ArrayList<Erdbeben> values = new ArrayList<>();
-    private String[] spinnerValues = {"0.0+","","10"};
+    private String[] spinnerValues = {"0.0+","","10","nach Datum"};
     private boolean filter;
 
 
@@ -422,6 +423,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick {
                 e.printStackTrace();
             }
             //values.add(0,"hi");
+            if (spinnerValues[3].equals("nach Magnitude")) Collections.sort(values);
             return null;
         }
 

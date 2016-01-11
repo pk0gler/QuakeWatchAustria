@@ -17,7 +17,7 @@ import java.util.HashMap;
  * Type Erdbeben.
  * It also contains an array which has all used Countries in Europe
  */
-public class Erdbeben implements Serializable {
+public class Erdbeben implements Serializable, Comparable<Erdbeben> {
     public final static String[] countries = {
             "ALBANIA",
             "ANDORRA",
@@ -270,5 +270,19 @@ public class Erdbeben implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+
+    @Override
+    public int compareTo(Erdbeben another) {
+        if (this.getMag() == another.getMag()) {
+            return 0;
+        } else if (this.getMag() >= another.getMag()) {
+            return 1;
+        } else if (this.getMag() <= another.getMag()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }

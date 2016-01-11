@@ -33,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by pkogler on 22.10.2015.
@@ -48,7 +49,7 @@ public class Fragment_EUROPA extends Fragment implements onSpinnerClick {
     private ArrayList<Erdbeben> values = new ArrayList<>();
     Context context;
     private double minMag=0;
-    private String[] spinnerValues = {"0.0+","","10"};
+    private String[] spinnerValues = {"0.0+","","10","nach Datum"};
     private boolean filter = false;
 
     @Override
@@ -172,7 +173,7 @@ public class Fragment_EUROPA extends Fragment implements onSpinnerClick {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            if (spinnerValues[3].equals("nach Magnitude")) Collections.sort(values);
             return null;
         }
 
