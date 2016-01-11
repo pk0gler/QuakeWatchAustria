@@ -40,8 +40,8 @@ public class Map_Fragment extends DialogFragment {
                 false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         listView = (ListView) rootView.findViewById(R.id.list);
-        date = (TextView) rootView.findViewById(R.id.textView4);
-        region = (TextView) rootView.findViewById(R.id.textView3);
+        date = (TextView) rootView.findViewById(R.id.textDate);
+        region = (TextView) rootView.findViewById(R.id.textViewLocation);
         date.setText(beben.getDate());
         region.setText(beben.getRegion());
         ArrayList<String> values2 = new ArrayList<>();
@@ -73,12 +73,12 @@ public class Map_Fragment extends DialogFragment {
 
 
         double mag = beben.getMag();
-        TextView magT = (TextView)rootView.findViewById(R.id.mag);
+        TextView magT = (TextView)rootView.findViewById(R.id.textMag);
         magT.setText(beben.getMag()+"");
         RelativeLayout img = (RelativeLayout) rootView.findViewById(R.id.header);
 
 
-        if ((mag >= 1.0) && (mag <= 1.49)) {
+        if ((mag >= 0) && (mag <= 1.49)) {
             img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[0]));
         } else if ((mag >= 1.50) && (mag <= 1.99)) {
             img.setBackgroundColor(Color.parseColor(SubActivity_DetailAnsicht.colorCodes[1]));

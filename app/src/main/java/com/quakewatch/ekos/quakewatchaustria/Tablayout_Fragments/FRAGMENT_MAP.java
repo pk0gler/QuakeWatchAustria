@@ -261,7 +261,7 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
 
     public float getHue(double mag) {
         float erg = 0;
-        if ((mag >= 1.0) && (mag <= 1.49)) {
+        if ((mag >= 0) && (mag <= 1.49)) {
             erg = 123;
         } else if ((mag >= 1.50) && (mag <= 1.99)) {
             erg = 80;

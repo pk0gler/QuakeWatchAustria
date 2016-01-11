@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -14,15 +15,19 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 
 public class SubActivity_Guide extends AppCompatActivity {
     private WebView webView;
-    ProgressDialog mDialog;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_activity__guide);
         webView = (WebView) findViewById(R.id.webapp);
+        pd = new ProgressDialog(this);
+        pd.setMessage("Please wait Loading...");
+        pd.show();
         webView.loadUrl("http://www.zamg.ac.at/cms/de/geophysik/erdbeben/verhaltensratgeber/verhalten-in-oesterreich");
-        WebViewClient myClient = new WebViewClient();
+        webView.setWebChromeClient(new WebChromeClient());
+        WebViewClient myClient = new WebClient();
         webView.setWebViewClient(myClient);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setLoadWithOverviewMode(true);
@@ -53,7 +58,8 @@ public class SubActivity_Guide extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // app icon in action bar clicked; go home
-                finish();
+                if (webView.getUrl().equals("http://www.zamg.ac.at/cms/de/geophysik/erdbeben/verhaltensratgeber/verhalten-in-oesterreich")) finish();
+                webView.goBack();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -64,17 +70,20 @@ public class SubActivity_Guide extends AppCompatActivity {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-           return true;
+            view.loadUrl(url);
+            return true;
         }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-
+            pd.show();
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            mDialog.dismiss();
+            if (pd.isShowing()) {
+                pd.dismiss();
+            }
         }
 
     }

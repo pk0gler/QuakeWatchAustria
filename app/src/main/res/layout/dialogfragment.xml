@@ -10,43 +10,68 @@
         android:background="@color/ColorPrimary">
 
 
+
         <TextView
-            android:id="@+id/mag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="45sp"
+            android:elevation="10dp"
+            android:clickable="false"
+            android:text="3.0"
+            android:id="@+id/textMag"
+            android:textColor="#FFFFFF"
+            android:gravity="center_vertical|center_horizontal"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="3dp"
             android:layout_marginLeft="20dp"
-            android:textSize="40sp"
-            android:layout_marginTop="35dp"
-            android:text="1.28"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF" />
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:elevation="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/mag"
-            android:layout_marginLeft="15dp"
-            android:layout_toEndOf="@+id/mag"
-            android:layout_toRightOf="@+id/mag"
-            android:text="Austria"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wien"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Unzmarkt /Österreich"
             android:textColor="#FFFFFF"
-            android:layout_alignBottom="@+id/mag"
-            android:layout_alignLeft="@+id/textView3"
-            android:layout_alignStart="@+id/textView3" />
+            android:textSize="16sp"
+            android:id="@+id/textViewLocation"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/textMag"
+            android:layout_toRightOf="@+id/textMag"
+            android:layout_toEndOf="@+id/textMag"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="15dp" />
+
+        <TextView
+            android:elevation="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="2015-10-2"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:id="@+id/textDate"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/textViewLocation"
+            android:layout_alignStart="@+id/textViewLocation"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:elevation="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="23:09"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:id="@+id/textTime"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/textViewLocation"
+            android:layout_toRightOf="@+id/textDate"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp" />
 
     </RelativeLayout>
 
@@ -67,6 +92,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
             android:clickable="false"
+            android:listSelector="@android:color/transparent"
             android:paddingTop="0dp"></ListView>
 
     </RelativeLayout>
