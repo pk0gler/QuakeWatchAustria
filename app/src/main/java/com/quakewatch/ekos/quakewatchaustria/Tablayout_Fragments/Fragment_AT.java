@@ -95,7 +95,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
                     .addApi(LocationServices.API)
                     .build();
         }
-        v = inflater.inflate(R.layout.list_layout_at, container, false);
+         v = inflater.inflate(R.layout.list_layout_at, container, false);
         actionButtonMain = (ActionButton) v.findViewById(R.id.action_button_main);
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
         actionButtonMain.setButtonColor(Color.parseColor("#3F51B5"));
@@ -383,9 +383,10 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
         super.onResume();
         //getActivity().getIntent().getExtras().get("save");
         //this.createConetent();
+        mGoogleApiClient.connect();
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
         tmain.setText("Erdbeben melden");
-    }
+     }
 
     public void createConetent() {
         this.context = this.getContext();
@@ -414,11 +415,12 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
         if (mLastLocation != null) {
             String loc = mLastLocation.getLatitude()+"--"+String.valueOf(mLastLocation.getLongitude());
         }
+        Toast.makeText(getContext(),"Location empfangen", Toast.LENGTH_LONG);
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        Toast.makeText(getContext(), "Location abrufen nicht möglich", Toast.LENGTH_LONG);
     }
 
     @Override
@@ -430,8 +432,10 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
     @Override
     public void onStop() {
         mGoogleApiClient.disconnect();
+        Log.d("stop","stop");
         super.onStop();
     }
+
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {

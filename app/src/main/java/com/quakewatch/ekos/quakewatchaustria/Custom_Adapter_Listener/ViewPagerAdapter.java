@@ -60,9 +60,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 return this.weltf;
             case 3:
                 Log.d("drin page", "page");
-                this.mapf = new FRAGMENT_MAP();
+                //this.mapf = new FRAGMENT_MAP();
                 //this.mapf.setMarker(this.weltf.getMarker());
-                return this.mapf;
+                //return this.mapf;
+                return new Fragment_AT();
             default:
                 return null;
         }

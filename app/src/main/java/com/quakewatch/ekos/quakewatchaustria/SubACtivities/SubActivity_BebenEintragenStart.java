@@ -4,8 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
@@ -18,14 +16,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 
-import java.io.IOException;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by pkogler on 22.10.2015.
@@ -62,28 +58,26 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
     static final int TIME_ID = 1;
     private boolean loc;
     private Location location;
+    private String temploc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ort = (EditText) findViewById(R.id.Ort);
-        this.loc = (boolean)getIntent().getExtras().get("loc");
+        this.loc = (boolean) getIntent().getExtras().get("loc");
         if (this.loc) location = (Location) getIntent().getExtras().get("locData");
         bebenData = (Erdbeben) getIntent().getExtras().get("bebenData");
+        setContentView(R.layout.subactivity_beben_temp);
+        ort = (EditText) findViewById(R.id.Ort);
+        plz = (EditText) findViewById(R.id.plz);
+
         if (!loc) {
-            setContentView(R.layout.subactivity_beben_temp);
+            Toast.makeText(getBaseContext(), "Gps off", Toast.LENGTH_LONG).show();
         } else {
-            setContentView(R.layout.subactivity_beben_temp);
-            locationText = (EditText) findViewById(R.id.loc);
-            //locationText.setText(String.valueOf(location.getLongitude())+"-"+String.valueOf(location.getLongitude()));
-            Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
-            List<Address> addresses = null;
-            try {
-                addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            ort.setText(addresses.get(0).getLocality());
+            plz.setText(location.getLatitude()+", "+location.getLongitude());
+            plz.setFocusable(false);
+            ort.setText(location.getLatitude() + ", " + location.getLongitude());
+            ort.setFocusable(false);
+            Toast.makeText(getBaseContext(), "Gps on", Toast.LENGTH_LONG).show();
         }
 
         final Calendar cal = Calendar.getInstance();
@@ -99,8 +93,6 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         lOrt = (TextInputLayout) findViewById(R.id.LayoutOrt);
         lPlz = (TextInputLayout) findViewById(R.id.LayoutPlz);
 
-
-        plz = (EditText) findViewById(R.id.plz);
 
         /**
          // Getting LocationManager object
@@ -144,8 +136,8 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         weiter = (Button) findViewById(R.id.next);
         weiter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
-                    Intent i = new Intent(getBaseContext(), SubActivity_News.class);
-                    startActivity(i);
+                Intent i = new Intent(getBaseContext(), SubActivity_News.class);
+                startActivity(i);
 
             }
         });
