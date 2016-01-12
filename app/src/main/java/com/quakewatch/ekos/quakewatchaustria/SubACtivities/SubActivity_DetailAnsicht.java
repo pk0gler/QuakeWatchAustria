@@ -102,9 +102,8 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
                     boolean isNow = true;
                     Intent i = new Intent(getBaseContext(), SubActivity_BebenEintragenStart.class);
                     i.putExtra("state", isNow);
-                    i.putExtra("bebenData", bebenData);
+                    i.putExtra("loc", false);
                     startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
-                    //finish();
                 }
             });
         } else {
