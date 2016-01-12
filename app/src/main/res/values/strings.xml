@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Quake Watch Austria</string>
 
-    <string name="datum">DATUM</string>
-    <string name="zeit">ZEIT</string>
-    <string name="ort">ORT</string>
-    <string name="next">WEITER</string>
-    <string name="plz">PLZ</string>
+    <string name="datum">Datum</string>
+    <string name="zeit">Zeit</string>
+    <string name="ort">Ort</string>
+    <string name="next">Weiter</string>
+    <string name="plz">Plz</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -17,6 +17,7 @@
     <string name="title_activity_sub_activity__app__guide">SubActivity_App_Guide</string>
     <string name="title_activity_sub_activity__news">SubActivity_News</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="loc">Location</string>
 
     <string-array name="magAa">
         <item>0.0+</item>

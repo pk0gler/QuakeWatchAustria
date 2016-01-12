@@ -4,9 +4,10 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,10 @@ import android.widget.TimePicker;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by pkogler on 22.10.2015.
@@ -42,14 +46,12 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
     EditText datum;
     EditText ort;
     EditText plz;
+    EditText locationText;
 
     TextInputLayout lZeit;
     TextInputLayout lDate;
     TextInputLayout lOrt;
     TextInputLayout lPlz;
-
-    LocationManager locationManager;
-    String provider;
 
     Button weiter;
 
@@ -58,13 +60,31 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
 
     static final int DATE_ID = 0;
     static final int TIME_ID = 1;
+    private boolean loc;
+    private Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ort = (EditText) findViewById(R.id.Ort);
+        this.loc = (boolean)getIntent().getExtras().get("loc");
+        if (this.loc) location = (Location) getIntent().getExtras().get("locData");
         bebenData = (Erdbeben) getIntent().getExtras().get("bebenData");
-        setContentView(R.layout.subactivity_beben);
+        if (!loc) {
+            setContentView(R.layout.subactivity_beben_temp);
+        } else {
+            setContentView(R.layout.subactivity_beben_temp);
+            locationText = (EditText) findViewById(R.id.loc);
+            //locationText.setText(String.valueOf(location.getLongitude())+"-"+String.valueOf(location.getLongitude()));
+            Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+            List<Address> addresses = null;
+            try {
+                addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ort.setText(addresses.get(0).getLocality());
+        }
 
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
@@ -79,8 +99,8 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         lOrt = (TextInputLayout) findViewById(R.id.LayoutOrt);
         lPlz = (TextInputLayout) findViewById(R.id.LayoutPlz);
 
+
         plz = (EditText) findViewById(R.id.plz);
-        ort = (EditText) findViewById(R.id.Ort);
 
         /**
          // Getting LocationManager object
@@ -124,26 +144,9 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         weiter = (Button) findViewById(R.id.next);
         weiter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
-                if (zeit.getText().toString().trim().equals("")) {
-                    lZeit.setError("Zeit ist notwendig!");
-                    lZeit.setHint("Bitte Zeit auswählen");
-
-                } else if (datum.getText().toString().trim().equals("")) {
-                    lDate.setError("Datum ist notwendig!");
-                    lDate.setHint("Bitte Datum auswählen");
-
-                } else if (plz.getText().toString().trim().equals("")) {
-                    lPlz.setError("PLZ ist notwendig!");
-                    lPlz.setHint("Bitte PLZ eingeben");
-
-                } else if (ort.getText().toString().trim().equals("")) {
-                    lOrt.setError("Ort ist notwendig!");
-                    lOrt.setHint("Bitte Ort auswählen");
-
-                } else {
                     Intent i = new Intent(getBaseContext(), SubActivity_News.class);
                     startActivity(i);
-                }
+
             }
         });
 
@@ -152,10 +155,15 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
             minute_x = cal.get(Calendar.MINUTE);
             hour_x = cal.get(Calendar.HOUR);
             zeit.setText(hour_x + ":" + minute_x);
+            year_x = cal.get(Calendar.YEAR);
+            month_x = cal.get(Calendar.MONTH);
+            day_x = cal.get(Calendar.DAY_OF_MONTH);
+            datum.setText(year_x + "/" + month_x + "/" + day_x);
         } else {
             setUp();
         }
     }
+
 
     protected Dialog onCreateDialog(int id) {
         if (id == TIME_ID)

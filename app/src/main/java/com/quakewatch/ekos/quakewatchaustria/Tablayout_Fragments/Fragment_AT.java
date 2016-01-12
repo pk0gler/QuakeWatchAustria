@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -29,6 +30,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Interfaces.onSpinnerClick;
@@ -47,7 +51,7 @@ import java.util.Collections;
 /**
  * Created by pkogler on 22.10.2015.
  */
-public class Fragment_AT extends Fragment implements onSpinnerClick {
+public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
     private ImageButton FAB;
@@ -76,11 +80,21 @@ public class Fragment_AT extends Fragment implements onSpinnerClick {
     private ArrayList<Erdbeben> values = new ArrayList<>();
     private String[] spinnerValues = {"0.0+","","10","nach Datum"};
     private boolean filter;
+    private boolean locTrue = false;
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)  {
         setHasOptionsMenu(true);
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
         v = inflater.inflate(R.layout.list_layout_at, container, false);
         actionButtonMain = (ActionButton) v.findViewById(R.id.action_button_main);
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
@@ -173,6 +187,15 @@ public class Fragment_AT extends Fragment implements onSpinnerClick {
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                 i.putExtra("state", isNow);
+                if (mLastLocation!=null){
+                    locTrue = true;
+                    i.putExtra("loc", locTrue);
+                    i.putExtra("locData", mLastLocation);
+                } else {
+                    locTrue = false;
+                    i.putExtra("loc", locTrue);
+                }
+
                 startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -194,6 +217,14 @@ public class Fragment_AT extends Fragment implements onSpinnerClick {
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                 i.putExtra("state", isNow);
+                if (mLastLocation!=null){
+                    locTrue = true;
+                    i.putExtra("loc", locTrue);
+                    i.putExtra("locData", mLastLocation);
+                } else {
+                    locTrue = false;
+                    i.putExtra("loc", locTrue);
+                }
                 startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -215,6 +246,14 @@ public class Fragment_AT extends Fragment implements onSpinnerClick {
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                 i.putExtra("state", isNow);
+                if (mLastLocation!=null){
+                    locTrue = true;
+                    i.putExtra("loc", locTrue);
+                    i.putExtra("locData", mLastLocation);
+                } else {
+                    locTrue = false;
+                    i.putExtra("loc", locTrue);
+                }
                 startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -236,6 +275,14 @@ public class Fragment_AT extends Fragment implements onSpinnerClick {
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                 i.putExtra("state", isNow);
+                if (mLastLocation!=null){
+                    locTrue = true;
+                    i.putExtra("loc", locTrue);
+                    i.putExtra("locData", mLastLocation);
+                } else {
+                    locTrue = false;
+                    i.putExtra("loc", locTrue);
+                }
                 startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -357,6 +404,38 @@ public class Fragment_AT extends Fragment implements onSpinnerClick {
     public void saveSpinnerData(String[] values) {
         this.spinnerValues = values;
         new AsyncTaskParseJson().execute();
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        Log.d("location","drinRight");
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if (mLastLocation != null) {
+            String loc = mLastLocation.getLatitude()+"--"+String.valueOf(mLastLocation.getLongitude());
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
     }
 
     public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
