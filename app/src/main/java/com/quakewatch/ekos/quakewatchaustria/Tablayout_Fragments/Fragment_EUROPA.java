@@ -43,13 +43,13 @@ public class Fragment_EUROPA extends Fragment implements onSpinnerClick {
     ListView listView;
     View v;
     String magStaerke;
+    Context context;
     private float mActionBarHeight;
     private ActionBar mActionBar;
     private boolean jetzt = true;
     private ArrayList<Erdbeben> values = new ArrayList<>();
-    Context context;
-    private double minMag=0;
-    private String[] spinnerValues = {"0.0+","","10","nach Datum"};
+    private double minMag = 0;
+    private String[] spinnerValues = {"0.0+", "", "10", "nach Datum"};
     private boolean filter = false;
 
     @Override
@@ -74,7 +74,7 @@ public class Fragment_EUROPA extends Fragment implements onSpinnerClick {
                 new AsyncTaskParseJson().execute();
                 return false;
             case R.id.filter:
-                FilterFragment dFragment = new FilterFragment(this,this.spinnerValues);
+                FilterFragment dFragment = new FilterFragment(this, this.spinnerValues);
                 // Show DialogFragmen
                 dFragment.show(getFragmentManager(), "Dialog Fragment");
                 filter = true;
@@ -110,10 +110,8 @@ public class Fragment_EUROPA extends Fragment implements onSpinnerClick {
     }
 
     public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
-        ProgressDialog mDialog;
-
         final String TAG = "AsyncTaskParseJson.java";
-
+        ProgressDialog mDialog;
         // contacts JSONArray
         JSONArray dataJsonArr = null;
 
@@ -134,8 +132,8 @@ public class Fragment_EUROPA extends Fragment implements onSpinnerClick {
                 JsonParser jParser = new JsonParser();
 
                 // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Europa&limit="+spinnerValues[2]+"&orderby=time");
-                minMag = Double.parseDouble(spinnerValues[0].substring(0,2));
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Europa&limit=" + spinnerValues[2] + "&orderby=time");
+                minMag = Double.parseDouble(spinnerValues[0].substring(0, 2));
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -183,7 +181,7 @@ public class Fragment_EUROPA extends Fragment implements onSpinnerClick {
             mDialog.dismiss();
             if (filter) {
                 filter = false;
-                Toast.makeText(getContext(),values.size()+" Ergebnisse gefunden",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), values.size() + " Ergebnisse gefunden", Toast.LENGTH_SHORT).show();
             }
             ArrayAdapter<String> adapter = new CustomArrayAdapter(getContext(), values);
             listView.setAdapter(adapter);

@@ -54,22 +54,19 @@ import java.util.Collections;
 public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
-    private ImageButton FAB;
     boolean show = false;
+    ListView listView;
+    Context context;
+    private ImageButton FAB;
     private ActionButton actionButtonNow;
     private ActionButton actionButtonMain;
     private ActionButton actionButtonAndere;
-    private Double minMag=0.0;
-    ListView listView;
-
+    private Double minMag = 0.0;
     private View v;
     private TextView tJetzt;
     private TextView tAndere;
     private TextView tmain;
     private Button bgone;
-
-    Context context;
-
     private String magStaerke;
 
     private float mActionBarHeight;
@@ -78,15 +75,18 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
     private ViewPagerAdapter pager;
 
     private ArrayList<Erdbeben> values = new ArrayList<>();
-    private String[] spinnerValues = {"0.0+","","10","nach Datum"};
+    private String[] spinnerValues = {"0.0+", "", "10", "nach Datum"};
     private boolean filter;
     private boolean locTrue = false;
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
 
+    public static int dpToPx(int dp) {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)  {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(getContext())
@@ -95,7 +95,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
                     .addApi(LocationServices.API)
                     .build();
         }
-         v = inflater.inflate(R.layout.list_layout_at, container, false);
+        v = inflater.inflate(R.layout.list_layout_at, container, false);
         actionButtonMain = (ActionButton) v.findViewById(R.id.action_button_main);
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
         actionButtonMain.setButtonColor(Color.parseColor("#3F51B5"));
@@ -187,7 +187,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                 i.putExtra("state", isNow);
-                if (mLastLocation!=null){
+                if (mLastLocation != null) {
                     locTrue = true;
                     i.putExtra("loc", locTrue);
                     i.putExtra("locData", mLastLocation);
@@ -217,7 +217,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                 i.putExtra("state", isNow);
-                if (mLastLocation!=null){
+                if (mLastLocation != null) {
                     locTrue = true;
                     i.putExtra("loc", locTrue);
                     i.putExtra("locData", mLastLocation);
@@ -246,7 +246,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                 i.putExtra("state", isNow);
-                if (mLastLocation!=null){
+                if (mLastLocation != null) {
                     locTrue = true;
                     i.putExtra("loc", locTrue);
                     i.putExtra("locData", mLastLocation);
@@ -275,7 +275,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
                 i.putExtra("state", isNow);
-                if (mLastLocation!=null){
+                if (mLastLocation != null) {
                     locTrue = true;
                     i.putExtra("loc", locTrue);
                     i.putExtra("locData", mLastLocation);
@@ -370,7 +370,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
                 new AsyncTaskParseJson().execute();
                 return false;
             case R.id.filter:
-                FilterFragment dFragment = new FilterFragment(this,this.spinnerValues);
+                FilterFragment dFragment = new FilterFragment(this, this.spinnerValues);
                 dFragment.show(getFragmentManager(), "Dialog Fragment");
                 filter = true;
             default:
@@ -386,7 +386,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
         mGoogleApiClient.connect();
         actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
         tmain.setText("Erdbeben melden");
-     }
+    }
 
     public void createConetent() {
         this.context = this.getContext();
@@ -409,13 +409,13 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
 
     @Override
     public void onConnected(Bundle bundle) {
-        Log.d("location","drinRight");
+        Log.d("location", "drinRight");
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
-            String loc = mLastLocation.getLatitude()+"--"+String.valueOf(mLastLocation.getLongitude());
+            String loc = mLastLocation.getLatitude() + "--" + String.valueOf(mLastLocation.getLongitude());
         }
-        Toast.makeText(getContext(),"Location empfangen", Toast.LENGTH_LONG);
+        Toast.makeText(getContext(), "Location empfangen", Toast.LENGTH_LONG);
     }
 
     @Override
@@ -432,10 +432,9 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
     @Override
     public void onStop() {
         mGoogleApiClient.disconnect();
-        Log.d("stop","stop");
+        Log.d("stop", "stop");
         super.onStop();
     }
-
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
@@ -443,9 +442,8 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
     }
 
     public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
-        ProgressDialog mDialog;
         final String TAG = "AsyncTaskParseJson.java";
-
+        ProgressDialog mDialog;
         // contacts JSONArray
         JSONArray dataJsonArr = null;
 
@@ -469,7 +467,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
 
                 // get the array of users
                 JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Austria&limit=" + spinnerValues[2] + "&orderby=time");
-                minMag = Double.valueOf(spinnerValues[0].substring(0,2));
+                minMag = Double.valueOf(spinnerValues[0].substring(0, 2));
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -516,7 +514,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
             mDialog.dismiss();
             if (filter) {
                 filter = false;
-                Toast.makeText(getContext(),values.size()+" Ergebnisse gefunden",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), values.size() + " Ergebnisse gefunden", Toast.LENGTH_SHORT).show();
             }
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
@@ -554,9 +552,5 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
             );
             actionButtonMain.setImageResource(R.drawable.fab_x_but_rotate);
         }
-    }
-
-    public static int dpToPx(int dp) {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 }

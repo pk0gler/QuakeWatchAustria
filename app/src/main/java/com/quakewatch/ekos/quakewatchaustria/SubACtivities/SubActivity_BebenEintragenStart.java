@@ -4,14 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,13 +22,7 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FinalJson;
 
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 
 /**
@@ -44,11 +35,8 @@ import java.util.TimeZone;
 public class SubActivity_BebenEintragenStart extends AppCompatActivity implements LocationListener {
     public final static int SUCCESS_RETURN_CODE = 1;
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
-
-
-    private TextView state;
-    private Erdbeben bebenData;
-
+    static final int DATE_ID = 0;
+    static final int TIME_ID = 1;
     EditText zeit;
     EditText datum;
     EditText ort;
@@ -63,13 +51,30 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
     Button weiter;
 
     int hour_x, minute_x;
+    protected TimePickerDialog.OnTimeSetListener kTimePickerListner =
+            new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    hour_x = hourOfDay;
+                    minute_x = minute;
+                    zeit.setText(hour_x + ":" + minute_x);
+                }
+            };
     int year_x, month_x, day_x;
-
-    static final int DATE_ID = 0;
-    static final int TIME_ID = 1;
+    private TextView state;
+    private Erdbeben bebenData;
     private boolean loc;
     private Location location;
     private String temploc;
+    private DatePickerDialog.OnDateSetListener dpickerListener
+            = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            year_x = year;
+            month_x = monthOfYear + 1;
+            day_x = dayOfMonth;
+            datum.setText(year_x + "/" + month_x + "/" + day_x);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +89,7 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         if (!loc) {
             Toast.makeText(getBaseContext(), "Gps off", Toast.LENGTH_LONG).show();
         } else {
-            plz.setText(location.getLatitude()+", "+location.getLongitude());
+            plz.setText(location.getLatitude() + ", " + location.getLongitude());
             plz.setFocusable(false);
             ort.setText(location.getLatitude() + ", " + location.getLongitude());
             ort.setFocusable(false);
@@ -150,9 +155,8 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
                 FinalJson.mlocOrtsname = ort.getText().toString();
                 FinalJson.mlocPLZ = plz.getText().toString();
                 FinalJson.verspuert = String.format("%tFT%<tRZ", cal.getInstance(TimeZone.getDefault()));
-                FinalJson.verspuert = FinalJson.verspuert.substring(0,FinalJson.verspuert.length()-1)+"+01:00";
+                FinalJson.verspuert = FinalJson.verspuert.substring(0, FinalJson.verspuert.length() - 1) + "+01:00";
                 //String a = FinalJson.verspuert;
-                FinalJson.toJson();
 
                 Intent i = new Intent(getBaseContext(), SubActivity_News.class);
                 startActivity(i);
@@ -174,7 +178,6 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         }
     }
 
-
     protected Dialog onCreateDialog(int id) {
         if (id == TIME_ID)
             return new TimePickerDialog(this, kTimePickerListner, hour_x, minute_x, true);
@@ -195,16 +198,6 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         });
     }
 
-    protected TimePickerDialog.OnTimeSetListener kTimePickerListner =
-            new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    hour_x = hourOfDay;
-                    minute_x = minute;
-                    zeit.setText(hour_x + ":" + minute_x);
-                }
-            };
-
     /**
      * Methoden um das Datum eingeben zu können
      */
@@ -217,17 +210,6 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         });
 
     }
-
-    private DatePickerDialog.OnDateSetListener dpickerListener
-            = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            year_x = year;
-            month_x = monthOfYear + 1;
-            day_x = dayOfMonth;
-            datum.setText(year_x + "/" + month_x + "/" + day_x);
-        }
-    };
-
 
     private void setUp() {
         //state.setText("Nicht Jetzt\n"+bebenData.getRegion()+"\n"+bebenData.getMag());

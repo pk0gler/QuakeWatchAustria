@@ -22,6 +22,12 @@ import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Fragment_EUROPA
  * Usage:   Adapter for swiping through Fragments
  */
 public class ViewPagerAdapter extends FragmentPagerAdapter {
+    public final static int[] pictures = {
+            R.drawable.at,
+            R.drawable.eu,
+            R.drawable.welt,
+            R.drawable.map
+    };
     public FRAGMENT_MAP mapf;
     CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
     int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
@@ -88,11 +94,4 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return NumbOfTabs;
     }
-
-    public final static int[] pictures = {
-            R.drawable.at,
-            R.drawable.eu,
-            R.drawable.welt,
-            R.drawable.map
-    };
 }

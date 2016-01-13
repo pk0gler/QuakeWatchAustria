@@ -2,119 +2,144 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.quakewatch.ekos.quakewatchaustria.SubACtivities.Subactivity_ZusatzFragen">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
-    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        card_view:cardCornerRadius="1dp"
-        card_view:cardElevation="3dp">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:background="@android:color/white"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
 
-            <TextView
-                android:id="@+id/title"
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#cacaca"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:text="Frage 1"
-                android:textColor="@android:color/black"
-                android:textSize="14dp"
-                android:padding="8dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="In welchem Stockwerk waren Sie ?"
-                android:id="@+id/text"
-                android:layout_below="@+id/title"
-                android:padding="16dp"
-                />
+                android:layout_margin="5dp"
+                card_view:cardCornerRadius="1dp"
+                card_view:cardElevation="3dp">
 
-            <Spinner
-                android:id="@+id/spinnerStock"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/ColorPrimaryDark"
+                        android:gravity="center_vertical"
+                        android:padding="8dp"
+                        android:text="Frage 1"
+                        android:textColor="@android:color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/title"
+                        android:padding="16dp"
+                        android:text="In welchem Stockwerk waren Sie ?"
+                        android:textColor="@android:color/black" />
+
+                    <Spinner
+                        android:id="@+id/spinnerStock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="-10dp"
+                        android:spinnerMode="dropdown"></Spinner>
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:spinnerMode="dropdown"
-                android:layout_below="@+id/text"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="-10dp"></Spinner>
+                android:layout_below="@id/card_view"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="56dp"
+                card_view:cardCornerRadius="1dp"
+                card_view:cardElevation="3dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white">
+
+                    <TextView
+                        android:id="@+id/title2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/ColorPrimaryDark"
+                        android:gravity="center_vertical"
+                        android:padding="8dp"
+                        android:text="Frage 2"
+
+                        android:textColor="@android:color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/title2"
+                        android:padding="16dp"
+                        android:text="Wollen Sie einen Kommentar abgeben ?"
+                        android:textColor="@android:color/black" />
+
+                    <EditText
+                        android:id="@+id/com"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text2"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:focusable="false"
+                        android:layout_marginTop="-10dp"
+                        android:layout_weight="1"
+                        android:hint="Kommentar"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="2000"
+                        android:maxLines="4" />
 
 
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view2"
-        android:layout_below="@id/card_view"
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/next"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="1dp"
-        card_view:cardElevation="3dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="5dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:background="@android:color/white"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/title2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#cacaca"
-                android:gravity="center_vertical"
-                android:textStyle="bold"
-                android:text="Frage 2"
-
-                android:textColor="@android:color/black"
-                android:textSize="14dp"
-                android:padding="8dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="Wollen Sie einen Kommentar abgeben ?"
-                android:layout_below="@+id/title2"
-                android:id="@+id/text2"
-                android:padding="16dp"
-                />
-            <EditText
-                android:id="@+id/com"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Kommentar"
-                android:layout_below="@+id/text2"
-                android:inputType="textCapSentences|textMultiLine"
-                android:maxLength="2000"
-                android:maxLines="4"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="-10dp" />
-
-
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/ColorPrimary"
+        android:padding="10dp"
+        android:text="Weiter"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>

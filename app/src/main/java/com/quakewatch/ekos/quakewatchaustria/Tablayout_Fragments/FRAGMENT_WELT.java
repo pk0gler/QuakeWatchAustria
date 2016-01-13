@@ -40,20 +40,17 @@ import java.util.Collections;
  */
 public class FRAGMENT_WELT extends Fragment implements onSpinnerClick {
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
-    Context context;
-    private float mActionBarHeight;
-    private ActionBar mActionBar;
-
     public boolean filter;
-
+    Context context;
     ListView listView;
     String magStaerke;
-
     View v;
     ArrayList<Erdbeben> values;
     ArrayAdapter<String> adapter;
-    private double minMag=0;
-    private String[] spinnerValues = {"0.0+","","10","nach Datum"};
+    private float mActionBarHeight;
+    private ActionBar mActionBar;
+    private double minMag = 0;
+    private String[] spinnerValues = {"0.0+", "", "10", "nach Datum"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,11 +69,11 @@ public class FRAGMENT_WELT extends Fragment implements onSpinnerClick {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.refresh:
-                Toast.makeText(getContext(),"hi",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "hi", Toast.LENGTH_LONG).show();
                 new AsyncTaskParseJson().execute();
                 return false;
             case R.id.filter:
-                FilterFragment dFragment = new FilterFragment(this,this.spinnerValues);
+                FilterFragment dFragment = new FilterFragment(this, this.spinnerValues);
                 // Show DialogFragmen
                 dFragment.show(getFragmentManager(), "Dialog Fragment");
                 filter = true;
@@ -116,10 +113,8 @@ public class FRAGMENT_WELT extends Fragment implements onSpinnerClick {
 
 
     public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
-        ProgressDialog mDialog;
-
         final String TAG = "AsyncTaskParseJson.java";
-
+        ProgressDialog mDialog;
         // contacts JSONArray
         JSONArray dataJsonArr = null;
 
@@ -142,7 +137,7 @@ public class FRAGMENT_WELT extends Fragment implements onSpinnerClick {
 
                 // get the array of users
                 JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Welt&limit=" + spinnerValues[2] + "&orderby=time");
-                minMag = Double.parseDouble(spinnerValues[0].substring(0,2));
+                minMag = Double.parseDouble(spinnerValues[0].substring(0, 2));
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -190,7 +185,7 @@ public class FRAGMENT_WELT extends Fragment implements onSpinnerClick {
             mDialog.dismiss();
             if (filter) {
                 filter = false;
-                Toast.makeText(getContext(),values.size()+" Ergebnisse gefunden",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), values.size() + " Ergebnisse gefunden", Toast.LENGTH_SHORT).show();
             }
             listView = (ListView) v.findViewById(R.id.listWorld);
             listView.setAdapter(adapter);

@@ -23,22 +23,11 @@ public class CustomIntensity extends ArrayAdapter<String> {
 
     //Sting array --> references to comics
     public static String[] bilder = {"@drawable/schwach",
-            "@drawable/deutliich2",
-            "@drawable/startk",
+            "@drawable/deutlich",
+            "@drawable/stark",
             "@drawable/leichte",
             "@drawable/gebaeudenschaden",
             "@drawable/schwere"};
-
-    /**
-     * Constructor
-     *
-     * @param context
-     * @param text
-     */
-    public CustomIntensity(Context context, String[] text) {
-        super(context, R.layout.customintensity_row, text);
-    }
-
     /**
      * Inflating the Layout and setting its properties
      * After setting the custom properties the inflated View will be returned
@@ -50,6 +39,16 @@ public class CustomIntensity extends ArrayAdapter<String> {
      * @return
      */
     boolean isImageFitToScreen;
+
+    /**
+     * Constructor
+     *
+     * @param context
+     * @param text
+     */
+    public CustomIntensity(Context context, String[] text) {
+        super(context, R.layout.customintensity_row, text);
+    }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {

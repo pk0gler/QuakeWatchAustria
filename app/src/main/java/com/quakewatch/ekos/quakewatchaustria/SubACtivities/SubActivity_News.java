@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ContactAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ContactInfo;
 import com.quakewatch.ekos.quakewatchaustria.R;
-import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FinalJson;
 
 import java.util.ArrayList;
 
@@ -62,8 +61,8 @@ public class SubActivity_News extends AppCompatActivity {
 
     private void createContent(ArrayList<ContactInfo> temp) {
         temp.add(new ContactInfo(R.drawable.schwach, "Schwach verspürt"));
-        temp.add(new ContactInfo(R.drawable.deutliich2, "Deutlich verspürt"));
-        temp.add(new ContactInfo(R.drawable.startk, "Stark verspürt"));
+        temp.add(new ContactInfo(R.drawable.deutlich, "Deutlich verspürt"));
+        temp.add(new ContactInfo(R.drawable.stark, "Stark verspürt"));
         temp.add(new ContactInfo(R.drawable.leichte, "Leichte Gebäudeschäden"));
         temp.add(new ContactInfo(R.drawable.gebaeudenschaden, "Bebäudeschäden"));
         temp.add(new ContactInfo(R.drawable.schwere, "Schwere Gebäudeschäden"));

@@ -23,8 +23,8 @@ import java.util.List;
  */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
-    private List<ContactInfo> contactList;
     OnItemClickListener mItemClickListener;
+    private List<ContactInfo> contactList;
     private Context context;
     private int lastPosition = -1;
 
@@ -72,10 +72,18 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         return new ContactViewHolder(itemView);
     }
 
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
     public class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        protected TextView placename;
         public LinearLayout placeHolder;
         public CardView placeCard;
+        protected TextView placename;
         protected ImageView imgv;
 
 
@@ -94,13 +102,5 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                 mItemClickListener.onItemClick(itemView, getAdapterPosition());
             }
         }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
-    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
-        this.mItemClickListener = mItemClickListener;
     }
 }

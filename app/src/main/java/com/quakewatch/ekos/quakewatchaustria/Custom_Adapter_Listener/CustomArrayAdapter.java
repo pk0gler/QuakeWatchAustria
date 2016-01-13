@@ -24,9 +24,6 @@ import java.util.List;
  */
 public class CustomArrayAdapter extends ArrayAdapter {
 
-    //colorCodes depending on Magnitude
-    private int lastPosition = -1;
-    private List<Erdbeben> data;
     public final static String[] colorCodes2 = {
             //Green
             "#3EA739", "#338B2E", "#296F25",
@@ -55,6 +52,9 @@ public class CustomArrayAdapter extends ArrayAdapter {
             //Red
             "#C62828"
     };
+    //colorCodes depending on Magnitude
+    private int lastPosition = -1;
+    private List<Erdbeben> data;
 
     /**
      * Construktor

@@ -41,7 +41,7 @@
             android:paddingLeft="10dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
-            android:background="#727272"
+            android:background="@color/ColorPrimaryDark"
             android:text="Schwach"
             android:gravity="left|center"
             android:alpha="0.8" />

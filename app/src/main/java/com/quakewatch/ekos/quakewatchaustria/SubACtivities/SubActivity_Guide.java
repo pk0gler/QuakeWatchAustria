@@ -14,8 +14,8 @@ import android.webkit.WebViewClient;
 import com.quakewatch.ekos.quakewatchaustria.R;
 
 public class SubActivity_Guide extends AppCompatActivity {
-    private WebView webView;
     ProgressDialog pd;
+    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,8 @@ public class SubActivity_Guide extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // app icon in action bar clicked; go home
-                if (webView.getUrl().equals("http://www.zamg.ac.at/cms/de/geophysik/erdbeben/verhaltensratgeber/verhalten-in-oesterreich")) finish();
+                if (webView.getUrl().equals("http://www.zamg.ac.at/cms/de/geophysik/erdbeben/verhaltensratgeber/verhalten-in-oesterreich"))
+                    finish();
                 webView.goBack();
                 return true;
             default:

@@ -1,3 +1,4 @@
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:focusable="true"
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
@@ -38,11 +40,11 @@
                         android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#cacaca"
+                        android:background="@color/ColorPrimaryDark"
                         android:gravity="center_vertical"
                         android:padding="8dp"
                         android:text="Frage 1"
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
@@ -65,6 +67,18 @@
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="-10dp"
                         android:spinnerMode="dropdown"></Spinner>
+
+                    <Switch
+                        android:id="@+id/mySwitch0"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/text"
+                        android:text="Ja | Nein"
+                        android:visibility="gone"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="-10dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp" />
 
 
                 </RelativeLayout>
@@ -92,12 +106,12 @@
                         android:id="@+id/title2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#cacaca"
+                        android:background="@color/ColorPrimaryDark"
                         android:gravity="center_vertical"
                         android:padding="8dp"
                         android:text="Frage 2"
 
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
@@ -143,12 +157,12 @@
                         android:id="@+id/title3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#cacaca"
+                        android:background="@color/ColorPrimaryDark"
                         android:gravity="center_vertical"
                         android:padding="8dp"
                         android:text="Frage 3"
 
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
@@ -158,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/title3"
                         android:padding="16dp"
-                        android:text="Sind Gegenstände umgefallen ?"
+                        android:text="Sind Sie aus Angst ins Freie geflüchtet ?"
                         android:textColor="@android:color/black" />
 
                     <Switch
@@ -196,12 +210,12 @@
                         android:id="@+id/title4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#cacaca"
+                        android:background="@color/ColorPrimaryDark"
                         android:gravity="center_vertical"
                         android:padding="8dp"
                         android:text="Frage 4"
 
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
@@ -238,8 +252,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="25dp"
                 card_view:cardCornerRadius="1dp"
-                card_view:cardElevation="3dp"
-                android:layout_marginBottom="16dp">
+                card_view:cardElevation="3dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -250,12 +263,12 @@
                         android:id="@+id/title5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#cacaca"
+                        android:background="@color/ColorPrimaryDark"
                         android:gravity="center_vertical"
                         android:padding="8dp"
-                        android:text="Frage 4"
+                        android:text="Frage 5"
 
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
@@ -265,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/title5"
                         android:padding="16dp"
-                        android:text="Wollen Sie einen Kommentar abgeben ?"
+                        android:text="Bitte beschreiben Sie Ihre Wahrnehmung und Schäden"
                         android:textColor="@android:color/black" />
 
                     <EditText
@@ -274,6 +287,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/text5"
                         android:layout_marginBottom="16dp"
+                        android:focusable="false"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="-10dp"
@@ -286,7 +300,76 @@
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="25dp"
+                card_view:cardCornerRadius="1dp"
+                card_view:cardElevation="3dp"
+                android:layout_marginBottom="56dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white">
+
+                    <TextView
+                        android:id="@+id/title6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/ColorPrimaryDark"
+                        android:gravity="center_vertical"
+                        android:padding="8dp"
+                        android:text="Frage 6"
+
+                        android:textColor="@android:color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/title6"
+                        android:padding="16dp"
+                        android:text="Wollen Sie Bilder oder Video anhängen ?"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/text7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text6"
+                        android:paddingBottom="16dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="-10dp"
+                        android:text="seismo@zamg.ac.at"
+                        android:autoLink="email"
+                        android:textColor="@android:color/black" />
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
         </LinearLayout>
     </ScrollView>
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/ColorPrimary"
+        android:padding="10dp"
+        android:layout_marginTop="40dp"
+        android:text="Weiter"
+        android:textColor="@android:color/white" />
+
 
 </RelativeLayout>

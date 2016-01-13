@@ -30,7 +30,6 @@ import java.io.Serializable;
  */
 public class SubActivity_DetailAnsicht extends AppCompatActivity implements Serializable {
     public final static int SUCCESS_RETURN_CODE = 1;
-    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
     public final static String[] colorCodes2 = {
             //Green
             "#3EA739", "#338B2E", "#296F25",
@@ -45,7 +44,6 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
             //Red
             "#CA0000"
     };
-
     public final static String[] colorCodes = {
             //Green
             "#66BB6A", "#4CAF50", "#43A047",
@@ -73,7 +71,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
             //Red
             "#B71C1C"
     };
-
+    protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
     public boolean isAt;
     private FloatingActionButton butJetzt;
     private FloatingActionButton butMap;
@@ -154,7 +152,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
         double temp = bebenData.getMag();
         double mag = temp;
         TextView magnitude = (TextView) findViewById(R.id.textMag);
-        magnitude.setText(""+mag);
+        magnitude.setText("" + mag);
         textDate.setText(bebenData.getDate());
         textTime.setText(bebenData.getTime());
         textlocation.setText(bebenData.getRegion());

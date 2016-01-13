@@ -17,6 +17,14 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 public class SubActivity_SettingsActivity extends PreferenceActivity {
     private AppCompatDelegate mDelegate;
 
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
+
     /**
      * On Create
      *
@@ -34,7 +42,7 @@ public class SubActivity_SettingsActivity extends PreferenceActivity {
         //saveButton.setText("Übernehmen");
         //saveButton.setPadding(10, 30, 10, 30);
         /*saveButton.setOnClickListener(new View.OnClickListener() {
-			@Override
+            @Override
 			public void onClick(View v) {
 				//startActivityForResult(new Intent(getBaseContext(), MainActivity.class), 12);
 				finish();
@@ -56,14 +64,6 @@ public class SubActivity_SettingsActivity extends PreferenceActivity {
                     }
 
                 });
-    }
-
-    public final static boolean isValidEmail(CharSequence target) {
-        if (target == null) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-        }
     }
 
     @Override

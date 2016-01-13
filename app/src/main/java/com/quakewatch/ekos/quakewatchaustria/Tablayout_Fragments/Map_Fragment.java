@@ -71,10 +71,9 @@ public class Map_Fragment extends DialogFragment {
         // Do something else
 
 
-
         double mag = beben.getMag();
-        TextView magT = (TextView)rootView.findViewById(R.id.textMag);
-        magT.setText(beben.getMag()+"");
+        TextView magT = (TextView) rootView.findViewById(R.id.textMag);
+        magT.setText(beben.getMag() + "");
         RelativeLayout img = (RelativeLayout) rootView.findViewById(R.id.header);
 
 

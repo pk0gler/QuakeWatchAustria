@@ -70,17 +70,17 @@ public class Erdbeben implements Serializable, Comparable<Erdbeben> {
             "UNITED KINGDOM",
             "VATICAN CITY"
     };
+    public double lat;
+    public double lon;
+    public String placesString;
     private double mag;
     private String region;
     private String timeWhole;
     private String time;
     private double depth;
     private String date;
-    public double lat;
-    public double lon;
     private ArrayList<HashMap<String, String>> places;
     private int id;
-    public String placesString;
 
     /**
      * Constructor
@@ -102,6 +102,17 @@ public class Erdbeben implements Serializable, Comparable<Erdbeben> {
         getPlaces(places);
         this.placesString = placesToString(this.places);
         this.id = id;
+    }
+
+    /**
+     * EMpty Constructor
+     * Initilazie all attributes with standard Values
+     */
+    public Erdbeben() {
+        this.mag = 0;
+        this.region = "";
+        this.timeWhole = "";
+        this.depth = 0;
     }
 
     private String placesToString(ArrayList<HashMap<String, String>> temp) {
@@ -175,17 +186,6 @@ public class Erdbeben implements Serializable, Comparable<Erdbeben> {
     }
 
     /**
-     * EMpty Constructor
-     * Initilazie all attributes with standard Values
-     */
-    public Erdbeben() {
-        this.mag = 0;
-        this.region = "";
-        this.timeWhole = "";
-        this.depth = 0;
-    }
-
-    /**
      * Used for seperate the Whole Time String into
      * Time and Date
      *
@@ -201,37 +201,37 @@ public class Erdbeben implements Serializable, Comparable<Erdbeben> {
         return date;
     }
 
-    public double getMag() {
-        return mag;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public String getTimeWhole() {
-        return timeWhole;
-    }
-
     //Setter Methods
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public double getMag() {
+        return mag;
     }
 
     public void setMag(double mag) {
         this.mag = mag;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
     public void setRegion(String region) {
         this.region = region;
     }
 
+    public String getTime() {
+        return time;
+    }
+
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getTimeWhole() {
+        return timeWhole;
     }
 
     public void setTimeWhole(String timeWhole) {

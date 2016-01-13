@@ -32,11 +32,11 @@ import java.util.HashMap;
  * Created by pkogler on 22.10.2015.
  */
 public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
+    Marker mine;
+    View v;
     private LatLng currentClick = new LatLng(0, 0);
     private GoogleMap mGoogleMap;
-    Marker mine;
     private Erdbeben[] marker;
-    View v;
     private HashMap<String, Erdbeben> markerId;
 
     @Override
@@ -168,11 +168,60 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
         }
     }
 
+    public float getHue(double mag) {
+        float erg = 0;
+        if ((mag >= 0) && (mag <= 1.49)) {
+            erg = 123;
+        } else if ((mag >= 1.50) && (mag <= 1.99)) {
+            erg = 80;
+        } else if ((mag >= 2.0) && (mag <= 2.49)) {
+            erg = 80;
+        } else if ((mag >= 2.50) && (mag <= 2.99)) {
+            erg = 80;
+        }
+        if ((mag >= 3.0) && (mag <= 3.49)) {
+            erg = 54;
+        }
+        if ((mag >= 3.50) && (mag <= 3.99)) {
+            erg = 49;
+        } else if ((mag >= 4.0) && (mag <= 4.49))
+
+        {
+            erg = 36;
+        }
+
+        if ((mag >= 4.50) && (mag <= 4.99))
+
+        {
+            erg = 36;
+        }
+
+        if ((mag >= 5.0) && (mag <= 5.49))
+
+        {
+            erg = 33;
+        } else if ((mag >= 5.50) && (mag <= 5.99)) {
+            erg = 231;
+        }
+        if ((mag >= 6.0) && (mag <= 6.49)) {
+            erg = 231;
+        }
+        if ((mag >= 6.50) && (mag <= 6.99)) {
+            erg = 231;
+        } else if ((mag >= 7.0) && (mag <= 7.99)) {
+            erg = 262;
+        }
+        if ((mag >= 8.0) && (mag <= 8.99)) {
+            erg = 260;
+        } else if ((mag >= 9.0) && (mag <= 12)) {
+            erg = 0;
+        }
+        return erg;
+    }
+
     public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
-        ProgressDialog mDialog;
-
         final String TAG = "AsyncTaskParseJson.java";
-
+        ProgressDialog mDialog;
         // contacts JSONArray
         JSONArray dataJsonArr = null;
         private Erdbeben[] values;
@@ -194,7 +243,7 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
                 JsonParser jParser = new JsonParser();
 
                 // get the array of users
-                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Welt&limit=30"+"&orderby=time");
+                JSONObject json = JsonParser.readJsonFromUrl("http://geoweb.zamg.ac.at/fdsnws/app/1/query?location=Welt&limit=30" + "&orderby=time");
                 dataJsonArr = json.getJSONArray("features");
 
                 // loop through all users
@@ -257,57 +306,6 @@ public class FRAGMENT_MAP extends android.support.v4.app.Fragment {
                 markerId.put(temp.getId(), values[i]);
             }
         }
-    }
-
-    public float getHue(double mag) {
-        float erg = 0;
-        if ((mag >= 0) && (mag <= 1.49)) {
-            erg = 123;
-        } else if ((mag >= 1.50) && (mag <= 1.99)) {
-            erg = 80;
-        } else if ((mag >= 2.0) && (mag <= 2.49)) {
-            erg = 80;
-        } else if ((mag >= 2.50) && (mag <= 2.99)) {
-            erg = 80;
-        }
-        if ((mag >= 3.0) && (mag <= 3.49)) {
-            erg = 54;
-        }
-        if ((mag >= 3.50) && (mag <= 3.99)) {
-            erg = 49;
-        } else if ((mag >= 4.0) && (mag <= 4.49))
-
-        {
-            erg = 36;
-        }
-
-        if ((mag >= 4.50) && (mag <= 4.99))
-
-        {
-            erg = 36;
-        }
-
-        if ((mag >= 5.0) && (mag <= 5.49))
-
-        {
-            erg = 33;
-        } else if ((mag >= 5.50) && (mag <= 5.99)) {
-            erg = 231;
-        }
-        if ((mag >= 6.0) && (mag <= 6.49)) {
-            erg = 231;
-        }
-        if ((mag >= 6.50) && (mag <= 6.99)) {
-           erg = 231;
-        } else if ((mag >= 7.0) && (mag <= 7.99)) {
-            erg = 262;
-        }
-        if ((mag >= 8.0) && (mag <= 8.99)) {
-            erg = 260;
-        } else if ((mag >= 9.0) && (mag <= 12)) {
-            erg =0;
-        }
-        return erg;
     }
 
 }
