@@ -233,6 +233,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
@@ -254,6 +255,17 @@ import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_News;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class MainActivity extends AppCompatActivity {
 
     //Declaring View and Variable Elements
@@ -267,10 +279,23 @@ public class MainActivity extends AppCompatActivity {
     int wantedPosition = 0;
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
     private ActionBarDrawerToggle hamburger;
+    SharedPreferences SP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("firstTime", false)) {
+            // <---- run your one time code here
+            new SendfeedbackJob().execute();
+
+            // mark first time has runned.
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+        }
+        SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        Log.d("apikey",SP.getString("apikey",""));
         setContentView(R.layout.activity_main);
         //Creating the Toolbar and setting it as the toolbar for the activity
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -292,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         if (!isNetworkAvailable(getBaseContext())) {
             try {
                 new AlertDialog.Builder(this)
-                        .setIcon(R.drawable.ic_warning_black_24dp)
+                        .setIcon(R.drawable.fab_plus_icon)
                         .setTitle("No internet connection")
                         .setMessage("Please turn on mobile data")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -332,7 +357,6 @@ public class MainActivity extends AppCompatActivity {
         //Setting the Viewpager for the SlidingTabsLayout
         tabs.setViewPager(pager);
 
-        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         String email = SP.getString("email", "");
         boolean notif = SP.getBoolean("notifications", false);
         String magn = SP.getString("magType", "1");
@@ -422,4 +446,56 @@ public class MainActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         hamburger.syncState();
     }
+
+    private void makePostRequest() {
+
+
+        HttpClient httpClient = new DefaultHttpClient();
+        // replace with your url
+        HttpPost httpPost = new HttpPost("http://geoweb.zamg.ac.at/quakeapi/v01/getapikey");
+
+
+        //Encoding POST data
+        //httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        httpPost.setHeader("Content-Type", "application/json");
+        httpPost.setHeader("Authorization", "Basic cXVha2VhcGk6I3FrcCZtbGRuZyM=");
+
+        //making POST request.
+        try {
+            HttpResponse response = httpClient.execute(httpPost);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+            String json = reader.readLine();
+            JSONTokener tokener = new JSONTokener(json);
+            JSONObject finalResult = new JSONObject(tokener);
+            Log.d("Http Post Response:", finalResult.getString("apikey"));
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("apikey", finalResult.getString("apikey"));
+            editor.commit();
+            // write response to log
+        } catch (ClientProtocolException e) {
+            // Log exception
+            e.printStackTrace();
+        } catch (Exception e) {
+            // Log exception
+            e.printStackTrace();
+        }
+
+    }
+
+    private class SendfeedbackJob extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String[] params) {
+            // do above Server call here
+            makePostRequest();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String message) {
+            //process message
+        }
+    }
+
 }
