@@ -4,11 +4,14 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,8 +23,16 @@ import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
+import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FinalJson;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by pkogler on 22.10.2015.
@@ -136,6 +147,13 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         weiter = (Button) findViewById(R.id.next);
         weiter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
+                FinalJson.mlocOrtsname = ort.getText().toString();
+                FinalJson.mlocPLZ = plz.getText().toString();
+                FinalJson.verspuert = String.format("%tFT%<tRZ", cal.getInstance(TimeZone.getDefault()));
+                FinalJson.verspuert = FinalJson.verspuert.substring(0,FinalJson.verspuert.length()-1)+"+01:00";
+                //String a = FinalJson.verspuert;
+                FinalJson.toJson();
+
                 Intent i = new Intent(getBaseContext(), SubActivity_News.class);
                 startActivity(i);
 

@@ -43,7 +43,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         ContactInfo ci = contactList.get(i);
         contactViewHolder.placename.setText(ci.placeName);
         //contactViewHolder.imgv.setImageResource(ci.img);
-        Picasso.with(context).load(ci.img).resize(270, 270).centerCrop().into(contactViewHolder.imgv);
+        Picasso.with(context).load(ci.img).resize(642, 429).centerCrop().into(contactViewHolder.imgv);
         setAnimation(contactViewHolder.placeCard, i);
     }
 

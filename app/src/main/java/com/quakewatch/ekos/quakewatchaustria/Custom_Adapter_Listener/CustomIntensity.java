@@ -23,7 +23,7 @@ public class CustomIntensity extends ArrayAdapter<String> {
 
     //Sting array --> references to comics
     public static String[] bilder = {"@drawable/schwach",
-            "@drawable/deutlich",
+            "@drawable/deutliich2",
             "@drawable/startk",
             "@drawable/leichte",
             "@drawable/gebaeudenschaden",

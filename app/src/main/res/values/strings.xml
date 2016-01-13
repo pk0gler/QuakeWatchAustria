@@ -53,10 +53,12 @@
         <item>20</item>
         <item>50</item>
         <item>100</item>
+        <item>1000</item>
     </string-array>
 
     <string-array name="sort">
         <item>nach Magnitude</item>
         <item>nach Datum</item>
     </string-array>
+    <string name="title_activity_subactivity__zusatz_fragen">Subactivity_ZusatzFragen</string>
 </resources>
