@@ -9,7 +9,7 @@
         android:layout_width="7dp"
         android:layout_height="80dp"
         android:id="@+id/imagebild"
-        android:src="@drawable/strich4"
+        android:src="@drawable/strichvorlage"
         android:contentDescription="a"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
