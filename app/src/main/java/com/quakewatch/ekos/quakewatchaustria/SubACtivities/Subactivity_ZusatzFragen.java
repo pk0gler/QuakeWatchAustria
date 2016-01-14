@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
-import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FinalJson;
+import com.quakewatch.ekos.quakewatchaustria.Json.FinalJson;
 
 public class Subactivity_ZusatzFragen extends AppCompatActivity {
     private TextView t1;

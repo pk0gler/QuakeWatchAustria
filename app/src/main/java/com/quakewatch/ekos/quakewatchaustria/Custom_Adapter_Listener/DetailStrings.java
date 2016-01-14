@@ -1,4 +1,4 @@
-package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
+package com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener;
 
 /**
  * Created by pkogler on 09.01.2016.

@@ -1,4 +1,4 @@
-package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
+package com.quakewatch.ekos.quakewatchaustria.Json;
 
 import android.util.Log;
 

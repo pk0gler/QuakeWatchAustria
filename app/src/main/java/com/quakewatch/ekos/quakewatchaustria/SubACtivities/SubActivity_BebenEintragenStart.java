@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
-import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FinalJson;
+import com.quakewatch.ekos.quakewatchaustria.Json.FinalJson;
 
 import java.util.Calendar;
 import java.util.TimeZone;

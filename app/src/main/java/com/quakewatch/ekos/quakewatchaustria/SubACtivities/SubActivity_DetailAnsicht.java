@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.DetailStringAdapter;
+import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.DetailStrings;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomArrayAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Interfaces.onSpinnerClick;
+import com.quakewatch.ekos.quakewatchaustria.Json.JsonParser;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;

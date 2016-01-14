@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.DetailStringAdapter;
 import com.quakewatch.ekos.quakewatchaustria.R;
-import com.quakewatch.ekos.quakewatchaustria.SubACtivities.DetailStrings;
+import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.DetailStrings;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
 
 import java.util.ArrayList;

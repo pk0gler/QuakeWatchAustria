@@ -1,4 +1,4 @@
-package com.quakewatch.ekos.quakewatchaustria;
+package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.quakewatch.ekos.quakewatchaustria.R;
 
 public class MapAct extends Activity {
     static final LatLng TutorialsPoint = new LatLng(21, 57);

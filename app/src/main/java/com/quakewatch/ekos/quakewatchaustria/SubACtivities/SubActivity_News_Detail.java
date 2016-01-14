@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomIntensity;
 import com.quakewatch.ekos.quakewatchaustria.R;
-import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FinalJson;
+import com.quakewatch.ekos.quakewatchaustria.Json.FinalJson;
 
 public class SubActivity_News_Detail extends AppCompatActivity {
 

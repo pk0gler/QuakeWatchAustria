@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.quakewatch.ekos.quakewatchaustria.R;
-import com.quakewatch.ekos.quakewatchaustria.SubACtivities.DetailStrings;
 
 /**
  * Created by pkogler on 09.01.2016.

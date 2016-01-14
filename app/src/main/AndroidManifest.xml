@@ -149,7 +149,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MapAct"
+            android:name=".SubACtivities.MapAct"
             android:label="Map"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeSub" >

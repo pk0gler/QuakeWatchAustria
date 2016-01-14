@@ -1,4 +1,4 @@
-package com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments;
+package com.quakewatch.ekos.quakewatchaustria.Json;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -49,7 +49,7 @@ public final class FinalJson {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
+        return json;
     }
 
     private void makePostRequest() {
