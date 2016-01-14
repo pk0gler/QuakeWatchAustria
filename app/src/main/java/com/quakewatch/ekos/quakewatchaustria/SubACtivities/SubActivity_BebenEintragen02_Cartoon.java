@@ -17,7 +17,7 @@ import com.quakewatch.ekos.quakewatchaustria.R;
 
 import java.util.ArrayList;
 
-public class SubActivity_News extends AppCompatActivity {
+public class SubActivity_BebenEintragen02_Cartoon extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ContactAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -52,7 +52,7 @@ public class SubActivity_News extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Pos: " + position, Toast.LENGTH_SHORT).show();
                 Log.d("Card", "drin");
                 //actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.canada));
-                Intent i = new Intent(getBaseContext(), SubActivity_News_Detail.class);
+                Intent i = new Intent(getBaseContext(), SubActivity_BebenEintragen02_Detail.class);
                 i.putExtra("position", position);
                 startActivity(i);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);

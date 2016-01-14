@@ -18,7 +18,7 @@ import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Json.FinalJson;
 
-public class Subactivity_ZusatzFragen extends AppCompatActivity {
+public class Subactivity_BebenEintragen03_Zusatzfragen extends AppCompatActivity {
     private TextView t1;
     private TextView t2;
     private TextView t3;

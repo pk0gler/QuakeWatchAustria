@@ -28,7 +28,7 @@
  * import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
  * import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_App_Guide;
  * import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_Guide;
- * import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_News;
+ * import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragen02_Cartoon;
  * import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
  * import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
  * <p/>
@@ -173,7 +173,7 @@
  * Log.d("NavDrawer", item.toString());
  * startActivity(new Intent(getBaseContext(), SubActivity_App_Guide.class));
  * } else if (item.toString().equals("News")) {
- * startActivity(new Intent(getBaseContext(), SubActivity_News.class));
+ * startActivity(new Intent(getBaseContext(), SubActivity_BebenEintragen02_Cartoon.class));
  * }
  * }
  * <p/>
@@ -241,8 +241,8 @@ import android.view.MenuItem;
 import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.ViewPagerAdapter;
 import com.quakewatch.ekos.quakewatchaustria.Libaries.SlidingTabLayout;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_App_Guide;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragen02_Cartoon;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_Guide;
-import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_News;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_SettingsActivity;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Erdbeben;
 
@@ -390,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("NavDrawer", item.toString());
             startActivity(new Intent(getBaseContext(), SubActivity_App_Guide.class));
         } else if (item.toString().equals("News")) {
-            startActivity(new Intent(getBaseContext(), SubActivity_News.class));
+            startActivity(new Intent(getBaseContext(), SubActivity_BebenEintragen02_Cartoon.class));
         }
     }
 

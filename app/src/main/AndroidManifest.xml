@@ -44,23 +44,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SubACtivities.SubActivity_BebenEintragenStart"
+            android:name=".SubACtivities.SubActivity_BebenEintragen01_GetData"
             android:label="Beben eintragen"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeSub" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".SubACtivities.SubActivity_Phase2"
-            android:label="Waehlen Sie einen Cartoon"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeSub" >
             <meta-data
@@ -78,28 +63,11 @@
             android:label="@string/title_activity_sub_activity__settings"
             android:theme="@style/AppThemeSub" />
         <activity
-            android:name=".SubACtivities.BebenInfo"
-            android:label="BebenInfo"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeSub" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SubACtivities.SubActivity_Phase2" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".SubACtivities.ImageFullScreen"
             android:label="@string/title_activity_image_full_screen"
-            android:parentActivityName=".SubACtivities.SubActivity_Phase2"
             android:theme="@style/AppThemeSub" >
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_Phase2" />
+                android:name="android.support.PARENT_ACTIVITY" />
         </activity>
         <activity
             android:name=".SubACtivities.SubActivity_Guide"
@@ -120,7 +88,7 @@
                 android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
         </activity>
         <activity
-            android:name=".SubACtivities.SubActivity_News"
+            android:name=".SubACtivities.SubActivity_BebenEintragen02_Cartoon"
             android:label="@string/title_activity_sub_activity__news"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeSub" >
@@ -135,7 +103,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SubACtivities.SubActivity_News_Detail"
+            android:name=".SubACtivities.SubActivity_BebenEintragen02_Detail"
             android:label="@string/title_activity_sub_activity__news"
             android:parentActivityName=".SubACtivities.Detail_News" >
             <meta-data
@@ -148,15 +116,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SubACtivities.MapAct"
-            android:label="Map"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeSub" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.quakewatch.ekos.quakewatchaustria.MainActivity" />
-        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -164,13 +123,13 @@
 
         <activity android:name=".SubACtivities.Detail_News" />
         <activity
-            android:name=".SubACtivities.Subactivity_ZusatzFragen"
+            android:name=".SubACtivities.Subactivity_BebenEintragen03_Zusatzfragen"
             android:label="@string/title_activity_subactivity__zusatz_fragen"
-            android:parentActivityName=".SubACtivities.SubActivity_News_Detail"
+            android:parentActivityName=".SubACtivities.SubActivity_BebenEintragen02_Detail"
             android:theme="@style/AppThemeSub">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_News_Detail" />
+                android:value=".SubACtivities.SubActivity_BebenEintragen02_Detail" />
         </activity>
     </application>
 

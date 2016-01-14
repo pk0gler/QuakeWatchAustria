@@ -32,7 +32,7 @@ import java.util.TimeZone;
  * Timepicker
  */
 
-public class SubActivity_BebenEintragenStart extends AppCompatActivity implements LocationListener {
+public class SubActivity_BebenEintragen01_GetData extends AppCompatActivity implements LocationListener {
     public final static int SUCCESS_RETURN_CODE = 1;
     protected static final int SUB_ACTIVITY_REQUEST_CODE = 100;
     static final int DATE_ID = 0;
@@ -163,7 +163,7 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
                 FinalJson.verspuert = FinalJson.verspuert.substring(0, FinalJson.verspuert.length() - 1) + "+01:00";
                 //String a = FinalJson.verspuert;
 
-                Intent i = new Intent(getBaseContext(), SubActivity_News.class);
+                Intent i = new Intent(getBaseContext(), SubActivity_BebenEintragen02_Cartoon.class);
                 startActivity(i);
 
             }

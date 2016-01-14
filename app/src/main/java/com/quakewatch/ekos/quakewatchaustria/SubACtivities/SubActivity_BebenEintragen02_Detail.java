@@ -18,7 +18,7 @@ import com.quakewatch.ekos.quakewatchaustria.Json.FinalJson;
 /**
  *
  */
-public class SubActivity_News_Detail extends AppCompatActivity {
+public class SubActivity_BebenEintragen02_Detail extends AppCompatActivity {
 
     private final static String[] text = {
             "Leichtes Zittern oder Rütteln.Lampen/hängende Objekte pendeln schwach. \n\n" +
@@ -94,7 +94,7 @@ public class SubActivity_News_Detail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FinalJson.klassifikation = "" + position;
-                Intent i = new Intent(getBaseContext(), Subactivity_ZusatzFragen.class);
+                Intent i = new Intent(getBaseContext(), Subactivity_BebenEintragen03_Zusatzfragen.class);
                 i.putExtra("position", position);
                 startActivity(i);
             }

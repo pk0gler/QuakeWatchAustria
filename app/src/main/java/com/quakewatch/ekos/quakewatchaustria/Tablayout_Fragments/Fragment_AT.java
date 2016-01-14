@@ -39,7 +39,7 @@ import com.quakewatch.ekos.quakewatchaustria.Interfaces.onSpinnerClick;
 import com.quakewatch.ekos.quakewatchaustria.Json.JsonParser;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
-import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragenStart;
+import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_BebenEintragen01_GetData;
 import com.quakewatch.ekos.quakewatchaustria.SubACtivities.SubActivity_DetailAnsicht;
 import com.software.shell.fab.ActionButton;
 
@@ -186,7 +186,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
 
                 boolean isNow = true;
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
-                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                Intent i = new Intent(getContext(), SubActivity_BebenEintragen01_GetData.class);
                 i.putExtra("state", isNow);
                 if (mLastLocation != null) {
                     locTrue = true;
@@ -216,7 +216,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
 
                 boolean isNow = false;
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
-                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                Intent i = new Intent(getContext(), SubActivity_BebenEintragen01_GetData.class);
                 i.putExtra("state", isNow);
                 if (mLastLocation != null) {
                     locTrue = true;
@@ -245,7 +245,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
 
                 boolean isNow = true;
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
-                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                Intent i = new Intent(getContext(), SubActivity_BebenEintragen01_GetData.class);
                 i.putExtra("state", isNow);
                 if (mLastLocation != null) {
                     locTrue = true;
@@ -274,7 +274,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
 
                 boolean isNow = false;
                 //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
-                Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                Intent i = new Intent(getContext(), SubActivity_BebenEintragen01_GetData.class);
                 i.putExtra("state", isNow);
                 if (mLastLocation != null) {
                     locTrue = true;
@@ -523,7 +523,7 @@ public class Fragment_AT extends Fragment implements onSpinnerClick, GoogleApiCl
                     /**Erdbeben temp = (Erdbeben) parent.getItemAtPosition(position);
                      boolean isNow = true;
                      //Toast.makeText(getContext(), wert, Toast.LENGTH_LONG).show();
-                     Intent i = new Intent(getContext(), SubActivity_BebenEintragenStart.class);
+                     Intent i = new Intent(getContext(), SubActivity_BebenEintragen01_GetData.class);
                      i.putExtra("state", isNow);
                      i.putExtra("bebenData", temp);
                      startActivityForResult(i, SUB_ACTIVITY_REQUEST_CODE);
