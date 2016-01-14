@@ -33,11 +33,20 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         this.context = context;
     }
 
+    /**
+     * liefert wieviele Listen schon vorhanden sind
+     * @return
+     */
     @Override
     public int getItemCount() {
         return contactList.size();
     }
 
+    /**
+     *
+     * @param contactViewHolder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
         ContactInfo ci = contactList.get(i);
@@ -63,6 +72,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         }
     }
 
+    /**
+     *
+     * @param viewGroup
+     * @param i
+     * @return
+     */
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
@@ -96,6 +111,11 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             placeHolder.setOnClickListener(this);
         }
 
+        /**
+         * wenn nicht null
+         *  --> Listener auch das Item
+         * @param v
+         */
         @Override
         public void onClick(View v) {
             if (mItemClickListener != null) {

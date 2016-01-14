@@ -22,6 +22,7 @@ public class BebenInfo extends AppCompatActivity {
     TextView stock, gegenstand, flucht;
 
     /**
+     * Die fragen fuer den Benutzer, welche fuer die weitern Details beschreieben
      * @param savedInstanceState
      */
     @Override

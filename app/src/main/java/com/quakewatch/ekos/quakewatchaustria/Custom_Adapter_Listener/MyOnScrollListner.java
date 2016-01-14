@@ -13,6 +13,7 @@ public class MyOnScrollListner implements AbsListView.OnScrollListener {
     ActionBar mActionBar;
 
     /**
+     *
      * @param mActionBar
      */
     public MyOnScrollListner(ActionBar mActionBar) {
@@ -20,6 +21,7 @@ public class MyOnScrollListner implements AbsListView.OnScrollListener {
     }
 
     /**
+     * Wie es sich verhalten soll beim scrollen
      * @param view
      * @param scrollState
      */

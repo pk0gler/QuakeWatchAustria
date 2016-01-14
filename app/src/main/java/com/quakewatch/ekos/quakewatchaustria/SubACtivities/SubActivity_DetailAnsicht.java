@@ -86,7 +86,7 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
 
     /**
      * OnCreate
-     *
+     *Zeigt genau an was angecklit wurde
      * @param savedInstanceState
      */
     @Override

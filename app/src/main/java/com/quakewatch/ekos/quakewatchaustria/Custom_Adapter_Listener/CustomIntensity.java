@@ -50,6 +50,13 @@ public class CustomIntensity extends ArrayAdapter<String> {
         super(context, R.layout.customintensity_row, text);
     }
 
+    /**
+     * Die erstellung der Anzeigeart von den Bebenstarken
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 

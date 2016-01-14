@@ -102,7 +102,7 @@ public class SubActivity_News_Detail extends AppCompatActivity {
     }
 
     /**
-     *
+     *ein Verweiss in den app guide
      * @param menu
      * @return
      */
@@ -114,7 +114,7 @@ public class SubActivity_News_Detail extends AppCompatActivity {
     }
 
     /**
-     *
+     *wenn alles richtig iebergebenb wurde kommt es in das naechste Fenster
      * @param item
      * @return
      */

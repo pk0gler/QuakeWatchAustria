@@ -77,7 +77,8 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
     };
 
     /**
-     *
+     *Es weden die einzelnen Informationen von Ort,Zeit und Datum
+     * von dem Benutzer als eingabe erwartet.
      * @param savedInstanceState
      */
     @Override

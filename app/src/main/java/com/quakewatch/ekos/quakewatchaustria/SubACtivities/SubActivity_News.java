@@ -24,7 +24,7 @@ public class SubActivity_News extends AppCompatActivity {
     private ActionBar actionBar;
 
     /**
-     *
+     *das erstellen der Cardviwe und einfügen der Bilder
      * @param savedInstanceState
      */
     @Override
@@ -64,7 +64,8 @@ public class SubActivity_News extends AppCompatActivity {
     }
 
     /**
-     *
+     *zu den verschiedenen bildern werden die eigenschaften
+     * hinzugefuegt
      * @param temp
      */
     private void createContent(ArrayList<ContactInfo> temp) {
@@ -77,7 +78,7 @@ public class SubActivity_News extends AppCompatActivity {
     }
 
     /**
-     *
+     *Liefert das Item welches beschreibt um welches Item es sich handelt
      * @param item
      * @return
      */

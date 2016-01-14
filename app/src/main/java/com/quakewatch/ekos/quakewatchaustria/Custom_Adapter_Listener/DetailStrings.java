@@ -9,7 +9,7 @@ public class DetailStrings {
     public int icon;
 
     /**
-     *
+     *Speichern der einzelnen Atribute fuer die Details
      * @param icon
      * @param title
      * @param subtitle

@@ -14,6 +14,10 @@ public class MapAct extends Activity {
     static final LatLng TutorialsPoint = new LatLng(21, 57);
     private GoogleMap googleMap;
 
+    /**
+     * die Map wird erstellt und in das Fragment eingebunden
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
