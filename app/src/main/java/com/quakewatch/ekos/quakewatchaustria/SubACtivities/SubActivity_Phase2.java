@@ -16,7 +16,10 @@ import com.quakewatch.ekos.quakewatchaustria.R;
  * Created by philippkogler on 05.11.15.
  */
 public class SubActivity_Phase2 extends AppCompatActivity {
+
     /**
+     * Wenn ein Beben verspürt wurde, werden die Beschreibungen eines Bebens angezeigt
+     *
      * OnCreate
      *
      * @param savedInstanceState

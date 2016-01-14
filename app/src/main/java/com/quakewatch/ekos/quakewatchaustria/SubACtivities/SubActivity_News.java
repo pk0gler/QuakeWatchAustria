@@ -23,6 +23,10 @@ public class SubActivity_News extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private ActionBar actionBar;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +63,10 @@ public class SubActivity_News extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    /**
+     *
+     * @param temp
+     */
     private void createContent(ArrayList<ContactInfo> temp) {
         temp.add(new ContactInfo(R.drawable.schwach, "Schwach verspürt"));
         temp.add(new ContactInfo(R.drawable.deutlich, "Deutlich verspürt"));
@@ -68,6 +76,11 @@ public class SubActivity_News extends AppCompatActivity {
         temp.add(new ContactInfo(R.drawable.schwere, "Schwere Gebäudeschäden"));
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

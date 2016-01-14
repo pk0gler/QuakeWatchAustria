@@ -23,6 +23,13 @@ public class Mapadapter extends ArrayAdapter<String> {
         this.beben = beben;
     }
 
+    /**
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         String temp = getItem(position);

@@ -26,6 +26,10 @@ public class Subactivity_ZusatzFragen extends AppCompatActivity {
     private TextView t5;
     private CardView card_view4;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

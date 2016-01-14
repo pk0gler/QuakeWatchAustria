@@ -76,6 +76,10 @@ public class SubActivity_BebenEintragenStart extends AppCompatActivity implement
         }
     };
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

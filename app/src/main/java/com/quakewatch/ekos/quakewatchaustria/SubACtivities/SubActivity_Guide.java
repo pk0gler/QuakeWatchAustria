@@ -37,6 +37,12 @@ public class SubActivity_Guide extends AppCompatActivity {
         //prog = (ProgressBar) findViewById(R.id.prog);
     }
 
+    /**
+     *
+     * @param keyCode
+     * @param event
+     * @return
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
@@ -46,6 +52,11 @@ public class SubActivity_Guide extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -53,6 +64,11 @@ public class SubActivity_Guide extends AppCompatActivity {
         return true;
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -68,18 +84,34 @@ public class SubActivity_Guide extends AppCompatActivity {
     }
 
     public class WebClient extends WebViewClient {
-
+        /**
+         *
+         * @param view
+         * @param url
+         * @return
+         */
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
             return true;
         }
 
+        /**
+         *
+         * @param view
+         * @param url
+         * @param favicon
+         */
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             pd.show();
         }
 
+        /**
+         *
+         * @param view
+         * @param url
+         */
         @Override
         public void onPageFinished(WebView view, String url) {
             if (pd.isShowing()) {

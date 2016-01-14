@@ -8,6 +8,12 @@ public class DetailStrings {
     public String subtitle;
     public int icon;
 
+    /**
+     *
+     * @param icon
+     * @param title
+     * @param subtitle
+     */
     public DetailStrings(int icon, String title, String subtitle) {
         this.icon = icon;
         this.title = title;

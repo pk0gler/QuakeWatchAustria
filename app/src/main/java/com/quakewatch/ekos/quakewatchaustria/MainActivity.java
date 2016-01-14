@@ -292,6 +292,10 @@ public class MainActivity extends AppCompatActivity {
         return outcome;
     }
 
+    /**
+     * Die Map wird mit den Inhalten gefuellt
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

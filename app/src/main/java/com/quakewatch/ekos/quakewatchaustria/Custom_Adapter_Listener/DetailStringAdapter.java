@@ -27,6 +27,13 @@ public class DetailStringAdapter extends ArrayAdapter<DetailStrings> {
         this.data = data;
     }
 
+    /**
+     * Beschreibt auf welcher position die verschiedenen Widgets sein sollen
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;

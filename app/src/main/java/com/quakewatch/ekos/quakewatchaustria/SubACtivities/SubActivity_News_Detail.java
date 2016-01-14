@@ -15,6 +15,9 @@ import com.quakewatch.ekos.quakewatchaustria.Custom_Adapter_Listener.CustomInten
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Json.FinalJson;
 
+/**
+ *
+ */
 public class SubActivity_News_Detail extends AppCompatActivity {
 
     private final static String[] text = {
@@ -34,7 +37,10 @@ public class SubActivity_News_Detail extends AppCompatActivity {
             "Panik. Verlieren des Gleichgewichts. Schwere Gegenstände fallen zu Boden. Umfallen von Möbelstücken möglich. Schwere Mauerschäden.Strukturelle Schäden an Gebäuden. Ältere Bauwerkestürzen ein.\n\n" +
                     "„Sie haben das Erdbeben sehr stark verspürt. Es gibt schwere Gebäudeschäden.“"};
 
-
+    /**
+     * Sendet die Verschiedenen Informationen der Beben mit einem dazugehörigem Bild
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final int position = getIntent().getIntExtra("position", 1) + 1;
@@ -95,6 +101,11 @@ public class SubActivity_News_Detail extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -102,6 +113,11 @@ public class SubActivity_News_Detail extends AppCompatActivity {
         return true;
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

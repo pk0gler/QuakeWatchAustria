@@ -45,6 +45,9 @@ public class SubActivity_DetailAnsicht extends AppCompatActivity implements Seri
             //Red
             "#CA0000"
     };
+    /**
+     *
+     */
     public final static String[] colorCodes = {
             //Green
             "#66BB6A", "#4CAF50", "#43A047",
