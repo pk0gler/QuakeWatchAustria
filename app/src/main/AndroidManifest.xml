@@ -62,13 +62,7 @@
             android:name=".SubACtivities.SubActivity_SettingsActivity"
             android:label="@string/title_activity_sub_activity__settings"
             android:theme="@style/AppThemeSub" />
-        <activity
-            android:name=".SubACtivities.ImageFullScreen"
-            android:label="@string/title_activity_image_full_screen"
-            android:theme="@style/AppThemeSub" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY" />
-        </activity>
+
         <activity
             android:name=".SubACtivities.SubActivity_Guide"
             android:label="@string/title_activity_sub_activity__guide"

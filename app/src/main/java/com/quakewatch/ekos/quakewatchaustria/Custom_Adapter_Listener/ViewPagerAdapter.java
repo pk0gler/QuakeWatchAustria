@@ -10,10 +10,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
+import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Fragment_EUROPA;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FRAGMENT_MAP;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FRAGMENT_WELT;
 import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.Fragment_AT;
-import com.quakewatch.ekos.quakewatchaustria.Tablayout_Fragments.FRAGMENT_EUROPA;
 
 
 /**
@@ -53,7 +53,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new Fragment_AT();
             case 1:
-                return new FRAGMENT_EUROPA();
+                return new Fragment_EUROPA();
             case 2:
                 this.weltf = new FRAGMENT_WELT();
                 return this.weltf;
