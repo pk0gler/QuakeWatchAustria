@@ -97,7 +97,7 @@ public class CustomArrayAdapter extends ArrayAdapter {
         //Infalte the Layout
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
-        /**
+        /*
          * If the View is empty e.g the first call
          * We have to set the ViewHolder elements
          * The ViewHolder Elements need to be initialized
@@ -113,7 +113,7 @@ public class CustomArrayAdapter extends ArrayAdapter {
             holder.icon = (ImageView) convertView.findViewById(R.id.imagebild);
             convertView.setTag(holder);
         } else
-        /**
+        /*
          * If its not the First Call
          * The old ViewHolder object has to be set
          * For better performance
@@ -131,7 +131,7 @@ public class CustomArrayAdapter extends ArrayAdapter {
         holder.region.setText(temp.getRegion());
         holder.date.setText(temp.getDate());
         holder.time.setText(temp.getTime());
-        /**
+        /*
          ----------------------------------------------------
          ---            COLOR CODES COLOR CODES           ---
          ----------------------------------------------------

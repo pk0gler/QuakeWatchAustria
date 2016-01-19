@@ -1,7 +1,10 @@
 package com.quakewatch.ekos.quakewatchaustria.SubACtivities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.Menu;
@@ -17,6 +20,13 @@ import android.widget.TextView;
 import com.quakewatch.ekos.quakewatchaustria.MainActivity;
 import com.quakewatch.ekos.quakewatchaustria.R;
 import com.quakewatch.ekos.quakewatchaustria.Json.FinalJson;
+
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class Subactivity_BebenEintragen03_Zusatzfragen extends AppCompatActivity {
     private TextView t1;
@@ -136,6 +146,7 @@ public class Subactivity_BebenEintragen03_Zusatzfragen extends AppCompatActivity
                 }
                 FinalJson.context = getBaseContext();
                 FinalJson.toJson();
+                new SendfeedbackJob().execute();
                 Intent i = new Intent(getBaseContext(), MainActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
@@ -174,4 +185,88 @@ public class Subactivity_BebenEintragen03_Zusatzfragen extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    public class SendfeedbackJob extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String[] params) {
+            // do above Server call here
+            makePostRequest();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String message) {
+            //process message
+        }
+    }
+
+    private void makePostRequest() {
+
+        /*
+        HttpClient httpClient = new DefaultHttpClient();
+        // replace with your url
+        HttpPost httpPost = new HttpPost("http://geoweb.zamg.ac.at/quakeapi/v01/message");
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        //Encoding POST data
+        //httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        httpPost.setHeader("Content-Type", "application/json");
+        httpPost.setHeader("Authorization", "Basic cXVha2VhcGk6I3FrcCZtbGRuZyM=");
+        httpPost.setHeader("X-QuakeAPIKey", prefs.getString("apikey", ""));
+
+        //making POST request.
+        try {
+            HttpResponse response = httpClient.execute(httpPost);
+        } catch (ClientProtocolException e) {
+            // Log exception
+            e.printStackTrace();
+        } catch (Exception e) {
+            // Log exception
+            e.printStackTrace();
+        }*/
+        URL myURL = null;
+        try {
+            JSONObject Erdbeben = new JSONObject();
+            Erdbeben.put("referenzID","12345abc");
+            Erdbeben.put("mlocPLZ:","1200");
+            Erdbeben.put("mlocOrtsname:", "Wien");
+            Erdbeben.put("stockwerk:", "1");
+            Erdbeben.put("klassifikation:", "3");
+            Erdbeben.put("verspuert:","2016-01-14T11:54:07+01:00");
+            Erdbeben.put("kommentar:", "testkommentar");
+            Erdbeben.put("kontakt:","harald.bamberger@zamg.ac.at" );
+
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            myURL = new URL("http://geoweb.zamg.ac.at/quakeapi/v01/message");
+            HttpURLConnection myURLConnection = (HttpURLConnection) myURL.openConnection();
+            myURLConnection.setRequestMethod("POST");
+            myURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+            myURLConnection.setRequestProperty("Authorization", "Basic cXVha2VhcGk6I3FrcCZtbGRuZyM=");
+            myURLConnection.setRequestProperty("X-QuakeAPIKey", prefs.getString("apikey", ""));
+            myURLConnection.setDoOutput(true);
+            myURLConnection.setDoInput(true);
+            myURLConnection.getOutputStream().write(Erdbeben.toString().getBytes("utf-8"));
+
+            myURLConnection.connect();
+
+            String a = myURLConnection.getResponseCode()+"|"+myURLConnection.getResponseMessage();
+            System.out.print("");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    myURLConnection.getErrorStream()));
+            String inputLine;
+            String temp="";
+            while ((inputLine = in.readLine()) != null)
+                temp += inputLine;
+            in.close();
+            String ups = temp;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }

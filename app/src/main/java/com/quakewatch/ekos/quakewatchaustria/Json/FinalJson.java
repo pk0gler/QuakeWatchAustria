@@ -10,8 +10,13 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by philippkogler on 13.01.16.
@@ -27,6 +32,7 @@ public final class FinalJson {
     public static String stockwerk = "null";
     public static String klassifikation = "null";
     public static String verspuert = "null";
+    public static JSONObject jsonObject = null;
     public static String kommentar = "null";
     public static String kontakt = "harald.bamberger@zamg.ac.at";
     public static Context context;
@@ -49,50 +55,8 @@ public final class FinalJson {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        jsonObject = json;
         return json;
-    }
-
-    private void makePostRequest() {
-
-
-        HttpClient httpClient = new DefaultHttpClient();
-        // replace with your url
-        HttpPost httpPost = new HttpPost("http://geoweb.zamg.ac.at/quakeapi/v01/message");
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-        //Encoding POST data
-        //httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-        httpPost.setHeader("Content-Type", "application/json");
-        httpPost.setHeader("Authorization", "Basic cXVha2VhcGk6I3FrcCZtbGRuZyM=");
-        httpPost.setHeader("X-QuakeAPIKey", prefs.getString("apikey", ""));
-
-        //making POST request.
-        try {
-            HttpResponse response = httpClient.execute(httpPost);
-        } catch (ClientProtocolException e) {
-            // Log exception
-            e.printStackTrace();
-        } catch (Exception e) {
-            // Log exception
-            e.printStackTrace();
-        }
-
-    }
-
-    public class SendfeedbackJob extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String[] params) {
-            // do above Server call here
-            //makePostRequest();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String message) {
-            //process message
-        }
     }
 
 }
